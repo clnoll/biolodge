@@ -15,7 +15,7 @@ class Subspecies(models.Model):
     species = models.CharField(max_length=50)
     subspecies = models.CharField(max_length=50)
     raw_location = models.TextField()
-    ebird_id = models.CharField(unique=True, max_length=50)
+    ebird_id = models.CharField(max_length=50)
     common_name = models.CharField(max_length=50)
 
     locations = models.ManyToManyField(Location)
