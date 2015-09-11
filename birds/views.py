@@ -1,16 +1,16 @@
 from django.shortcuts import render
 from django.views.generic import View
+from rest_framework import generics
+from rest_framework.serializers import ModelSerializer
+
 from birds.models import Subspecies
 
 
-class BirdList(View):
+class BirdSerializer(ModelSerializer):
+    class Meta:
+        model = Subspecies
 
-    def get(self, request):
-        headers = Subspecies._meta.get_all_field_names()
-        body = Subspecies.objects.values_list(*headers)
 
-        data = {
-            'header': headers,
-            'body': body,
-        }
-        return render(request, 'birds/birds.html', data)
+class Birds(generics.ListAPIView):
+    queryset = Subspecies.objects.all()
+    serializer_class = BirdSerializer
