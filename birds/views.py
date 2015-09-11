@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from django.views.generic import View
 from rest_framework import generics
 from rest_framework.serializers import ModelSerializer
 
