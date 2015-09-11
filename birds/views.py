@@ -3,7 +3,7 @@ from birds.models import Subspecies
 
 
 def get_birds(request):
-    headers = [field.name for field in Subspecies._meta._fields()]
+    headers = [field for field in Subspecies._meta.get_all_field_names()]
     body = Subspecies.objects.values_list(*headers)
 
     data = {
