@@ -16,11 +16,13 @@ input_field_map = {'Order': 'order',
 
 def csv_to_db():
     csv_name = CSV_NAME
+    objects = []
     with open(csv_name) as fp:
         rdr = csv.DictReader(fp)
         for line in rdr:
             mapped_data = remap_field_names(line)
-            Subspecies.objects.create(**mapped_data)
+            objects.append(Subspecies(**mapped_data))
+    Subspecies.objects.bulk_create(objects)
 
 
 def remap_field_names(line):
