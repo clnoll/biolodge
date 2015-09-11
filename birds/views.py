@@ -6,7 +6,7 @@ from birds.models import Subspecies
 class BirdList(View):
 
     def get(self, request):
-        headers = [field for field in Subspecies._meta.get_all_field_names()]
+        headers = Subspecies._meta.get_all_field_names()
         body = Subspecies.objects.values_list(*headers)
 
         data = {
