@@ -1,8 +1,12 @@
 import csv
+import os
 
 from birds.models import Subspecies
 
-CSV_NAME = '/Users/catherine/Public/biolodge/birds/data/eBird-Clements-v2015-integrated-checklist-August-2015.csv'
+
+CSV_NAME = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                        'eBird-Clements-v2015-integrated-checklist-August-2015.csv')
+
 input_field_map = {'Order': 'order',
                    'Family': 'family',
                    'Range': 'raw_location',
