@@ -1,25 +1,28 @@
 <html>
-	<head>
+
+<head>
 		<title>Birds</title>
-	</head>
-	<body>
+</head>
+
+<body>
 		<table>
-			<thead>
-				<tr>
-					{% for column_name in header %}
-						<td>{{ column_name }}</td>
-					{% endfor %}
-				</tr>
-			</thead>
-			<tbody>
-				{% for row_data in body %}
-					<tr>
-						{% for info in row_data %}
-							<td>{{ info }}</td>
+				<thead>
+						<tr>
+								{% for column_name in header %}
+								<td>{{ column_name }}</td>
+								{% endfor %}
+						</tr>
+				</thead>
+				<tbody>
+						{% for row_data in body %}
+						<tr>
+								{% for info in row_data %}
+								<td>{{ info }}</td>
+								{% endfor %}
+						</tr>
 						{% endfor %}
-					</tr>
-				{% endfor %}
-			</tbody>
+				</tbody>
 		</table>
-	</body>
+</body>
+
 </html>
