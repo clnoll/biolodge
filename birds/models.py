@@ -1,10 +1,12 @@
 from django.db import models
 
 
-class Location(models.Model):
+class Region(models.Model):
 
     name = models.CharField(null=False, unique=True, max_length=50)
     polygon = models.TextField()
+
+    filled_from = models.ManyToManyField(Region)
 
 
 class Subspecies(models.Model):
@@ -14,8 +16,8 @@ class Subspecies(models.Model):
     genus = models.CharField(max_length=50)
     species = models.CharField(max_length=50)
     subspecies = models.CharField(max_length=50)
-    raw_location = models.TextField()
+    raw_range = models.TextField()
     ebird_id = models.CharField(max_length=50)
     common_name = models.CharField(max_length=50)
 
-    locations = models.ManyToManyField(Location)
+    regions = models.ManyToManyField(Region)
