@@ -97,7 +97,8 @@ class TestReadData(TestCase):
                      'EXTINCT': '',
                      'EXTINCT_YEAR': '', }
         result = remap_field_names(test_data).keys().sort()
-        expected_result = [field.name for field in Bird._meta.local_fields].sort()
+        expected_result = [field.name for field in
+                           Bird._meta.local_fields].sort()
         self.assertEquals(result, expected_result)
 
     def test_get_species_from_name_subspecies(self):
@@ -137,5 +138,5 @@ class TestBirdList(TestCase):
         results = Bird.objects.all()
         self.assertEquals(len(results), 5)
         get = self.client.get('/')
-        result = json.loads(get.getvalue())['count']
-        self.assertEquals(result, 5)
+        result_json = json.loads(get.getvalue())['count']
+        self.assertEquals(result_json, 5)
