@@ -14,6 +14,7 @@ albania
 alberta
 algeria
 alps
+amazon basin
 amazon river
 american samoa
 amur river
@@ -34,6 +35,7 @@ argentina
 arizona
 arkansas
 armenia
+aru islands
 aruba
 ascension island
 ashmore and cartier islands
@@ -216,6 +218,8 @@ iowa
 iran
 iraq
 ireland
+# FIXME required by e.g. "north island"
+island
 israel
 italy
 jamaica
@@ -227,11 +231,13 @@ jilin sheng
 johnston island
 jordan
 jupiter
+kangaroo island
 kansas
 kazakhstan
 kentucky
 kenya
 kermadec islands
+king i.
 kiribati
 korea
 kosovo
@@ -264,6 +270,7 @@ maldives
 mali
 malta
 manitoba
+margarita i.
 mariana islands
 maritime provinces
 mars
@@ -330,6 +337,8 @@ north america
 north atlantic ocean
 north carolina
 north dakota
+# FIXME
+north island
 north pacific ocean
 northeastern states
 northern australia
@@ -343,6 +352,7 @@ nunavut
 oceania
 ohio
 ohio river
+okarito forest
 oklahoma
 oman
 ontario
@@ -442,6 +452,7 @@ spain
 spanish north africa
 spratly islands
 sri lanka
+stewart i.
 sudan
 suez canal
 sumatra

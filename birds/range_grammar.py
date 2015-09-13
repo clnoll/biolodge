@@ -30,22 +30,52 @@ COMPASS_ADJECTIVE = oneOf([
     'northeastern', 'northwestern', 'southeastern', 'southwestern',
 
     # FIXME
-    'northern and eastern', 'central and eastern',
-    'southern-c', 'northern-central', 'southern-central',
+    'northern and eastern', 'central and eastern', 'central and northeastern', 'central and southern', 'northern and central',
+    'southern-c', 'eastern-c',
+    'south central', 'north-central', 'northern-central', 'southern-central', 'eastern-central', 'western-central', 'east central',
 ])
-COMPASS_MODIFIER = oneOf(['extreme'])
+COMPASS_MODIFIER = oneOf(['extreme', 'interior'])
 CONJUNCTION = oneOf([',', 'and', ', and'])
-ADJECTIVE = oneOf(['amazonian', 'coastal', 'formerly', 'subtropical', 'tropical'])
+ADJECTIVE = oneOf([
+    'amazonian',
+    'arid',
+    'coastal',
+    'formerly',
+    'semiarid subtropical',
+    'subtropical',
+    'tropical',
+    'patchily distributed',
+])
 FILL_OPERATOR = Optional(COMPASS_DIRECTION) + oneOf(['to'])
 PARENTHETICAL_PHRASE = '(' + Word(alphas + ' ,') + ')'
-HABITAT = (Word(alphas)
-           ^ 'desert puna'
-           ^ 'patagonian steppes'
-           ^ 'montane forests'
-           ^ 'pacific slope'
-           ^ 'humid lowlands'
-           ^ 'pacific and caribbean slopes'
-           ^ 'magdalena valley') + 'of'
+HABITAT = (
+    Word(alphas)
+    ^ 'atlantic coast'
+    ^ 'andean foothills'
+    # FIXME: "arid quebracho woodlands"
+    ^ 'quebracho woodlands'
+    ^ 'caribbean slope'
+    ^ 'desert puna'
+    ^ 'dry grasslands'
+    ^ 'dry savanna'
+    ^ 'gulf-caribbean lowlands'
+    ^ 'humid foothills'
+    ^ 'humid forests'
+    ^ 'humid lowlands'
+    ^ 'magdalena valley'
+    ^ 'maran valley'
+    ^ 'moist grasslands'
+    ^ 'moist chaco grasslands'
+    ^ 'montane forests'
+    ^ 'pacific and caribbean slopes'
+    ^ 'pacific lowlands'
+    ^ 'pacific slope'
+    ^ 'patagonian steppes'
+    ^ 'semiarid grasslands'
+    ^ 'semiarid grasslands and scrub'
+    ^ 'tropical forests'
+    ^ 'western slope of andes'
+) + oneOf(['in', 'of'])
 
 
 def make_grammar():
