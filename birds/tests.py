@@ -29,43 +29,47 @@ class TestRangeGrammar(TestCase):
 
     # Test parse_range.make_grammar
     def test_make_grammar_conjunction(self):
-        test_string = ""
+        test_string = "S Chile, s Argentina and Falkland Islands"
         result = parse_range.make_grammar(test_string)
-        self.assertEquals(result, "")
+        expected_result = []
+        self.assertEquals(result, expected_result)
 
     def test_make_grammar_conjunction_fill(self):
         test_string = "Costa Rica to Brazil; Africa, Madagascar and Comoro Islands"
         result = parse_range.make_grammar(test_string)
-        self.assertEquals(result, "")
+        expected_result = []
+        self.assertEquals(result, expected_result)
 
-    def test_make_grammar_conjunction_semicolon(self):
+    def test_make_grammar_semicolon(self):
         test_string = "French Guiana and extreme ne Brazil; e Peru and nw Brazil"
         result = parse_range.make_grammar(test_string)
-        self.assertEquals(result, "")
+        expected_result = []
+        self.assertEquals(result, expected_result)
 
     def test_make_grammar_single_fill(self):
         test_string = "E Bolivia to Paraguay, s Brazil and n Argentina"
         result = parse_range.make_grammar(test_string)
-        self.assertEquals(result, "")
+        expected_result = []
+        self.assertEquals(result, expected_result)
 
     def test_make_grammar_multiple_fill(self):
         test_string = "lowlands from northern Mexico south, west of the Andes, to southwestern Ecuador and, east of the Andes, to northeastern Argentina and Brazil"
         result = parse_range.make_grammar(test_string)
-        self.assertEquals(result, "")
+        expected_result = []
+        self.assertEquals(result, expected_result)
 
     def test_make_grammar_parenthetical_with_fill(self):
         test_string = "Coastal se Brazil (Minas Gerais to Rio Grande do Sul)"
         result = parse_range.make_grammar(test_string)
-        self.assertEquals(result, "")
+        expected_result = []
+        self.assertEquals(result, expected_result)
 
     def test_make_grammar_parenthetical_with_conjunction(self):
         test_string = "Andes of nw Argentina (Jujuy and La Rioja)"
         result = parse_range.make_grammar(test_string)
-        self.assertEquals(result, "")
+        expected_result = []
+        self.assertEquals(result, expected_result)
 
-# skip if "extinct" in raw_location
-# if "of" in description, take the word 1 before
-# todo:  flags for "breeds" and "winters"
 
 class TestReadData(TestCase):
 
