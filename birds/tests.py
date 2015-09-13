@@ -3,6 +3,7 @@ import os
 
 import range_grammar
 from birds.models import Bird
+from views import BirdList
 from data.read_ebird_csv import csv_to_db
 from data.read_ebird_csv import remap_field_names
 from data.read_ebird_csv import get_species_from_name
@@ -122,3 +123,13 @@ class TestReadData(TestCase):
          for result in results]
         Bird.objects.all().delete()
         self.assertEquals(Bird.objects.count(), 0)
+
+
+class TestBirdList(TestCase):
+
+    def test_get(self):
+        Bird.objects.all().delete()
+        self.assertEquals(Bird.objects.count(), 0)
+        result = BirdList().get('get').status_code
+        self.assertEquals(result, 200)
+
