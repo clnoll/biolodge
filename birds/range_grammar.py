@@ -1,5 +1,6 @@
 from pprint import pprint
 import os
+import re
 
 from pyparsing import Group
 from pyparsing import Optional
@@ -45,20 +46,26 @@ def make_grammar():
 
 
 def preprocess(text):
-    return (
-        text
-        # These single/double letters seem to fail as compass adjectives
-        # because they match incorrectly as prefixes of words.  Possibly need
-        # to use Keyword instead of oneOf.
-        .replace(' n ', ' northern ')
-        .replace(' e ', ' eastern ')
-        .replace(' s ', ' southern ')
-        .replace(' w ', ' western ')
-        .replace(' ne ', ' northwestern ')
-        .replace(' se ', ' southeastern ')
-        .replace(' sw ', ' southwestern ')
-        .replace(' nw ', ' northwestern ')
-    )
+
+    text = text.lower()
+
+    # These single/double letters seem to fail as compass adjectives
+    # because they match incorrectly as prefixes of words.  Possibly need
+    # to use Keyword instead of oneOf.
+    # FIXME: This is incorrect for e.g. the country "S Africa"
+    for pattern, replacement in [
+            (r'\bn\b', 'northern'),
+            (r'\be\b', 'eastern'),
+            (r'\bs\b', 'southern'),
+            (r'\bw\b', 'western'),
+            (r'\bne\b', 'northeastern'),
+            (r'\bse\b', 'southeastern'),
+            (r'\bsw\b', 'southwestern'),
+            (r'\bnw\b', 'northwestern'),
+    ]:
+        text = re.sub(pattern, replacement, text)
+
+    return text
 
 
 if __name__ == '__main__':
