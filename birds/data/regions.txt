@@ -1,18 +1,39 @@
+africa
+andes
 angola
+argentina
 australia
+bolivia
+brazil
+chile
 china
+colombia
+costa rica
 democratic republic of the congo
+ecuador
 ethiopia
+guatemala
 india
 indochina
 kenya
+mexico
 mozambique
 namibia
 nicobar islands
+nicaragua
 niger river
 nigeria
+panama
+paraguay
+peru
+# FIXME: río
+ro negro
 senegambia
 south africa
 sri lanka
+syrian and arabian deserts
 sumatra
+tanzania
+the sudan
 uganda
+venezuela
