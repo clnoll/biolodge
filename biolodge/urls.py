@@ -16,8 +16,8 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from birds.views import BirdList
+from birds.views import Birds
 
 urlpatterns = [
-    url(r'', BirdList.as_view()),
+    url(r'', Birds.as_view()),
 ]

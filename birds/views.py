@@ -1,16 +1,14 @@
-from django.shortcuts import render
-from django.views.generic import View
+from rest_framework import generics
+from rest_framework.serializers import ModelSerializer
+
 from birds.models import Bird
 
 
-class BirdList(View):
+class BirdSerializer(ModelSerializer):
+    class Meta:
+        model = Bird
 
-    def get(self, request):
-        headers = Bird._meta.get_all_field_names()
-        body = Bird.objects.values_list(*headers)
 
-        data = {
-            'header': headers,
-            'body': body,
-        }
-        return render(request, 'birds/birds.html', data)
+class Birds(generics.ListAPIView):
+    queryset = Bird.objects.all()
+    serializer_class = BirdSerializer
