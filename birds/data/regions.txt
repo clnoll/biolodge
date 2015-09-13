@@ -64,6 +64,7 @@ bengal, bay of
 benin
 bermuda islands
 bhutan
+bismarck archipelago
 black sea
 bo hai
 bolivia
@@ -233,17 +234,19 @@ jordan
 jupiter
 kangaroo island
 kansas
+kapiti island
 kazakhstan
 kentucky
 kenya
 kermadec islands
-king i.
+king island
 kiribati
 korea
 kosovo
 kunlun mountains
 kuwait
 kyrgyzstan
+lake baikal
 laos
 latin america
 latvia
@@ -270,7 +273,7 @@ maldives
 mali
 malta
 manitoba
-margarita i.
+margarita island
 mariana islands
 maritime provinces
 mars
@@ -314,6 +317,7 @@ nepal
 neptune
 netherlands
 nevada
+new britain island
 new brunswick
 new caledonia
 new england
@@ -440,6 +444,8 @@ south carolina
 south china sea
 south dakota
 south georgia and south sandwich islands
+# FIXME
+south island
 south pacific ocean
 south sudan
 southeast asia
@@ -452,9 +458,10 @@ spain
 spanish north africa
 spratly islands
 sri lanka
-stewart i.
+stewart island
 sudan
 suez canal
+sulawesi
 sumatra
 sun
 suriname
@@ -492,6 +499,7 @@ uganda
 ukraine
 united arab emirates
 united states
+us
 united states miscellaneous caribbean islands
 united states miscellaneous pacific islands
 ural mountains

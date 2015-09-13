@@ -35,16 +35,26 @@ COMPASS_ADJECTIVE = oneOf([
     'south central', 'north-central', 'northern-central', 'southern-central', 'eastern-central', 'western-central', 'east central',
 ])
 COMPASS_MODIFIER = oneOf(['extreme', 'interior'])
-CONJUNCTION = oneOf([',', 'and', ', and'])
-ADJECTIVE = oneOf([
+CONJUNCTION = oneOf([
+    ',',
+    'and',
+    ', and',
+])
+HABITAT_QUALIFIER = oneOf([
     'amazonian',
     'arid',
     'coastal',
     'formerly',
+    'locally in',
+    'mainly in',
     'semiarid subtropical',
     'subtropical',
     'tropical',
     'patchily distributed',
+])
+VERB = oneOf([
+    'breeds',
+    'winters',
 ])
 FILL_OPERATOR = Optional(COMPASS_DIRECTION) + oneOf(['to'])
 PARENTHETICAL_PHRASE = '(' + Word(alphas + ' ,') + ')'
@@ -52,9 +62,11 @@ HABITAT = (
     Word(alphas)
     ^ 'atlantic coast'
     ^ 'andean foothills'
+    ^ 'aquatic lowlands'
     # FIXME: "arid quebracho woodlands"
     ^ 'quebracho woodlands'
     ^ 'caribbean slope'
+    ^ 'coast'
     ^ 'desert puna'
     ^ 'dry grasslands'
     ^ 'dry savanna'
@@ -73,21 +85,27 @@ HABITAT = (
     ^ 'patagonian steppes'
     ^ 'semiarid grasslands'
     ^ 'semiarid grasslands and scrub'
+    ^ 'taiga and wooded tundra'
     ^ 'tropical forests'
+    # FIXME
+    ^ 'western coast of greenland'
+    # FIXME
     ^ 'western slope of andes'
+    ^ 'wet lowlands'
 ) + oneOf(['in', 'of'])
 
 
 def make_grammar():
+
     modified_region = Group(Optional(HABITAT) +
                             Optional(Optional(COMPASS_MODIFIER) + COMPASS_ADJECTIVE) +
                             REGION_ATOM)
-    region = Group(modified_region + Optional(FILL_OPERATOR + modified_region))
+    region = Optional(VERB) + Group(modified_region + Optional(FILL_OPERATOR + modified_region))
     grammar = region + ZeroOrMore(CONJUNCTION + region)
     grammar.ignore(PARENTHETICAL_PHRASE)
 
     # FIXME
-    grammar.ignore(ADJECTIVE)
+    grammar.ignore(HABITAT_QUALIFIER)
 
     return grammar
 
@@ -112,6 +130,12 @@ def preprocess(text):
             (r'\bnw\b', 'northwestern'),
     ]:
         text = re.sub(pattern, replacement, text)
+
+    # FIXME: use regexp
+    text = (text
+            .replace(' i. ', ' island ')
+            .replace(' i.,', ' island,')
+            .replace(' arch. ', ' archipelago '))
 
     return text
 
