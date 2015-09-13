@@ -1,9 +1,10 @@
 from django.test import TestCase
 import os
+import json
 
 import range_grammar
 from birds.models import Bird
-from views import BirdList
+from views import Birds
 from data.read_ebird_csv import csv_to_db
 from data.read_ebird_csv import remap_field_names
 from data.read_ebird_csv import get_species_from_name
@@ -130,6 +131,11 @@ class TestBirdList(TestCase):
     def test_get(self):
         Bird.objects.all().delete()
         self.assertEquals(Bird.objects.count(), 0)
-        result = self.client.get('/')
-        self.assertEquals(result.status_code, 200)
-        import ipdb; ipdb.set_trace()
+        csv_name = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                'data/test.csv')
+        csv_to_db(csv_name=csv_name)
+        results = Bird.objects.all()
+        self.assertEquals(len(results), 5)
+        get = self.client.get('/')
+        result = json.loads(get.getvalue())['count']
+        self.assertEquals(result, 5)
