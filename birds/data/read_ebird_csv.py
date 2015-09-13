@@ -32,7 +32,7 @@ def remap_field_names(line):
     for key, val in line.items():
         if key in input_field_map.keys():
             mapped_key = input_field_map[key]
-            data[mapped_key] = val.decode(errors='ignore')
+            data[mapped_key] = val.decode('latin1')
     return data
 
 
