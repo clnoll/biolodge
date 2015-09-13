@@ -1,4 +1,5 @@
 from pprint import pprint
+import os
 
 from pyparsing import Group
 from pyparsing import Optional
@@ -8,8 +9,15 @@ from pyparsing import alphas
 from pyparsing import oneOf
 
 
-with open('data/regions.txt') as fp:
-    REGION_ATOM = oneOf(line.strip() for line in fp)
+REGIONS_FILE = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    'data',
+    'regions.txt')
+
+with open(REGIONS_FILE) as fp:
+    REGION_ATOM = oneOf(line.strip() for line in fp
+                        if not line.startswith('#'))
+
 COMPASS_DIRECTION = oneOf(['north', 'east', 'south', 'west'])
 
 # These should include 'n', 'sw', etc but that's not working currently and is
