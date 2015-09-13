@@ -1,4 +1,3 @@
-from pprint import pprint
 import os
 import re
 
@@ -69,16 +68,18 @@ def preprocess(text):
 
 
 if __name__ == '__main__':
-    range_texts = [
-        "Senegambia to Ethiopia, n Uganda and ne Kenya",
-        "Nigeria (east of Niger River) to Angola, Democratic Republic of the Congo, and Uganda",
-        "Coastal n Australia and major offshore outlying islands",
-        "India and Sri Lanka to se China, Indochina and Sumatra",
-        "Nicobar Islands",
-    ]
+
+    from pprint import pprint
+
+    from birds.models import Bird
+
     grammar = make_grammar()
-    for text in range_texts:
-        text = preprocess(text)
+    for bird in Bird.objects.order_by('id'):
+        if not bird.raw_range:
+            continue
+
+        text = preprocess(bird.raw_range)
+        print bird.id
         print text
         try:
             pprint(grammar.parseString(text.lower()).asList(), width=30)
