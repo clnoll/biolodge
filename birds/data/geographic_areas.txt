@@ -1,0 +1,534 @@
+Asia
+Afghanistan
+Armenia (Republic)
+Azerbaijan
+Bahrain
+Bangladesh
+Borneo
+Burma
+Bhutan
+Brunei
+Cambodia
+China
+Anhui Sheng (China)
+Zhejiang Sheng (China)
+Chongqing (China)
+Fujian Sheng (China)
+Hainan Sheng (China)
+Heilongjiang Sheng (China)
+Hubei Sheng (China)
+Hong Kong (China)
+Henan Sheng (China)
+Hebei Sheng (China)
+Hunan Sheng (China)
+Inner Mongolia (China)
+Gansu Sheng (China) a-cc-ka
+Guangxi Zhuangzu Zizhiqu (China)
+Jiangxi Sheng (China)
+Guangdong Sheng (China)
+Jilin Sheng (China)
+Jiangsu Sheng (China)
+Guizhou Sheng (China)
+Liaoning Sheng (China)
+Macau (China : Special Administrative Region)
+Ningxia Huizu Zizhiqu (China)
+Beijing (China)
+Shanxi Sheng (China)
+Shanghai (China)
+Shandong Sheng (China)
+Shaanxi Sheng (China)
+Xinjiang Uygur Zizhiqu (China)
+Sichuan Sheng (China)
+Tibet (China)
+Tianjin (China)
+Qinghai Sheng (China)
+Yunnan Sheng (China)
+Yangtze River (China)
+Kunlun Mountains (China and India)
+Bo Hai (China)
+Xi River (China)
+Yellow River (China)
+Sri Lanka
+Taiwan
+Cyprus
+Timor-Leste
+Georgia (Republic)
+India
+Indonesia
+Iraq
+Iran
+Israel
+Japan
+Jordan
+Kyrgyzstan
+Korea (North)
+Korea (South)
+Korea
+Kuwait
+Kazakhstan
+Lebanon
+Laos
+Oman
+Mongolia
+Malaysia
+Nepal
+New Guinea
+Philippines
+Pakistan
+Papua New Guinea
+Qatar
+Singapore
+Saudi Arabia
+Syria
+Tajikistan
+Thailand
+Turkmenistan
+United Arab Emirates
+Turkey
+Uzbekistan
+Vietnam
+Yemen (Republic)
+Amur River (China and Russia)
+Bengal, Bay of
+Asia, Central
+East Asia
+Thailand, Gulf of
+Mekong River
+Himalaya Mountains
+Indochina
+Caspian Sea
+Malaya
+East China Sea
+South China Sea
+Paracel Islands
+Spratly Islands
+Persian Gulf
+Arabian Peninsula
+Southeast Asia
+Tien Shan
+Arabian Sea
+Middle East
+West Bank
+Gaza Strip
+Yellow Sea
+South Asia
+Commonwealth countries
+Intercontinental areas (Western Hemisphere)
+Caribbean Area | Caribbean Sea
+Latin America
+Developing countries
+Developed countries
+Europe
+Albania
+Andorra
+Austria
+Belgium
+Bosnia and Herzegovina
+Bulgaria
+Belarus
+Croatia
+Czechoslovakia
+Denmark
+Estonia
+Finland
+France
+Germany (East)
+Gibraltar
+Greece
+Germany (West)
+Germany
+Hungary
+Iceland
+Ireland
+Italy
+Kosovo
+Liechtenstein
+Lithuania
+Luxembourg
+Latvia
+Monaco
+Malta
+Montenegro
+Moldova
+Netherlands
+Norway
+Poland
+Portugal
+Serbia
+Romania
+Russia (Federation)
+San Marino
+Spain
+Sweden
+Switzerland
+Great Britain
+England
+Northern Ireland
+Scotland
+Great Britain Miscellaneous Island Dependencies
+Wales
+Ukraine
+Soviet Union
+Central Chernozem Region (Russia)
+Siberia, Eastern (Russia)
+Russian Far East (Russia)
+Caucasus
+Soviet Union, Northwestern
+Volga River (Russia)
+Caucasus, Northern (Russia)
+Siberia (Russia)
+Ural Mountains (Russia)
+Siberia, Western (Russia)
+Vatican City
+Macedonia (Republic)
+Slovakia
+Czech Republic e-xr
+Slovenia
+Yugoslavia
+Alps
+Baltic States
+Europe, Central
+Balkan Peninsula
+Europe, Eastern
+Benelux countries
+Europe, Northern
+Danube River
+Pyrenees
+Rhine River
+Europe, Southern
+Scandinavia
+Europe, Western
+Africa
+Algeria
+Angola
+Burundi
+Botswana
+Chad
+Congo (Brazzaville)
+Congo (Democratic Republic)
+Cameroon
+Central African Republic
+Benin
+Eritrea
+Equatorial Guinea
+Ethiopia
+Djibouti
+Ghana
+Gambia
+Gabon
+Guinea
+Côte d'Ivoire
+Kenya
+Liberia
+Lesotho
+Libya
+Madagascar
+Mali
+Morocco
+Mauritania
+Malawi
+Mozambique
+Niger
+Nigeria
+Guinea-Bissau
+Zimbabwe
+Rwanda
+South Africa
+South Sudan
+Sao Tome and Principe
+Senegal
+Spanish North Africa
+Sudan
+Sierra Leone
+Somalia
+Swaziland
+Western Sahara
+Namibia
+Togo
+Tunisia
+Tanzania
+Egypt
+Uganda
+Burkina Faso
+Zambia
+Atlas Mountains
+Africa, Sub-Saharan
+Africa, Central
+Sahara
+Africa, Eastern
+Africa, North
+Congo River
+Africa, Northeast
+Niger River
+Nile River
+Sudan (Region)
+Africa, French-speaking Equatorial
+Great Rift Valley
+Africa, Southern
+Suez Canal (Egypt)
+Volta River (Ghana)
+Africa, West
+Zambezi River
+French Community
+Indian Ocean
+British Indian Ocean Territory
+Comoros
+Terres australes et antarctiques françaises
+Heard and McDonald Islands
+Mauritius
+Mayotte
+Réunion
+Seychelles
+Christmas Island (Indian Ocean)
+Cocos (Keeling) Islands
+Maldives
+Atlantic Ocean
+North Atlantic Ocean
+Azores
+Bermuda Islands
+Canary Islands
+Cabo Verde
+Faroe Islands
+Jan Mayen Island
+Madeira Islands
+Svalbard (Norway)
+South Atlantic Ocean
+Ascension Island (Atlantic Ocean)
+Bouvet Island
+Falkland Islands
+Tristan da Cunha
+Saint Helena
+South Georgia and South Sandwich Islands
+Intercontinental areas (Eastern Hemisphere)
+Arab countries
+Black Sea
+Eurasia
+Mediterranean Region | Mediterranean Sea
+Red Sea
+North America
+Canada
+Alberta
+British Columbia
+Manitoba
+Newfoundland and Labrador
+New Brunswick
+Nova Scotia
+Northwest Territories
+Nunavut
+Ontario
+Prince Edward Island
+Québec (Province)
+Saskatchewan
+Yukon Territory
+Hudson Bay
+Maritime Provinces
+Prairie Provinces
+Greenland
+Mexico
+United States
+Alaska
+Alabama
+Arkansas
+Arizona
+California
+Colorado
+Connecticut
+Washington (D.C.)
+Delaware
+Georgia
+Hawaii
+Iowa
+Idaho
+Illinois
+Indiana
+Kansas
+Kentucky
+Louisiana
+Massachusetts
+Maryland
+Maine
+Michigan
+Minnesota
+Missouri
+Mississippi
+Montana
+Nebraska
+North Carolina
+North Dakota
+New Hampshire
+New Jersey
+New Mexico
+Nevada
+New York (State)
+Ohio
+Oklahoma
+Oregon
+Pennsylvania
+Rhode Island
+South Carolina
+South Dakota
+Tennessee
+Texas
+Utah
+Virginia
+Vermont
+Washington (State)
+Wisconsin
+West Virginia
+Wyoming
+Appalachian Mountains
+Middle West
+Northeastern States
+Middle Atlantic States
+Mississippi River
+New England
+Ohio River
+West (U.S.)
+East (U.S.)
+Missouri River
+Southwest, New
+Southern States
+Saint Pierre and Miquelon
+Central America
+Belize
+Costa Rica
+Canal Zone
+El Salvador
+Guatemala
+Honduras
+Nicaragua
+Panama
+Great Lakes (North America) | Lake States
+Mexico, Gulf of
+Great Plains
+Rocky Mountains
+West Indies
+Antigua and Barbuda
+Aruba
+Barbados
+Bahamas
+Bonaire
+Cayman Islands
+Curaçao
+Cuba
+Dominica
+Dominican Republic
+Sint Eustatius
+Grenada
+Guadeloupe
+Hispaniola
+Haiti
+Jamaica
+Antilles, Lesser
+Leeward Islands (West Indies)
+Montserrat
+Martinique
+Puerto Rico
+Saint-Barthélemy
+Saba
+Sint Maarten
+Saint-Martin
+Swan Islands (Honduras)
+Turks and Caicos Islands
+Trinidad and Tobago
+United States Miscellaneous Caribbean Islands
+British Virgin Islands
+Virgin Islands of the United States
+Windward Islands (West Indies) nwwi
+Anguilla
+Saint Kitts and Nevis
+Saint Lucia
+Saint Vincent and the Grenadines
+Pacific Ocean
+North Pacific Ocean
+Oceania
+American Samoa
+Solomon Islands
+Caroline Islands
+Cook Islands
+Easter Island
+Fiji
+French Polynesia
+Galapagos Islands
+Guam
+Johnston Island
+Kiribati
+Kermadec Islands
+Line Islands
+Melanesia
+Micronesia (Federated States)
+New Caledonia
+Vanuatu
+Nauru
+Pitcairn Island
+Palau
+Polynesia
+Samoan Islands
+Tokelau
+Tonga
+Micronesia
+Tuvalu
+United States Miscellaneous Pacific Islands
+Wallis and Futuna Islands
+Wake Island
+Samoa
+Mariana Islands
+Marshall Islands
+Midway Islands
+Niue
+South Pacific Ocean
+Cold regions
+Arctic Ocean | Arctic regions
+South America
+Argentina
+Brazil
+Bolivia
+Colombia
+Chile
+Ecuador
+French Guiana
+Guyana
+Peru
+Paraguay
+Suriname
+Uruguay
+Venezuela
+Amazon River
+Andes
+Rio de la Plata (Argentina and Uruguay)
+Antarctic Ocean | Antarctica
+Australasia
+Ashmore and Cartier Islands
+Australia
+Australian Capital Territory
+New South Wales
+Northern Territory
+Queensland
+South Australia
+Tasmania
+Victoria
+Western Australia
+Central Australia
+Eastern Australia
+Northern Australia
+Coral Sea Islands
+New Zealand
+Tropics
+Earth
+Eastern Hemisphere
+Northern Hemisphere
+Southern Hemisphere
+Western Hemisphere
+Deep space
+Jupiter (Planet)
+Mars (Planet)
+Mercury (Planet)
+Moon
+Neptune (Planet)
+Outer space
+Pluto (Planet)
+Solar system
+Saturn (Planet)
+Sun
+Uranus (Planet)
+Venus (Planet)
