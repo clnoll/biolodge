@@ -100,7 +100,6 @@ HABITAT = (
         u'base of eastern andes',
         u'quebracho woodlands', # FIXME: "arid quebracho woodlands"
         u'caribbean slope',
-        u'coast',
         u'desert puna',
         u'dry grasslands',
         u'dry savanna',
@@ -118,7 +117,6 @@ HABITAT = (
         u'pacific lowlands',
         u'pacific slope',
         u'patagonian steppes',
-        u'petén',
         u'semiarid grasslands',
         u'semiarid grasslands and scrub',
         u'taiga and wooded tundra',
@@ -138,13 +136,18 @@ IGNORED_WORDS = oneOfKeywords([
 ])
 
 def make_grammar():
-    region_atom = oneOfKeywords(get_region_names(REGIONS_FILE))
+    region_atom = Optional(Suppress(Keyword('the'))) + oneOfKeywords(get_region_names(REGIONS_FILE))
     modified_compass_adjective = Optional(COMPASS_MODIFIER) + COMPASS_ADJECTIVE
     modified_region = Group(
         Optional(Group(Optional(modified_compass_adjective) + HABITAT)) + 
         Group(Optional(modified_compass_adjective) + region_atom)
     )
-    region = Optional(VERB) + Group(modified_region + Optional(FILL_OPERATOR + modified_region))
+    region = Group(
+        Optional(VERB) +
+        Optional(Keyword('from')) +
+        modified_region +
+        Optional(FILL_OPERATOR + modified_region)
+    )
     grammar = region + ZeroOrMore(Suppress(CONJUNCTION) + region) + Optional(Suppress('.'))
 
     grammar.ignore(PARENTHETICAL_PHRASE)
@@ -192,6 +195,8 @@ def preprocess(text):
             # can be used rather than Literal
             (r'\b([,;.])', ' \\1'),
             (r'(\))([,;.])', '\\1 \\2'),
+            # Remove comma before fill operator
+            (r', (north|east|south|west) to', ' \\1 to'),
     ]:
         text = re.sub(pattern, replacement, text, flags=re.UNICODE)
 
@@ -237,7 +242,7 @@ if __name__ == '__main__':
         try:
             parsed = grammar.parseString(text, parseAll=True)
         except Exception as ex:
-            print grammar.parseString(text)
+            pprint(grammar.parseString(text).asList(), width=30)
             print ex
             import ipdb ; ipdb.set_trace()
         else:

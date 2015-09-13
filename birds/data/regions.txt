@@ -1,11 +1,12 @@
 afghanistan
 africa
-french-speaking equatorial africa
-sub-saharan africa
+africa south of the sahara
 alabama
 alaska
+alaska peninsula
 albania
 alberta
+aleutian islands
 aleutians
 algeria
 alps
@@ -21,7 +22,6 @@ anguilla
 anhui sheng
 antarctic ocean
 antigua and barbuda
-lesser antilles
 appalachian mountains
 arab countries
 arabian peninsula
@@ -37,6 +37,7 @@ aruba
 ascension island
 ashmore and cartier islands
 asia
+asia minor
 atlantic ocean
 atlas mountains
 australasia
@@ -51,12 +52,12 @@ balkan peninsula
 baltic states
 bangladesh
 barbados
+bay of bengal
 beijing
 belarus
 belgium
 belize
 benelux countries
-bay of bengal
 benin
 bermuda islands
 bhutan
@@ -107,6 +108,7 @@ colombia
 colombia east of the andes
 colorado
 commonwealth countries
+comoro islands
 comoros
 congo
 congo river
@@ -156,6 +158,7 @@ france
 french community
 french guiana
 french polynesia
+french-speaking equatorial africa
 fujian sheng
 gabon
 galapagos islands
@@ -171,6 +174,8 @@ great britain miscellaneous island dependencies
 great lakes
 great plains
 great rift valley
+greater antilles
+greater sundas
 greece
 greenland
 grenada
@@ -183,6 +188,9 @@ guianas
 guinea
 guinea-bissau
 guizhou sheng
+gulf coast
+gulf of mexico
+gulf of thailand
 guyana
 hainan sheng
 haiti
@@ -204,6 +212,7 @@ idaho
 illinois
 india
 indian ocean
+indian subcontinent
 indiana
 indochina
 indonesia
@@ -234,6 +243,7 @@ kenya
 kermadec islands
 king island
 kiribati
+kolyma
 korea
 kosovo
 kunlun mountains
@@ -246,6 +256,7 @@ latvia
 lebanon
 leeward islands
 lesotho
+lesser antilles
 liaoning sheng
 liberia
 libya
@@ -282,7 +293,6 @@ mekong river
 melanesia
 mercury
 mexico
-gulf of mexico
 michigan
 micronesia
 middle atlantic states
@@ -303,6 +313,7 @@ montserrat
 moon
 morocco
 mozambique
+myanmar
 namibia
 nauru
 nebraska
@@ -448,9 +459,11 @@ southern states
 soviet union
 spain
 spanish north africa
+spitzbergen
 spratly islands
 sri lanka
 stewart island
+sub-saharan africa
 sudan
 suez canal
 sulawesi
@@ -473,9 +486,11 @@ tennessee
 terres australes et antarctiques françaises
 texas
 thailand
-gulf of thailand
-the guianas
-the sudan
+# the aleutian islands  # FIXME
+# the alaska peninsula  # FIXME
+# the caspian sea  # FIXME
+# the guianas
+# the sudan
 tianjin
 tibet
 tien shan
