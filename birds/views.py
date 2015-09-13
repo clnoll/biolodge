@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.views.generic import View
-from birds.models import Subspecies
+from birds.models import Bird
 
 
 class BirdList(View):
 
     def get(self, request):
-        headers = Subspecies._meta.get_all_field_names()
-        body = Subspecies.objects.values_list(*headers)
+        headers = Bird._meta.get_all_field_names()
+        body = Bird.objects.values_list(*headers)
 
         data = {
             'header': headers,

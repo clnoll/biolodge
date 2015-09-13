@@ -1,7 +1,10 @@
 from django.test import TestCase
 
 import range_grammar
-# from birds.data import read_ebird_csv
+from birds.models import Bird
+from data.read_ebird_csv import csv_to_db
+from data.read_ebird_csv import remap_field_names
+from data.read_ebird_csv import get_species_from_name
 
 
 class TestRangeGrammar(TestCase):
@@ -78,8 +81,36 @@ class TestRangeGrammar(TestCase):
 
 class TestReadData(TestCase):
 
-    def test_save_record(self):
-        pass
+    def test_remap_field_names(self):
+        test_data = {'SPECIES_CODE v2015': 'ostric2',
+                     'sort v2015': 2,
+                     'Category': 'subspecies',
+                     'English name': '',
+                     'Scientific name': 'Struthio camelus camelus',
+                     'Range': 'Sahel of North Africa and the Sudan',
+                     'Order': 'Struthioniformes',
+                     'Family': 'Struthionidae (Ostrich)',
+                     'EBIRD_SPECIES_GROUP': 'Ostrich',
+                     'EXTINCT': '',
+                     'EXTINCT_YEAR': '', }
+        result = remap_field_names(test_data).keys().sort()
+        expected_result = [field.name for field in Bird._meta.local_fields].sort()
+        self.assertEquals(result, expected_result)
 
-    def test_create_object(self):
-        pass
+    def test_get_species_from_name(self):
+        test_data = 'Struthio camelus camelus'
+        result = get_species_from_name(test_data)
+        expected_result = ['Struthio', 'camelus', 'camelus']
+
+    def test_get_species_from_name_species(self):
+        test_data = 'Struthio camelus'
+        result = get_species_from_name(test_data)
+        expected_result = ['Struthio', 'camelus', '']
+
+    # def test_populate_database_from_csv(self):
+    #     Bird.objects.all().delete
+
+    # def test_create_object(self):
+    #     pass
+
+
