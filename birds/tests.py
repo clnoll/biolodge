@@ -130,6 +130,6 @@ class TestBirdList(TestCase):
     def test_get(self):
         Bird.objects.all().delete()
         self.assertEquals(Bird.objects.count(), 0)
-        result = BirdList().get('get').status_code
-        self.assertEquals(result, 200)
-
+        result = self.client.get('/')
+        self.assertEquals(result.status_code, 200)
+        import ipdb; ipdb.set_trace()
