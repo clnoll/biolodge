@@ -1,6 +1,6 @@
 Asia
 Afghanistan
-Armenia (Republic)
+Armenia
 Azerbaijan
 Bahrain
 Bangladesh
@@ -10,49 +10,49 @@ Bhutan
 Brunei
 Cambodia
 China
-Anhui Sheng (China)
-Zhejiang Sheng (China)
-Chongqing (China)
-Fujian Sheng (China)
-Hainan Sheng (China)
-Heilongjiang Sheng (China)
-Hubei Sheng (China)
-Hong Kong (China)
-Henan Sheng (China)
-Hebei Sheng (China)
-Hunan Sheng (China)
-Inner Mongolia (China)
-Gansu Sheng (China) a-cc-ka
-Guangxi Zhuangzu Zizhiqu (China)
-Jiangxi Sheng (China)
-Guangdong Sheng (China)
-Jilin Sheng (China)
-Jiangsu Sheng (China)
-Guizhou Sheng (China)
-Liaoning Sheng (China)
-Macau (China : Special Administrative Region)
-Ningxia Huizu Zizhiqu (China)
-Beijing (China)
-Shanxi Sheng (China)
-Shanghai (China)
-Shandong Sheng (China)
-Shaanxi Sheng (China)
-Xinjiang Uygur Zizhiqu (China)
-Sichuan Sheng (China)
-Tibet (China)
-Tianjin (China)
-Qinghai Sheng (China)
-Yunnan Sheng (China)
-Yangtze River (China)
-Kunlun Mountains (China and India)
-Bo Hai (China)
-Xi River (China)
-Yellow River (China)
+Anhui Sheng
+Zhejiang Sheng
+Chongqing
+Fujian Sheng
+Hainan Sheng
+Heilongjiang Sheng
+Hubei Sheng
+Hong Kong
+Henan Sheng
+Hebei Sheng
+Hunan Sheng
+Inner Mongolia
+Gansu Sheng
+Guangxi Zhuangzu Zizhiqu
+Jiangxi Sheng
+Guangdong Sheng
+Jilin Sheng
+Jiangsu Sheng
+Guizhou Sheng
+Liaoning Sheng
+Macau
+Ningxia Huizu Zizhiqu
+Beijing
+Shanxi Sheng
+Shanghai
+Shandong Sheng
+Shaanxi Sheng
+Xinjiang Uygur Zizhiqu
+Sichuan Sheng
+Tibet
+Tianjin
+Qinghai Sheng
+Yunnan Sheng
+Yangtze River
+Kunlun Mountains
+Bo Hai
+Xi River
+Yellow River
 Sri Lanka
 Taiwan
 Cyprus
 Timor-Leste
-Georgia (Republic)
+Georgia
 India
 Indonesia
 Iraq
@@ -61,8 +61,8 @@ Israel
 Japan
 Jordan
 Kyrgyzstan
-Korea (North)
-Korea (South)
+Korea
+Korea
 Korea
 Kuwait
 Kazakhstan
@@ -87,8 +87,8 @@ United Arab Emirates
 Turkey
 Uzbekistan
 Vietnam
-Yemen (Republic)
-Amur River (China and Russia)
+Yemen
+Amur River
 Bengal, Bay of
 Asia, Central
 East Asia
@@ -113,8 +113,8 @@ Gaza Strip
 Yellow Sea
 South Asia
 Commonwealth countries
-Intercontinental areas (Western Hemisphere)
-Caribbean Area | Caribbean Sea
+Intercontinental areas
+Caribbean Area
 Latin America
 Developing countries
 Developed countries
@@ -132,10 +132,10 @@ Denmark
 Estonia
 Finland
 France
-Germany (East)
+Germany
 Gibraltar
 Greece
-Germany (West)
+Germany
 Germany
 Hungary
 Iceland
@@ -156,7 +156,7 @@ Poland
 Portugal
 Serbia
 Romania
-Russia (Federation)
+Russia
 San Marino
 Spain
 Sweden
@@ -169,18 +169,18 @@ Great Britain Miscellaneous Island Dependencies
 Wales
 Ukraine
 Soviet Union
-Central Chernozem Region (Russia)
-Siberia, Eastern (Russia)
-Russian Far East (Russia)
+Central Chernozem Region
+Siberia, Eastern
+Russian Far East
 Caucasus
 Soviet Union, Northwestern
-Volga River (Russia)
-Caucasus, Northern (Russia)
-Siberia (Russia)
-Ural Mountains (Russia)
-Siberia, Western (Russia)
+Volga River
+Caucasus, Northern
+Siberia
+Ural Mountains
+Siberia, Western
 Vatican City
-Macedonia (Republic)
+Macedonia
 Slovakia
 Czech Republic e-xr
 Slovenia
@@ -204,8 +204,8 @@ Angola
 Burundi
 Botswana
 Chad
-Congo (Brazzaville)
-Congo (Democratic Republic)
+Congo
+Congo
 Cameroon
 Central African Republic
 Benin
@@ -261,12 +261,12 @@ Congo River
 Africa, Northeast
 Niger River
 Nile River
-Sudan (Region)
+Sudan
 Africa, French-speaking Equatorial
 Great Rift Valley
 Africa, Southern
-Suez Canal (Egypt)
-Volta River (Ghana)
+Suez Canal
+Volta River
 Africa, West
 Zambezi River
 French Community
@@ -279,8 +279,8 @@ Mauritius
 Mayotte
 Réunion
 Seychelles
-Christmas Island (Indian Ocean)
-Cocos (Keeling) Islands
+Christmas Island
+Cocos
 Maldives
 Atlantic Ocean
 North Atlantic Ocean
@@ -291,19 +291,19 @@ Cabo Verde
 Faroe Islands
 Jan Mayen Island
 Madeira Islands
-Svalbard (Norway)
+Svalbard
 South Atlantic Ocean
-Ascension Island (Atlantic Ocean)
+Ascension Island
 Bouvet Island
 Falkland Islands
 Tristan da Cunha
 Saint Helena
 South Georgia and South Sandwich Islands
-Intercontinental areas (Eastern Hemisphere)
+Intercontinental areas
 Arab countries
 Black Sea
 Eurasia
-Mediterranean Region | Mediterranean Sea
+Mediterranean Region
 Red Sea
 North America
 Canada
@@ -317,7 +317,7 @@ Northwest Territories
 Nunavut
 Ontario
 Prince Edward Island
-Québec (Province)
+Québec
 Saskatchewan
 Yukon Territory
 Hudson Bay
@@ -333,7 +333,7 @@ Arizona
 California
 Colorado
 Connecticut
-Washington (D.C.)
+Washington
 Delaware
 Georgia
 Hawaii
@@ -359,7 +359,7 @@ New Hampshire
 New Jersey
 New Mexico
 Nevada
-New York (State)
+New York
 Ohio
 Oklahoma
 Oregon
@@ -372,7 +372,7 @@ Texas
 Utah
 Virginia
 Vermont
-Washington (State)
+Washington
 Wisconsin
 West Virginia
 Wyoming
@@ -383,8 +383,8 @@ Middle Atlantic States
 Mississippi River
 New England
 Ohio River
-West (U.S.)
-East (U.S.)
+West
+East
 Missouri River
 Southwest, New
 Southern States
@@ -398,7 +398,7 @@ Guatemala
 Honduras
 Nicaragua
 Panama
-Great Lakes (North America) | Lake States
+Great Lakes
 Mexico, Gulf of
 Great Plains
 Rocky Mountains
@@ -420,7 +420,7 @@ Hispaniola
 Haiti
 Jamaica
 Antilles, Lesser
-Leeward Islands (West Indies)
+Leeward Islands
 Montserrat
 Martinique
 Puerto Rico
@@ -428,13 +428,13 @@ Saint-Barthélemy
 Saba
 Sint Maarten
 Saint-Martin
-Swan Islands (Honduras)
+Swan Islands
 Turks and Caicos Islands
 Trinidad and Tobago
 United States Miscellaneous Caribbean Islands
 British Virgin Islands
 Virgin Islands of the United States
-Windward Islands (West Indies) nwwi
+Windward Islands
 Anguilla
 Saint Kitts and Nevis
 Saint Lucia
@@ -456,7 +456,7 @@ Kiribati
 Kermadec Islands
 Line Islands
 Melanesia
-Micronesia (Federated States)
+Micronesia
 New Caledonia
 Vanuatu
 Nauru
@@ -478,7 +478,7 @@ Midway Islands
 Niue
 South Pacific Ocean
 Cold regions
-Arctic Ocean | Arctic regions
+Arctic Ocean
 South America
 Argentina
 Brazil
@@ -495,8 +495,8 @@ Uruguay
 Venezuela
 Amazon River
 Andes
-Rio de la Plata (Argentina and Uruguay)
-Antarctic Ocean | Antarctica
+Rio de la Plata
+Antarctic Ocean
 Australasia
 Ashmore and Cartier Islands
 Australia
@@ -520,15 +520,15 @@ Northern Hemisphere
 Southern Hemisphere
 Western Hemisphere
 Deep space
-Jupiter (Planet)
-Mars (Planet)
-Mercury (Planet)
+Jupiter
+Mars
+Mercury
 Moon
-Neptune (Planet)
+Neptune
 Outer space
-Pluto (Planet)
+Pluto
 Solar system
-Saturn (Planet)
+Saturn
 Sun
-Uranus (Planet)
-Venus (Planet)
+Uranus
+Venus
