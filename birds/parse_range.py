@@ -59,7 +59,6 @@ def preprocess(text):
 
 if __name__ == '__main__':
     range_texts = [
-        "Angola and Namibia east to northeastern South Africa; Mozambique north to Kenya; Uganda",
         "Senegambia to Ethiopia, n Uganda and ne Kenya",
         "Nigeria (east of Niger River) to Angola, Democratic Republic of the Congo, and Uganda",
         "Coastal n Australia and major offshore outlying islands",
