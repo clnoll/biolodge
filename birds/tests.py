@@ -1,4 +1,5 @@
 from django.test import TestCase
+import os
 
 import range_grammar
 from birds.models import Bird
@@ -97,20 +98,27 @@ class TestReadData(TestCase):
         expected_result = [field.name for field in Bird._meta.local_fields].sort()
         self.assertEquals(result, expected_result)
 
-    def test_get_species_from_name(self):
+    def test_get_species_from_name_subspecies(self):
         test_data = 'Struthio camelus camelus'
         result = get_species_from_name(test_data)
-        expected_result = ['Struthio', 'camelus', 'camelus']
+        expected_result = ('Struthio', 'camelus', 'camelus')
+        self.assertEquals(result, expected_result)
 
     def test_get_species_from_name_species(self):
         test_data = 'Struthio camelus'
         result = get_species_from_name(test_data)
-        expected_result = ['Struthio', 'camelus', '']
+        expected_result = ('Struthio', 'camelus', '')
+        self.assertEquals(result, expected_result)
 
-    # def test_populate_database_from_csv(self):
-    #     Bird.objects.all().delete
-
-    # def test_create_object(self):
-    #     pass
-
-
+    def test_populate_database_from_csv(self):
+        Bird.objects.all().delete()
+        self.assertEquals(Bird.objects.count(), 0)
+        csv_name = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                'data/test.csv')
+        csv_to_db(csv_name=csv_name)
+        results = Bird.objects.all()
+        self.assertEquals(len(results), 5)
+        [self.assertEqual(result._meta.concrete_model, Bird)
+         for result in results]
+        Bird.objects.all().delete()
+        self.assertEquals(Bird.objects.count(), 0)

@@ -14,8 +14,7 @@ input_field_map = {'Order': 'order',
                    'SPECIES_CODE v2015': 'ebird_id'}
 
 
-def csv_to_db():
-    csv_name = CSV_NAME
+def csv_to_db(csv_name=CSV_NAME):
     objects = []
     with open(csv_name) as fp:
         rdr = csv.DictReader(fp)
