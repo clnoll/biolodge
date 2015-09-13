@@ -2,6 +2,7 @@ import os
 import re
 
 from pyparsing import Group
+from pyparsing import OneOrMore
 from pyparsing import Optional
 from pyparsing import Word
 from pyparsing import ZeroOrMore
@@ -23,18 +24,23 @@ COMPASS_DIRECTION = oneOf(['north', 'east', 'south', 'west'])
 # These should include 'n', 'sw', etc but that's not working currently and is
 # handled by preprocess()
 COMPASS_ADJECTIVE = oneOf([
+    'north', 'east', 'south', 'west',
     'northern', 'eastern', 'southern', 'western',
     'northeastern', 'northwestern', 'southeastern', 'southwestern',
+    'northern and eastern',
 ])
+COMPASS_MODIFIER = oneOf(['extreme'])
 CONJUNCTION = oneOf([',', 'and', ', and'])
-ADJECTIVE = oneOf(['coastal'])
+ADJECTIVE = oneOf(['coastal', 'formerly'])
 FILL_OPERATOR = Optional(COMPASS_DIRECTION) + oneOf(['to'])
 PARENTHETICAL_PHRASE = '(' + Word(alphas + ' ,') + ')'
-
+HABITAT = OneOrMore(Word(alphas) - 'of') + 'of'
 
 
 def make_grammar():
-    modified_region = Group(Optional(COMPASS_ADJECTIVE) + REGION_ATOM)
+    modified_region = Group(Optional(HABITAT) +
+                            Optional(Optional(COMPASS_MODIFIER) + COMPASS_ADJECTIVE) +
+                            REGION_ATOM)
     region = Group(modified_region + Optional(FILL_OPERATOR + modified_region))
     grammar = region + ZeroOrMore(CONJUNCTION + region)
     grammar.ignore(PARENTHETICAL_PHRASE)
