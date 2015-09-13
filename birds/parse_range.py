@@ -20,7 +20,7 @@ COMPASS_ADJECTIVE = oneOf([
     'northern', 'eastern', 'southern', 'western',
     'northeastern', 'northwestern', 'southeastern', 'southwestern',
 ])
-CONJUNCTION = oneOf(['and', ','])
+CONJUNCTION = oneOf(['and'])
 ADJECTIVE = oneOf(['coastal'])
 FILL_OPERATOR = Optional(COMPASS_DIRECTION) + oneOf(['to'])
 PARENTHETICAL_PHRASE = '(' + Word(alphas + ' ,') + ')'
@@ -31,7 +31,7 @@ def make_grammar():
     region = Group(Optional(COMPASS_ADJECTIVE) + REGION_ATOM)
     region_set = Group(region + ZeroOrMore(CONJUNCTION + region))
     filled_region = Group(region_set + Optional(Group(FILL_OPERATOR) + region_set))
-    grammar = delimitedList(filled_region, delim=';')
+    grammar = delimitedList(filled_region, delim=oneOf([';', ',']))
 
     grammar.ignore(PARENTHETICAL_PHRASE)
     grammar.ignore(ADJECTIVE)
