@@ -24,17 +24,28 @@ COMPASS_DIRECTION = oneOf(['north', 'east', 'south', 'west'])
 # These should include 'n', 'sw', etc but that's not working currently and is
 # handled by preprocess()
 COMPASS_ADJECTIVE = oneOf([
+    'central',
     'north', 'east', 'south', 'west',
     'northern', 'eastern', 'southern', 'western',
     'northeastern', 'northwestern', 'southeastern', 'southwestern',
-    'northern and eastern',
+
+    # FIXME
+    'northern and eastern', 'central and eastern',
+    'southern-c', 'northern-central', 'southern-central',
 ])
 COMPASS_MODIFIER = oneOf(['extreme'])
 CONJUNCTION = oneOf([',', 'and', ', and'])
-ADJECTIVE = oneOf(['coastal', 'formerly'])
+ADJECTIVE = oneOf(['amazonian', 'coastal', 'formerly', 'subtropical', 'tropical'])
 FILL_OPERATOR = Optional(COMPASS_DIRECTION) + oneOf(['to'])
 PARENTHETICAL_PHRASE = '(' + Word(alphas + ' ,') + ')'
-HABITAT = OneOrMore(Word(alphas) - 'of') + 'of'
+HABITAT = (Word(alphas)
+           ^ 'desert puna'
+           ^ 'patagonian steppes'
+           ^ 'montane forests'
+           ^ 'pacific slope'
+           ^ 'humid lowlands'
+           ^ 'pacific and caribbean slopes'
+           ^ 'magdalena valley') + 'of'
 
 
 def make_grammar():
@@ -44,6 +55,8 @@ def make_grammar():
     region = Group(modified_region + Optional(FILL_OPERATOR + modified_region))
     grammar = region + ZeroOrMore(CONJUNCTION + region)
     grammar.ignore(PARENTHETICAL_PHRASE)
+
+    # FIXME
     grammar.ignore(ADJECTIVE)
 
     return grammar
