@@ -1,119 +1,178 @@
+# -*- coding: utf-8 -*-
 import os
 import re
+from itertools import imap
 
+from pyparsing import Keyword
 from pyparsing import Group
 from pyparsing import OneOrMore
 from pyparsing import Optional
+from pyparsing import Or
 from pyparsing import Word
+from pyparsing import Suppress
 from pyparsing import ZeroOrMore
 from pyparsing import alphas
-from pyparsing import oneOf
+from pyparsing import nums
 
+
+def oneOfKeywords(iterable):
+    return Or(imap(Keyword, iterable))
+
+
+CHARACTERS = unicode(alphas) + u'ÉÎÑÓàáâãçèéêíïñóôõöúûüi'
 
 REGIONS_FILE = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
     'data',
     'regions.txt')
 
-with open(REGIONS_FILE) as fp:
-    REGION_ATOM = oneOf(line.strip() for line in fp
-                        if not line.startswith('#'))
 
-COMPASS_DIRECTION = oneOf(['north', 'east', 'south', 'west'])
+COMPASS_DIRECTION = oneOfKeywords(['north', 'east', 'south', 'west'])
 
 # These should include 'n', 'sw', etc but that's not working currently and is
 # handled by preprocess()
-COMPASS_ADJECTIVE = oneOf([
+COMPASS_ADJECTIVE = oneOfKeywords([
     'central',
     'north', 'east', 'south', 'west',
+    'northeast', 'northwest', 'southeast', 'southwest',
     'northern', 'eastern', 'southern', 'western',
     'northeastern', 'northwestern', 'southeastern', 'southwestern',
 
     # FIXME
     'northern and eastern', 'central and eastern', 'central and northeastern', 'central and southern', 'northern and central',
+    'northwestern and north central',
     'southern-c', 'eastern-c',
-    'south central', 'north-central', 'northern-central', 'southern-central', 'eastern-central', 'western-central', 'east central',
+    'north central', 'north-central', 'northern-central',
+    'east central', 'east-central', 'eastern-central', 
+    'south central', 'south-central', 'southern-central',
+    'west central', 'west-central', 'western-central',
 ])
-COMPASS_MODIFIER = oneOf(['extreme', 'interior'])
-CONJUNCTION = oneOf([
+COMPASS_MODIFIER = oneOfKeywords([
+    'adjacent',
+    'extreme',
+    'interior',
+])
+CONJUNCTION = Suppress(oneOfKeywords([
     ',',
     'and',
     ', and',
-])
-HABITAT_QUALIFIER = oneOf([
+    ';',
+]))
+EXTINCTION_PHRASE = Or([
+    (Keyword('extinct') + Optional(oneOfKeywords(['circa', 'ca']) + Word(nums))),
+    (Keyword('extinct') + ';' + Keyword('last') + Keyword('reported') + Word(nums))
+]) + Optional('.')
+
+
+HABITAT_QUALIFIER = oneOfKeywords([
     'amazonian',
+    'arctic',
     'arid',
     'coastal',
     'formerly',
+    'immediately adjacent',    
     'locally in',
+    'magellanic',
     'mainly in',
     'semiarid subtropical',
     'subtropical',
     'tropical',
     'patchily distributed',
 ])
-VERB = oneOf([
+VERB = oneOfKeywords([
     'breeds',
+    'breeds from',
+    'breeds in',
+    'primarily winters in',
     'winters',
+    'winters in',    
+    'winters to',
 ])
-FILL_OPERATOR = Optional(COMPASS_DIRECTION) + oneOf(['to'])
-PARENTHETICAL_PHRASE = '(' + Word(alphas + ' ,') + ')'
+FILL_OPERATOR = Optional(COMPASS_DIRECTION) + oneOfKeywords(['to'])
+PARENTHETICAL_PHRASE = '(' + Word(CHARACTERS + ' ,?.-') + ')'
 HABITAT = (
-    Word(alphas)
-    ^ 'atlantic coast'
-    ^ 'andean foothills'
-    ^ 'aquatic lowlands'
-    # FIXME: "arid quebracho woodlands"
-    ^ 'quebracho woodlands'
-    ^ 'caribbean slope'
-    ^ 'coast'
-    ^ 'desert puna'
-    ^ 'dry grasslands'
-    ^ 'dry savanna'
-    ^ 'gulf-caribbean lowlands'
-    ^ 'humid foothills'
-    ^ 'humid forests'
-    ^ 'humid lowlands'
-    ^ 'magdalena valley'
-    ^ 'maran valley'
-    ^ 'moist grasslands'
-    ^ 'moist chaco grasslands'
-    ^ 'montane forests'
-    ^ 'pacific and caribbean slopes'
-    ^ 'pacific lowlands'
-    ^ 'pacific slope'
-    ^ 'patagonian steppes'
-    ^ 'semiarid grasslands'
-    ^ 'semiarid grasslands and scrub'
-    ^ 'taiga and wooded tundra'
-    ^ 'tropical forests'
-    # FIXME
-    ^ 'western coast of greenland'
-    # FIXME
-    ^ 'western slope of andes'
-    ^ 'wet lowlands'
-) + oneOf(['in', 'of'])
+    Word(CHARACTERS) ^
+    oneOfKeywords([
+        u'alpine lakes',
+        u'atlantic coast',
+        u'andean foothills',
+        u'aquatic lowlands',
+        u'base of eastern andes',
+        u'quebracho woodlands', # FIXME: "arid quebracho woodlands"
+        u'caribbean slope',
+        u'coast',
+        u'desert puna',
+        u'dry grasslands',
+        u'dry savanna',
+        u'gulf-caribbean lowlands',
+        u'humid foothills',
+        u'humid forests',
+        u'humid lowlands',
+        u'magdalena valley',
+        u'maran valley',
+        u'marañón valley',
+        u'moist grasslands',
+        u'moist chaco grasslands',
+        u'montane forests',
+        u'pacific and caribbean slopes',
+        u'pacific lowlands',
+        u'pacific slope',
+        u'patagonian steppes',
+        u'petén',
+        u'semiarid grasslands',
+        u'semiarid grasslands and scrub',
+        u'taiga and wooded tundra',
+        u'trans-fly savanna',
+        u'tropical forests',
+        # FIXME
+        u'western slope of andes',
+        u'wet lowlands',
+    ])
+) + oneOfKeywords([
+    u'in',
+    u'of',
+])
 
+IGNORED_WORDS = oneOfKeywords([
+    'possibly',
+])
 
 def make_grammar():
-
-    modified_region = Group(Optional(HABITAT) +
-                            Optional(Optional(COMPASS_MODIFIER) + COMPASS_ADJECTIVE) +
-                            REGION_ATOM)
+    region_atom = oneOfKeywords(get_region_names(REGIONS_FILE))
+    modified_compass_adjective = Optional(COMPASS_MODIFIER) + COMPASS_ADJECTIVE
+    modified_region = Group(
+        Optional(Group(Optional(modified_compass_adjective) + HABITAT)) + 
+        Group(Optional(modified_compass_adjective) + region_atom)
+    )
     region = Optional(VERB) + Group(modified_region + Optional(FILL_OPERATOR + modified_region))
-    grammar = region + ZeroOrMore(CONJUNCTION + region)
+    grammar = region + ZeroOrMore(Suppress(CONJUNCTION) + region) + Optional(Suppress('.'))
+
     grammar.ignore(PARENTHETICAL_PHRASE)
+
+    grammar.ignore(EXTINCTION_PHRASE)
 
     # FIXME
     grammar.ignore(HABITAT_QUALIFIER)
 
+    grammar.ignore(IGNORED_WORDS)
+    
     return grammar
-
 
 
 def preprocess(text):
 
     text = text.lower()
+
+    # FIXME: use regexp
+    text = (text
+            .replace(' i. ', ' island ')
+            .replace(' i.,', ' island,')
+            .replace(' is. ', ' island ')
+            .replace(' is.,', ' island,')
+            .replace(' arch. ', ' archipelago ')
+            .replace(' amaz. ', ' amazonian ')
+            .replace(' ca. ', ' circa ')
+    )
 
     # These single/double letters seem to fail as compass adjectives
     # because they match incorrectly as prefixes of words.  Possibly need
@@ -124,20 +183,33 @@ def preprocess(text):
             (r'\be\b', 'eastern'),
             (r'\bs\b', 'southern'),
             (r'\bw\b', 'western'),
+            (r'\bc\b', 'central'),
             (r'\bne\b', 'northeastern'),
             (r'\bse\b', 'southeastern'),
             (r'\bsw\b', 'southwestern'),
             (r'\bnw\b', 'northwestern'),
+            # Force punctuation to be word-end by adding space, so that Keyword
+            # can be used rather than Literal
+            (r'\b([,;.])', ' \\1'),
+            (r'(\))([,;.])', '\\1 \\2'),
     ]:
-        text = re.sub(pattern, replacement, text)
-
-    # FIXME: use regexp
-    text = (text
-            .replace(' i. ', ' island ')
-            .replace(' i.,', ' island,')
-            .replace(' arch. ', ' archipelago '))
+        text = re.sub(pattern, replacement, text, flags=re.UNICODE)
 
     return text
+
+
+def get_region_names(path):
+    lines = []
+    with open(path) as fp:
+        for line in fp:
+            if line.startswith('#'):
+                continue
+            line = line.strip()
+            line = line.decode('utf8')
+            # Strip inline comments
+            line = re.sub(r'\s*#.*', '', line)
+            lines.append(line)
+    return lines
 
 
 if __name__ == '__main__':
@@ -147,18 +219,31 @@ if __name__ == '__main__':
     from birds.models import Bird
 
     grammar = make_grammar()
-    for bird in Bird.objects.order_by('id'):
+
+    birds = (Bird.objects
+             .order_by('id'))
+    
+    for bird in birds:
         if not bird.raw_range:
             continue
 
-        text = preprocess(bird.raw_range)
         print bird.id
+
+        text = preprocess(bird.raw_range)
         print text
+
+        # parsed = grammar.parseString(text, parseAll=True)
+        
         try:
-            pprint(grammar.parseString(text.lower()).asList(), width=30)
+            parsed = grammar.parseString(text, parseAll=True)
         except Exception as ex:
+            print grammar.parseString(text)
             print ex
             import ipdb ; ipdb.set_trace()
+        else:
+            pprint(parsed.asList(), width=30)
+
         print
         print '-' * 79
         print
+            

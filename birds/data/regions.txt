@@ -1,17 +1,12 @@
 afghanistan
 africa
-africa, central
-africa, eastern
-africa, french-speaking equatorial
-africa, north
-africa, northeast
-africa, southern
-africa, sub-saharan
-africa, west
+french-speaking equatorial africa
+sub-saharan africa
 alabama
 alaska
 albania
 alberta
+aleutians
 algeria
 alps
 amazon basin
@@ -19,19 +14,21 @@ amazon river
 american samoa
 amur river
 andes
+andes of central and southern peru  # FIXME
 andorra
 angola
 anguilla
 anhui sheng
 antarctic ocean
 antigua and barbuda
-antilles, lesser
+lesser antilles
 appalachian mountains
 arab countries
 arabian peninsula
 arabian sea
 arctic ocean
 argentina
+argentina at base of andes  # FIXME
 arizona
 arkansas
 armenia
@@ -40,7 +37,6 @@ aruba
 ascension island
 ashmore and cartier islands
 asia
-asia, central
 atlantic ocean
 atlas mountains
 australasia
@@ -60,7 +56,7 @@ belarus
 belgium
 belize
 benelux countries
-bengal, bay of
+bay of bengal
 benin
 bermuda islands
 bhutan
@@ -74,6 +70,8 @@ bosnia and herzegovina
 botswana
 bouvet island
 brazil
+brazil south of the amazon
+brazilian mato grosso
 british columbia
 british indian ocean territory
 british virgin islands
@@ -93,7 +91,6 @@ caribbean area
 caroline islands
 caspian sea
 caucasus
-caucasus, northern
 cayman islands
 central african republic
 central america
@@ -107,6 +104,7 @@ christmas island
 cocos
 cold regions
 colombia
+colombia east of the andes
 colorado
 commonwealth countries
 comoros
@@ -150,11 +148,6 @@ estonia
 ethiopia
 eurasia
 europe
-europe, central
-europe, eastern
-europe, northern
-europe, southern
-europe, western
 falkland islands
 faroe islands
 fiji
@@ -186,6 +179,7 @@ guam
 guangdong sheng
 guangxi zhuangzu zizhiqu
 guatemala
+guianas
 guinea
 guinea-bissau
 guizhou sheng
@@ -219,8 +213,7 @@ iowa
 iran
 iraq
 ireland
-# FIXME required by e.g. "north island"
-island
+island  # FIXME required by e.g. "north island"
 israel
 italy
 jamaica
@@ -289,7 +282,7 @@ mekong river
 melanesia
 mercury
 mexico
-mexico, gulf of
+gulf of mexico
 michigan
 micronesia
 middle atlantic states
@@ -317,6 +310,7 @@ nepal
 neptune
 netherlands
 nevada
+new britain
 new britain island
 new brunswick
 new caledonia
@@ -341,8 +335,7 @@ north america
 north atlantic ocean
 north carolina
 north dakota
-# FIXME
-north island
+north island  # FIXME not parsed correctly
 north pacific ocean
 northeastern states
 northern australia
@@ -367,6 +360,7 @@ pakistan
 palau
 panama
 papua new guinea
+papuan islands
 paracel islands
 paraguay
 pennsylvania
@@ -396,7 +390,9 @@ russia
 russian far east
 rwanda
 réunion
+río negro
 saba
+sacramento valley
 sahara
 saint helena
 saint kitts and nevis
@@ -414,6 +410,7 @@ saturn
 saudi arabia
 scandinavia
 scotland
+semdi island, alaska
 senegal
 senegambia
 serbia
@@ -423,8 +420,6 @@ shandong sheng
 shanghai
 shanxi sheng
 siberia
-siberia, eastern
-siberia, western
 sichuan sheng
 sierra leone
 singapore
@@ -444,16 +439,13 @@ south carolina
 south china sea
 south dakota
 south georgia and south sandwich islands
-# FIXME
-south island
+south island  # FIXME not parsed correctly
 south pacific ocean
 south sudan
 southeast asia
 southern hemisphere
 southern states
-southwest, new
 soviet union
-soviet union, northwestern
 spain
 spanish north africa
 spratly islands
@@ -471,6 +463,8 @@ swaziland
 sweden
 switzerland
 syria
+syrian and arabian deserts
+taiga south of alaskan tundra
 taiwan
 tajikistan
 tanzania
@@ -479,7 +473,9 @@ tennessee
 terres australes et antarctiques françaises
 texas
 thailand
-thailand, gulf of
+gulf of thailand
+the guianas
+the sudan
 tianjin
 tibet
 tien shan
@@ -487,6 +483,7 @@ timor-leste
 togo
 tokelau
 tonga
+trinidad
 trinidad and tobago
 tristan da cunha
 tropics
@@ -499,12 +496,12 @@ uganda
 ukraine
 united arab emirates
 united states
-us
 united states miscellaneous caribbean islands
 united states miscellaneous pacific islands
 ural mountains
 uranus
 uruguay
+us
 utah
 uzbekistan
 vanuatu
@@ -535,6 +532,7 @@ wyoming
 xi river
 xinjiang uygur zizhiqu
 yangtze river
+yapen island
 yellow river
 yellow sea
 yemen
