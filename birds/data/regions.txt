@@ -6,7 +6,6 @@ ethiopia
 india
 indochina
 kenya
-kenya
 mozambique
 namibia
 nicobar islands
@@ -16,5 +15,4 @@ senegambia
 south africa
 sri lanka
 sumatra
-uganda
 uganda
