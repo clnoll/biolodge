@@ -1,0 +1,37 @@
+central
+central and eastern
+central and northeastern
+central and southern
+east
+east central
+east-central
+eastern
+eastern-c
+eastern-central
+north
+north central
+north-central
+northeast
+northeastern
+northern
+northern and central
+northern and eastern
+northern-central
+northwest
+northwestern
+northwestern and north central
+south
+south central
+south-central
+southeast
+southeastern
+southern
+southern-c
+southern-central
+southwest
+southwestern
+west
+west central
+west-central
+western
+western-central

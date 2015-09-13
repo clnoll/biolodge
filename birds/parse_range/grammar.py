@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import re
+from itertools import ifilter
 from itertools import imap
 
 from pyparsing import Keyword
@@ -14,139 +15,85 @@ from pyparsing import ZeroOrMore
 from pyparsing import alphas
 from pyparsing import nums
 
-
-def oneOfKeywords(iterable):
-    return Or(imap(Keyword, iterable))
+from birds.parse_range.utils import oneOfKeywords
+from birds.parse_range.utils import oneOfKeywordsInFile
 
 
 CHARACTERS = unicode(alphas) + u'ÉÎÑÓàáâãçèéêíïñóôõöúûüi'
 
-REGIONS_FILE = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)),
-    'data',
-    'regions.txt')
-
-
-COMPASS_DIRECTION = oneOfKeywords(['north', 'east', 'south', 'west'])
+COMPASS_DIRECTION = oneOfKeywords([u'north', u'east', u'south', u'west'])
+REGION_ATOM = oneOfKeywordsInFile('regions.txt')
 
 # These should include 'n', 'sw', etc but that's not working currently and is
 # handled by preprocess()
-COMPASS_ADJECTIVE = oneOfKeywords([
-    'central',
-    'north', 'east', 'south', 'west',
-    'northeast', 'northwest', 'southeast', 'southwest',
-    'northern', 'eastern', 'southern', 'western',
-    'northeastern', 'northwestern', 'southeastern', 'southwestern',
-
-    # FIXME
-    'northern and eastern', 'central and eastern', 'central and northeastern', 'central and southern', 'northern and central',
-    'northwestern and north central',
-    'southern-c', 'eastern-c',
-    'north central', 'north-central', 'northern-central',
-    'east central', 'east-central', 'eastern-central', 
-    'south central', 'south-central', 'southern-central',
-    'west central', 'west-central', 'western-central',
-])
+COMPASS_ADJECTIVE = oneOfKeywordsInFile('compass_adjectives.txt')
 COMPASS_MODIFIER = oneOfKeywords([
-    'adjacent',
-    'extreme',
-    'interior',
+    u'adjacent',
+    u'extreme',
+    u'interior',
 ])
 CONJUNCTION = Suppress(oneOfKeywords([
-    ',',
-    'and',
-    ', and',
-    ';',
+    u',',
+    u'and',
+    u', and',
+    u', and to',  # FIXME
+    u';',
 ]))
 EXTINCTION_PHRASE = Or([
-    (Keyword('extinct') + Optional(oneOfKeywords(['circa', 'ca']) + Word(nums))),
-    (Keyword('extinct') + ';' + Keyword('last') + Keyword('reported') + Word(nums))
-]) + Optional('.')
+    (Keyword(u'extinct') + Optional(oneOfKeywords([u'circa', u'ca']) + Word(nums))),
+    (Keyword(u'extinct') + u';' + Keyword(u'last') + Keyword(u'reported') + Word(nums))
+]) + Optional(u'.')
 
 
 HABITAT_QUALIFIER = oneOfKeywords([
-    'amazonian',
-    'arctic',
-    'arid',
-    'coastal',
-    'formerly',
-    'immediately adjacent',    
-    'locally in',
-    'magellanic',
-    'mainly in',
-    'semiarid subtropical',
-    'subtropical',
-    'tropical',
-    'patchily distributed',
+    u'amazonian',
+    u'arctic',
+    u'arid',
+    u'coastal',
+    u'formerly',
+    u'immediately adjacent',    
+    u'locally in',
+    u'magellanic',
+    u'mainly in',
+    u'semiarid subtropical',
+    u'subtropical',
+    u'tropical',
+    u'patchily distributed',
 ])
 VERB = oneOfKeywords([
-    'breeds',
-    'breeds from',
-    'breeds in',
-    'primarily winters in',
-    'winters',
-    'winters in',    
-    'winters to',
+    u'breeds',
+    u'breeds from',
+    u'breeds in',
+    u'primarily winters in',
+    u'winters',
+    u'winters in',    
+    u'winters to',
 ])
 FILL_OPERATOR = Optional(COMPASS_DIRECTION) + oneOfKeywords(['to'])
 PARENTHETICAL_PHRASE = '(' + Word(CHARACTERS + ' ,?.-') + ')'
-HABITAT = (
-    Word(CHARACTERS) ^
-    oneOfKeywords([
-        u'alpine lakes',
-        u'atlantic coast',
-        u'andean foothills',
-        u'aquatic lowlands',
-        u'base of eastern andes',
-        u'quebracho woodlands', # FIXME: "arid quebracho woodlands"
-        u'caribbean slope',
-        u'desert puna',
-        u'dry grasslands',
-        u'dry savanna',
-        u'gulf-caribbean lowlands',
-        u'humid foothills',
-        u'humid forests',
-        u'humid lowlands',
-        u'magdalena valley',
-        u'maran valley',
-        u'marañón valley',
-        u'moist grasslands',
-        u'moist chaco grasslands',
-        u'montane forests',
-        u'pacific and caribbean slopes',
-        u'pacific lowlands',
-        u'pacific slope',
-        u'patagonian steppes',
-        u'semiarid grasslands',
-        u'semiarid grasslands and scrub',
-        u'taiga and wooded tundra',
-        u'trans-fly savanna',
-        u'tropical forests',
-        # FIXME
-        u'western slope of andes',
-        u'wet lowlands',
-    ])
-) + oneOfKeywords([
+HABITAT = (Word(CHARACTERS) ^ oneOfKeywordsInFile('habitats.txt')) + oneOfKeywords([
     u'in',
     u'of',
 ])
 
 IGNORED_WORDS = oneOfKeywords([
-    'possibly',
+    u'possibly',
+    u'the',
 ])
 
 def make_grammar():
-    region_atom = Optional(Suppress(Keyword('the'))) + oneOfKeywords(get_region_names(REGIONS_FILE))
     modified_compass_adjective = Optional(COMPASS_MODIFIER) + COMPASS_ADJECTIVE
     modified_region = Group(
         Optional(Group(Optional(modified_compass_adjective) + HABITAT)) + 
-        Group(Optional(modified_compass_adjective) + region_atom)
+        Group(Optional(modified_compass_adjective) + REGION_ATOM)
     )
     region = Group(
         Optional(VERB) +
         Optional(Keyword('from')) +
         modified_region +
-        Optional(FILL_OPERATOR + modified_region)
+        Optional(Optional(Keyword('from') + modified_region) +
+                 FILL_OPERATOR +
+                 modified_region)
     )
     grammar = region + ZeroOrMore(Suppress(CONJUNCTION) + region) + Optional(Suppress('.'))
 
@@ -201,20 +148,6 @@ def preprocess(text):
         text = re.sub(pattern, replacement, text, flags=re.UNICODE)
 
     return text
-
-
-def get_region_names(path):
-    lines = []
-    with open(path) as fp:
-        for line in fp:
-            if line.startswith('#'):
-                continue
-            line = line.strip()
-            line = line.decode('utf8')
-            # Strip inline comments
-            line = re.sub(r'\s*#.*', '', line)
-            lines.append(line)
-    return lines
 
 
 if __name__ == '__main__':

@@ -223,6 +223,7 @@ iran
 iraq
 ireland
 island  # FIXME required by e.g. "north island"
+islands in baffin bay
 israel
 italy
 jamaica
