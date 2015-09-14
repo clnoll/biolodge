@@ -18,7 +18,6 @@ american samoa
 amur river
 andaman islands
 andes
-andes of central and southern peru  # FIXME
 andorra
 angola
 anguilla
@@ -81,6 +80,7 @@ bo hai
 bohemia
 bolivia
 bonaire
+borders of eastern peru and bolivia
 borneo
 bosnia and herzegovina
 botswana
@@ -571,6 +571,7 @@ tonga
 trinidad
 trinidad and tobago
 tristan da cunha
+tropical forests
 tropics
 tunisia
 turkey

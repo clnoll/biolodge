@@ -1,44 +1,62 @@
 alpine lakes
+altiplano
 andean foothills
+andes
 aquatic lowlands
 atlantic coast
 base of eastern andes
+campos
 caribbean slope
+cauca and magdalena valleys
+chaco
+coast
 coasts and islands
 desert puna
 dry grasslands
 dry savanna
 forest streams
 forested regions
+forests
 gulf coast
 gulf-caribbean lowlands
+highlands
 humid foothills
 humid forests
 humid lowlands
 inland waters
 islands
+islets
+karoo
+lowlands
 magdalena valley
-cauca and magdalena valleys
 maran valley
 marañón valley
 moist chaco grasslands
 moist grasslands
 montane forests
 mountain streams
+mountains
 pacific and caribbean slopes
+pacific coast
 pacific lowlands
 pacific slope
 patagonian steppes
+petén
+plains
+puna
 quebracho woodlands  # FIXME: "arid quebracho woodlands"
+sahel
+savanna
 semiarid grasslands
 semiarid grasslands and scrub
+swamps and marshes
+taiga
 taiga and wooded tundra
+tepuis
 trans-fly savanna
-tropical forests
+tundra
 upland lava flows
 western slope of andes  # FIXME
 wet lowlands
 wooded ponds , swamps and streams  # FIXME
-pacific coast
-swamps and marshes
-islets
+yungas

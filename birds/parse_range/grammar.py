@@ -59,6 +59,7 @@ HABITAT_QUALIFIER = oneOfKeywords([
     u'tropical',
     u'patchily distributed',
     u'widespread',
+    u'western slope of'
 ])
 VERB = oneOfKeywords([
     u'breeds',
@@ -68,6 +69,7 @@ VERB = oneOfKeywords([
     u'migrates north to',
     u'resident',
     u'primarily winters in',
+    u'winters primarily in',
     u'winters',
     u'winters in',
     u'winters to',
@@ -78,7 +80,7 @@ VERB = oneOfKeywords([
 ])
 FILL_OPERATOR = Optional(COMPASS_DIRECTION) + oneOfKeywords(['to'])
 PARENTHETICAL_PHRASE = '(' + Word(CHARACTERS + unicode(nums) + u' ,?.-:±') + ')'
-HABITAT = (Word(CHARACTERS) ^ oneOfKeywordsInFile('habitats.txt')) + oneOfKeywords([
+HABITAT = oneOfKeywordsInFile('habitats.txt') + oneOfKeywords([
     u'in',
     u'of',
     u'off',
@@ -106,7 +108,7 @@ IGNORED_PHRASES = Or([
 def make_grammar():
     modified_compass_adjective = Optional(COMPASS_MODIFIER) + Optional(COMPASS_ADJECTIVE)
     modified_region = Group(
-        Optional(Group(Optional(modified_compass_adjective) + HABITAT)) + 
+        Optional(Group(Optional(modified_compass_adjective) + HABITAT)) +
         Group(Optional(modified_compass_adjective) + REGION_ATOM)
     )
     region = Group(
@@ -126,7 +128,7 @@ def make_grammar():
     grammar.ignore(IGNORED_WORDS)
     grammar.ignore(Optional(oneOf([u';', u','])) + IGNORED_PHRASES + Optional(u'.'))
 
-    
+
     return grammar
 
 
@@ -150,7 +152,7 @@ def preprocess(text):
                      'black sea, caspian sea and aral sea')
             .replace('north, south and stewart islands',
                      'north island, south island and stewart island'))
-    
+
     # These single/double letters seem to fail as compass adjectives
     # because they match incorrectly as prefixes of words.  Possibly need
     # to use Keyword instead of oneOf.
@@ -178,6 +180,13 @@ def preprocess(text):
 
 
 if __name__ == '__main__':
+    import sys
+
+    args = sys.argv[1:]
+    if args:
+        # Optional primary key to start at
+        [offset] = args
+        offset = int(offset)
 
     from pprint import pprint
 
@@ -186,12 +195,14 @@ if __name__ == '__main__':
     grammar = make_grammar()
 
     unparseable = [375, 529, 536, 587, 606]
-    
+
     birds = (Bird.objects
-             .filter(id__gte=630)
              .exclude(id__in=unparseable)
              .order_by('id'))
-    
+
+    if offset:
+        birds = birds.filter(id__gte=offset)
+
     for bird in birds:
         if not bird.raw_range:
             continue
@@ -202,7 +213,7 @@ if __name__ == '__main__':
         print text
 
         # parsed = grammar.parseString(text, parseAll=True)
-        
+
         try:
             parsed = grammar.parseString(text, parseAll=True)
         except Exception as ex:
@@ -215,4 +226,3 @@ if __name__ == '__main__':
         print
         print '-' * 79
         print
-            
