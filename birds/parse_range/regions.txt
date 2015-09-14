@@ -10,6 +10,7 @@ aleutian islands
 aleutians
 algeria
 alps
+altai mountains
 amazon basin
 amazon river
 america
@@ -77,6 +78,7 @@ bhutan
 bismarck archipelago
 black sea
 bo hai
+bohemia
 bolivia
 bonaire
 borneo
@@ -169,6 +171,7 @@ estonia
 ethiopia
 eurasia
 europe
+european russia
 falkland island  # FIXME
 falkland islands
 fanning islands
@@ -269,6 +272,7 @@ jilin sheng
 johnston island
 jordan
 jupiter
+jura mountains
 kangaroo island
 kansas
 kapiti island
@@ -482,8 +486,10 @@ sao tome and principe
 saskatchewan
 saturn
 saudi arabia
+sayan mountains
 scandinavia
 scotland
+sea of okhotsk
 semdi island , alaska  # FIXME
 senegal
 senegambia
@@ -531,6 +537,7 @@ sri lanka
 stewart island
 sub-saharan africa
 sudan
+sudety mountains
 suez canal
 sulawesi
 sumatra

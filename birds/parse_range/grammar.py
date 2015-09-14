@@ -139,6 +139,7 @@ def preprocess(text):
             .replace(' i.', ' island')
             .replace(' i.,', ' island,')
             .replace(' is.', ' island')
+            .replace(' mts.', ' mountains')
             .replace(' arch.', ' archipelago')
             .replace(' amaz. ', ' amazonian ')
             .replace(' ca. ', ' circa ')
