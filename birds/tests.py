@@ -2,7 +2,7 @@ from django.test import TestCase
 import os
 import json
 
-import range_grammar
+from birds.parse_range import grammar as range_grammar
 from birds.models import Bird
 from views import Birds
 from data.read_ebird_csv import csv_to_db
@@ -21,7 +21,7 @@ class TestRangeGrammar(TestCase):
     def test_preprocess_ordinal(self):
         test_string = "Desert puna of se Peru, sw Bolivia and nw Argentina"
         result = range_grammar.preprocess(test_string)
-        self.assertEquals(result, "desert puna of southeastern peru, southwestern bolivia and northwestern argentina")
+        self.assertEquals(result, "desert puna of southeastern peru , southwestern bolivia and northwestern argentina")
 
     def test_preprocess_multiple_ranges(self):
         test_string = "S Ethiopia to Somalia and adjacent ne Kenya"
