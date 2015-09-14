@@ -81,6 +81,7 @@ british columbia
 british indian ocean territory
 british virgin islands
 brunei
+buenos aires
 bulgaria
 burkina faso
 burma
@@ -155,6 +156,7 @@ estonia
 ethiopia
 eurasia
 europe
+falkland island  # FIXME
 falkland islands
 faroe islands
 fiji
@@ -301,6 +303,7 @@ mauritania
 mauritius
 mayotte
 mediterranean
+mediterranean basin
 mediterranean region
 mekong river
 melanesia
@@ -318,6 +321,7 @@ mississippi river
 missouri
 missouri river
 moldova
+moluccas
 monaco
 mongolia
 montana
@@ -329,6 +333,7 @@ mozambique
 myanmar
 namibia
 nauru
+near east
 nebraska
 nepal
 neptune
@@ -340,6 +345,7 @@ new brunswick
 new caledonia
 new england
 new guinea
+new guinea and adjacent islands
 new hampshire
 new jersey
 new mexico
@@ -353,6 +359,7 @@ niger
 niger river
 nigeria
 nile river
+nile valley
 ningxia huizu zizhiqu
 niue
 north america
@@ -379,6 +386,7 @@ oklahoma
 oman
 ontario
 oregon
+orinoco and amazon river basins
 outer space
 pacific ocean
 pakistan
@@ -390,6 +398,7 @@ papua new guinea
 papuan islands
 paracel islands
 paraguay
+patagonia
 pennsylvania
 persian gulf
 peru

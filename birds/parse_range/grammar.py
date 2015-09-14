@@ -32,6 +32,7 @@ COMPASS_MODIFIER = oneOfKeywords([
     u'adjacent',
     u'extreme',
     u'interior',
+    u'equatorial',
 ])
 CONJUNCTION = Suppress(oneOfKeywords([
     u',',
@@ -60,6 +61,9 @@ VERB = oneOfKeywords([
     u'breeds',
     u'breeds from',
     u'breeds in',
+    u'migrates',
+    u'migrates north to',
+    u'resident',
     u'primarily winters in',
     u'winters',
     u'winters in',    
@@ -127,14 +131,17 @@ def preprocess(text):
     text = (text
             .replace(' i. ', ' island ')
             .replace(' i.,', ' island,')
-            .replace(' is. ', ' island ')
-            .replace(' is.,', ' island,')
+            .replace(' is.', ' island')
             .replace(' arch. ', ' archipelago ')
             .replace(' amaz. ', ' amazonian ')
             .replace(' ca. ', ' circa ')
     )
 
-    text = text.replace('black, caspian and aral seas', 'black sea, caspian sea and aral sea')
+    text = (text
+            .replace('black, caspian and aral seas',
+                     'black sea, caspian sea and aral sea')
+            .replace('north, south and stewart islands',
+                     'north island, south island and stewart island'))
     
     # These single/double letters seem to fail as compass adjectives
     # because they match incorrectly as prefixes of words.  Possibly need
@@ -171,7 +178,7 @@ if __name__ == '__main__':
     grammar = make_grammar()
 
     birds = (Bird.objects
-             .filter(id__gte=323)
+             .filter(id__gte=364)
              .order_by('id'))
     
     for bird in birds:

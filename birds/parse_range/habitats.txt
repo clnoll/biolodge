@@ -7,6 +7,7 @@ caribbean slope
 desert puna
 dry grasslands
 dry savanna
+forest streams
 gulf-caribbean lowlands
 humid foothills
 humid forests
@@ -28,6 +29,6 @@ semiarid grasslands and scrub
 taiga and wooded tundra
 trans-fly savanna
 tropical forests
+upland lava flows
 western slope of andes  # FIXME
 wet lowlands
-upland lava flows
