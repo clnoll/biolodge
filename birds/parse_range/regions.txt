@@ -1,0 +1,611 @@
+afghanistan
+africa
+africa south of the sahara
+alabama
+alaska
+alaska peninsula
+albania
+alberta
+aleutian islands
+aleutians
+algeria
+alps
+amazon basin
+amazon river
+america
+american samoa
+amur river
+andaman islands
+andes
+andes of central and southern peru  # FIXME
+andorra
+angola
+anguilla
+anhui sheng
+antarctic ocean
+antigua and barbuda
+appalachian mountains
+arab countries
+arabian peninsula
+arabian sea
+aral sea
+arctic ocean
+argentina
+argentina at base of andes  # FIXME
+arizona
+arkansas
+armenia
+aru islands
+aruba
+ascension island
+ashmore and cartier islands
+asia
+asia minor
+assam
+atlantic ocean
+atlas mountains
+auckland
+auckland islands
+australasia
+australasian region
+australia
+australian capital territory
+austria
+azerbaijan
+azores
+baffin bay
+bahamas
+bahrain
+balkan peninsula
+baltic states
+bangladesh
+barbados
+bass strait
+bay of bengal
+beijing
+belarus
+belgium
+belize
+benelux countries
+benin
+bermuda islands
+bhutan
+bismarck archipelago
+black sea
+bo hai
+bolivia
+bonaire
+borneo
+bosnia and herzegovina
+botswana
+bouvet island
+brazil
+brazil south of the amazon
+brazilian mato grosso
+british columbia
+british indian ocean territory
+british virgin islands
+brunei
+buenos aires
+bulgaria
+burkina faso
+burma
+burundi
+cabo verde
+california
+cambodia
+cameroon
+campbell and macquarie islands
+canada
+canadian prairie provinces
+canal zone
+canary islands
+cape province
+caribbean area
+carolina  # FIXME: required for e.g. "south carolina"
+caroline islands
+caspian sea
+caucasus
+cayman islands
+central african republic
+central america
+central australia
+central chernozem region
+chad
+chile
+china
+chongqing
+christmas island
+cocos
+cold regions
+colombia
+colombia east of the andes
+colorado
+commonwealth countries
+comoro islands
+comoros
+congo
+congo river
+connecticut
+cook islands
+coral sea islands
+costa rica
+croatia
+crozet island
+cuba
+curaçao
+cyprus
+czech republic e-xr
+czechoslovakia
+côte d'ivoire
+danube river
+deep space
+delaware
+democratic republic of the congo
+denmark
+developed countries
+developing countries
+djibouti
+dominica
+dominican republic
+earth
+east
+east asia
+east china sea
+easter island
+eastern australia
+eastern hemisphere
+ecuador
+egypt
+el salvador
+england
+equatorial guinea
+eritrea
+estonia
+ethiopia
+eurasia
+europe
+falkland island  # FIXME
+falkland islands
+fanning islands
+faroe islands
+fiji
+finland
+florida
+france
+franz josef land
+french community
+french guiana
+french polynesia
+french-speaking equatorial africa
+fujian sheng
+gabon
+galapagos islands
+gambia
+gansu sheng
+gaza strip
+georgia
+georgia island  # FIXME: required for e.g. "south georgia island"
+germany
+ghana
+gibraltar
+great basin
+great britain
+great britain miscellaneous island dependencies
+great coco island
+great lakes
+great plains
+great rift valley
+greater antilles
+greater sundas
+greece
+greenland
+grenada
+guadeloupe
+guam
+guangdong sheng
+guangxi zhuangzu zizhiqu
+guatemala
+guianas
+guinea
+guinea-bissau
+guizhou sheng
+gulf coast
+gulf of mexico
+gulf of thailand
+guyana
+hainan sheng
+haiti
+hawaii
+hawaiian islands
+heard and mcdonald islands
+hebei sheng
+heilongjiang sheng
+henan sheng
+high plateau and eastern madagascar
+himalaya mountains
+hispaniola
+holarctic
+honduras
+hong kong
+hubei sheng
+hudson bay
+hunan sheng
+hungary
+iceland
+idaho
+illinois
+india
+indian ocean
+indian subcontinent
+indiana
+indies  # FIXME required for e.g. "west indies"
+indochina
+indonesia
+inner mongolia
+intercontinental areas
+iowa
+iran
+iraq
+ireland
+island  # FIXME required by e.g. "north island"
+israel
+italy
+jamaica
+jan mayen island
+japan
+java
+jiangsu sheng
+jiangxi sheng
+jilin sheng
+johnston island
+jordan
+jupiter
+kangaroo island
+kansas
+kapiti island
+kazakhstan
+kentucky
+kenya
+kerguelen islands
+kermadec islands
+king island
+kiribati
+kola peninsula
+kolyma
+korea
+kosovo
+kunlun mountains
+kuwait
+kyrgyzstan
+labrador
+lake baikal
+laos
+latin america
+latvia
+laysan island
+lebanon
+leeward islands
+lesotho
+lesser antilles
+lesser sundas
+liaoning sheng
+liberia
+libya
+liechtenstein
+line islands
+lithuania
+louisiana
+luxembourg
+macau
+macedonia
+mackenzie river delta
+madagascar
+madeira islands
+maine
+malawi
+malay archipelago
+malaya
+malaysia
+maldives
+mali
+malta
+manitoba
+margarita island
+mariana islands
+maritime provinces
+mars
+marshall islands
+martinique
+maryland
+massachusetts
+maui
+mauritania
+mauritius
+mayotte
+mediterranean
+mediterranean basin
+mediterranean region
+mekong river
+melanesia
+mercury
+mexico
+michigan
+micronesia
+middle atlantic states
+middle east
+middle west
+midway islands
+minnesota
+mississippi
+mississippi river
+missouri
+missouri river
+moldova
+moluccas
+monaco
+mongolia
+montana
+montenegro
+montserrat
+moon
+morocco
+mozambique
+myanmar
+namibia
+nauru
+near east
+nearctic
+nebraska
+nepal
+neptune
+netherlands
+nevada
+new britain
+new britain island
+new brunswick
+new caledonia
+new england
+new guinea
+new guinea and adjacent islands
+new hampshire
+new jersey
+new mexico
+new south wales
+new york
+new zealand
+newfoundland
+nicaragua
+nicobar islands
+niger
+niger river
+nigeria
+nile river
+nile valley
+ningxia huizu zizhiqu
+niue
+north america
+north atlantic ocean
+north carolina
+north dakota
+north island  # FIXME not parsed correctly
+north pacific ocean
+northeastern states
+northern australia
+northern hemisphere
+northern ireland
+northern territory
+northwest territories
+norway
+nova scotia
+novaya zemlya
+nunavut
+oceania
+ohio
+ohio river
+okarito forest
+oklahoma
+oman
+ontario
+oregon
+orinoco and amazon river basins
+outer space
+pacific ocean
+pakistan
+palau
+palearctic
+palearctic and nearctic regions
+palearctic region
+panama
+papua new guinea
+papuan islands
+paracel islands
+paraguay
+patagonia
+pennsylvania
+persian gulf
+peru
+philippine islands
+philippines
+pitcairn island
+pluto
+poland
+polynesia
+portugal
+prairie provinces
+prince edward island
+puerto rico
+puget sound
+pyrenees
+qatar
+qinghai sheng
+queensland
+québec
+red sea
+rennell
+rhine river
+rhode island
+rio de la plata
+rocky mountains
+romania
+russia
+russian far east
+rwanda
+réunion
+río negro
+saba
+sacramento valley
+sahara
+saint helena
+saint kitts and nevis
+saint lucia
+saint pierre and miquelon
+saint vincent and the grenadines
+saint-barthélemy
+saint-martin
+samoa
+samoan islands
+san marino
+sao tome and principe
+saskatchewan
+saturn
+saudi arabia
+scandinavia
+scotland
+semdi island , alaska  # FIXME
+senegal
+senegambia
+serbia
+seychelles
+shaanxi sheng
+shandong sheng
+shanghai
+shanxi sheng
+siberia
+siberian tundra
+sichuan sheng
+sierra leone
+singapore
+sint eustatius
+sint maarten
+slovakia
+slovenia
+solar system
+solomon islands
+somalia
+south africa
+south america
+south asia
+south atlantic ocean
+south australia
+south carolina
+south china sea
+south dakota
+south georgia and south sandwich islands
+south georgia island
+south island  # FIXME not parsed correctly
+south pacific ocean
+south sudan
+southeast asia
+southern hemisphere
+southern states
+soviet union
+spain
+spanish north africa
+spitsbergen
+spitzbergen
+spratly islands
+sri lanka
+stewart island
+sub-saharan africa
+sudan
+suez canal
+sulawesi
+sumatra
+sun
+sundas
+suriname
+svalbard
+swan islands
+swaziland
+sweden
+switzerland
+syria
+syrian and arabian deserts
+taiga south of alaskan tundra
+taiwan
+tajikistan
+tanzania
+tasmania
+tennessee
+terres australes et antarctiques françaises
+texas
+thailand
+tianjin
+tibet
+tien shan
+tierra del fuego
+timor-leste
+togo
+tokelau
+tonga
+trinidad
+trinidad and tobago
+tristan da cunha
+tropics
+tunisia
+turkey
+turkmenistan
+turks and caicos islands
+tuvalu
+uganda
+ukraine
+united arab emirates
+united states
+united states miscellaneous caribbean islands
+united states miscellaneous pacific islands
+ural mountains
+uranus
+uruguay
+us
+utah
+uzbekistan
+vanuatu
+vatican city
+venezuela
+venus
+vermont
+victoria
+vietnam
+virgin islands of the united states
+virginia
+volga river
+volta river
+wake island
+wales
+wallis and futuna islands
+washington
+west
+west bank
+west indies
+west virginia
+western australia
+western hemisphere
+western sahara
+windward islands
+wisconsin
+wyoming
+xi river
+xinjiang uygur zizhiqu
+yangtze river
+yapen island
+yellow river
+yellow sea
+yemen
+yugoslavia
+yukon territory
+yunnan sheng
+zambezi river
+zambia
+zhejiang sheng
+zimbabwe
