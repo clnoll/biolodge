@@ -12,6 +12,7 @@ algeria
 alps
 amazon basin
 amazon river
+america
 american samoa
 amur river
 andes
@@ -26,6 +27,7 @@ appalachian mountains
 arab countries
 arabian peninsula
 arabian sea
+aral sea
 arctic ocean
 argentina
 argentina at base of andes  # FIXME
@@ -46,12 +48,14 @@ australian capital territory
 austria
 azerbaijan
 azores
+baffin bay
 bahamas
 bahrain
 balkan peninsula
 baltic states
 bangladesh
 barbados
+bass strait
 bay of bengal
 beijing
 belarus
@@ -86,6 +90,7 @@ california
 cambodia
 cameroon
 canada
+canadian prairie provinces
 canal zone
 canary islands
 caribbean area
@@ -154,7 +159,9 @@ falkland islands
 faroe islands
 fiji
 finland
+florida
 france
+franz josef land
 french community
 french guiana
 french polynesia
@@ -169,6 +176,7 @@ georgia
 germany
 ghana
 gibraltar
+great basin
 great britain
 great britain miscellaneous island dependencies
 great lakes
@@ -223,7 +231,6 @@ iran
 iraq
 ireland
 island  # FIXME required by e.g. "north island"
-islands in baffin bay
 israel
 italy
 jamaica
@@ -244,12 +251,14 @@ kenya
 kermadec islands
 king island
 kiribati
+kola peninsula
 kolyma
 korea
 kosovo
 kunlun mountains
 kuwait
 kyrgyzstan
+labrador
 lake baikal
 laos
 latin america
@@ -268,6 +277,7 @@ louisiana
 luxembourg
 macau
 macedonia
+mackenzie river delta
 madagascar
 madeira islands
 maine
@@ -286,9 +296,11 @@ marshall islands
 martinique
 maryland
 massachusetts
+maui
 mauritania
 mauritius
 mayotte
+mediterranean
 mediterranean region
 mekong river
 melanesia
@@ -334,7 +346,7 @@ new mexico
 new south wales
 new york
 new zealand
-newfoundland and labrador
+newfoundland
 nicaragua
 nicobar islands
 niger
@@ -357,6 +369,7 @@ northern territory
 northwest territories
 norway
 nova scotia
+novaya zemlya
 nunavut
 oceania
 ohio
@@ -370,6 +383,8 @@ outer space
 pacific ocean
 pakistan
 palau
+palearctic
+palearctic region
 panama
 papua new guinea
 papuan islands
@@ -387,6 +402,7 @@ portugal
 prairie provinces
 prince edward island
 puerto rico
+puget sound
 pyrenees
 qatar
 qinghai sheng
@@ -422,7 +438,7 @@ saturn
 saudi arabia
 scandinavia
 scotland
-semdi island, alaska
+semdi island , alaska  # FIXME
 senegal
 senegambia
 serbia
@@ -432,6 +448,7 @@ shandong sheng
 shanghai
 shanxi sheng
 siberia
+siberian tundra
 sichuan sheng
 sierra leone
 singapore
@@ -460,6 +477,7 @@ southern states
 soviet union
 spain
 spanish north africa
+spitsbergen
 spitzbergen
 spratly islands
 sri lanka
@@ -487,14 +505,10 @@ tennessee
 terres australes et antarctiques françaises
 texas
 thailand
-# the aleutian islands  # FIXME
-# the alaska peninsula  # FIXME
-# the caspian sea  # FIXME
-# the guianas
-# the sudan
 tianjin
 tibet
 tien shan
+tierra del fuego
 timor-leste
 togo
 tokelau

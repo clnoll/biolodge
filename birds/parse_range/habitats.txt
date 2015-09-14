@@ -11,6 +11,7 @@ gulf-caribbean lowlands
 humid foothills
 humid forests
 humid lowlands
+islands
 magdalena valley
 maran valley
 marañón valley
@@ -29,3 +30,4 @@ trans-fly savanna
 tropical forests
 western slope of andes  # FIXME
 wet lowlands
+upland lava flows

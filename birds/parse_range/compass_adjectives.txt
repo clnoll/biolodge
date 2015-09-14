@@ -25,6 +25,7 @@ south central
 south-central
 southeast
 southeastern
+southeastern and extreme southwestern
 southern
 southern-c
 southern-central
@@ -34,4 +35,5 @@ west
 west central
 west-central
 western
+western and coastal eastern
 western-central

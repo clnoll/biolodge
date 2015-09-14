@@ -1,32 +1,33 @@
 # -*- coding: utf-8 -*-
-import os
 import re
-from itertools import ifilter
-from itertools import imap
 
 from pyparsing import Keyword
 from pyparsing import Group
 from pyparsing import OneOrMore
 from pyparsing import Optional
 from pyparsing import Or
+from pyparsing import And
 from pyparsing import Word
 from pyparsing import Suppress
 from pyparsing import ZeroOrMore
+from pyparsing import oneOf
 from pyparsing import alphas
 from pyparsing import nums
 
 from birds.parse_range.utils import oneOfKeywords
 from birds.parse_range.utils import oneOfKeywordsInFile
+from birds.parse_range.utils import Phrase
 
 
 CHARACTERS = unicode(alphas) + u'ÉÎÑÓàáâãçèéêíïñóôõöúûüi'
 
-COMPASS_DIRECTION = oneOfKeywords([u'north', u'east', u'south', u'west'])
 REGION_ATOM = oneOfKeywordsInFile('regions.txt')
 
 # These should include 'n', 'sw', etc but that's not working currently and is
 # handled by preprocess()
+COMPASS_DIRECTION = oneOfKeywords([u'north', u'east', u'south', u'west'])
 COMPASS_ADJECTIVE = oneOfKeywordsInFile('compass_adjectives.txt')
+
 COMPASS_MODIFIER = oneOfKeywords([
     u'adjacent',
     u'extreme',
@@ -39,11 +40,6 @@ CONJUNCTION = Suppress(oneOfKeywords([
     u', and to',  # FIXME
     u';',
 ]))
-EXTINCTION_PHRASE = Or([
-    (Keyword(u'extinct') + Optional(oneOfKeywords([u'circa', u'ca']) + Word(nums))),
-    (Keyword(u'extinct') + u';' + Keyword(u'last') + Keyword(u'reported') + Word(nums))
-]) + Optional(u'.')
-
 
 HABITAT_QUALIFIER = oneOfKeywords([
     u'amazonian',
@@ -68,9 +64,11 @@ VERB = oneOfKeywords([
     u'winters',
     u'winters in',    
     u'winters to',
+    u'winters on',
+    u'introduced to',
 ])
 FILL_OPERATOR = Optional(COMPASS_DIRECTION) + oneOfKeywords(['to'])
-PARENTHETICAL_PHRASE = '(' + Word(CHARACTERS + ' ,?.-') + ')'
+PARENTHETICAL_PHRASE = '(' + Word(CHARACTERS + ' ,?.-:') + ')'
 HABITAT = (Word(CHARACTERS) ^ oneOfKeywordsInFile('habitats.txt')) + oneOfKeywords([
     u'in',
     u'of',
@@ -81,8 +79,20 @@ IGNORED_WORDS = oneOfKeywords([
     u'the',
 ])
 
+IGNORED_PHRASES = Or([
+    (Keyword(u'extinct') + Optional(oneOfKeywords([u'circa', u'ca']) + Word(nums))),
+    (Keyword(u'extinct') + u';' + Keyword(u'last') + Keyword(u'reported') + Word(nums)),
+    Phrase(u'southward in winter'),
+    Phrase(u'introduced widely'),
+    Phrase(u'now only on wildlife reserves'),
+    Phrase(u'primarily resident'),
+    Phrase(u'where formerly occurred but was eradicated'),
+    Phrase(u'later was re-introduced and also self-colonized'),
+])
+
+
 def make_grammar():
-    modified_compass_adjective = Optional(COMPASS_MODIFIER) + COMPASS_ADJECTIVE
+    modified_compass_adjective = Optional(COMPASS_MODIFIER) + Optional(COMPASS_ADJECTIVE)
     modified_region = Group(
         Optional(Group(Optional(modified_compass_adjective) + HABITAT)) + 
         Group(Optional(modified_compass_adjective) + REGION_ATOM)
@@ -99,12 +109,12 @@ def make_grammar():
 
     grammar.ignore(PARENTHETICAL_PHRASE)
 
-    grammar.ignore(EXTINCTION_PHRASE)
-
     # FIXME
     grammar.ignore(HABITAT_QUALIFIER)
 
     grammar.ignore(IGNORED_WORDS)
+    grammar.ignore(Optional(oneOf([u';', u','])) + IGNORED_PHRASES + Optional(u'.'))
+
     
     return grammar
 
@@ -124,6 +134,8 @@ def preprocess(text):
             .replace(' ca. ', ' circa ')
     )
 
+    text = text.replace('black, caspian and aral seas', 'black sea, caspian sea and aral sea')
+    
     # These single/double letters seem to fail as compass adjectives
     # because they match incorrectly as prefixes of words.  Possibly need
     # to use Keyword instead of oneOf.
@@ -159,6 +171,7 @@ if __name__ == '__main__':
     grammar = make_grammar()
 
     birds = (Bird.objects
+             .filter(id__gte=323)
              .order_by('id'))
     
     for bird in birds:

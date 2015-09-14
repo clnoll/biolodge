@@ -1,4 +1,11 @@
 import os
+import re
+from itertools import ifilter
+from itertools import imap
+
+from pyparsing import Keyword
+from pyparsing import And
+from pyparsing import Or
 
 
 def oneOfKeywords(iterable):
@@ -13,6 +20,10 @@ def oneOfKeywordsInFile(path):
         return oneOfKeywords(lines)
 
 
+def Phrase(string):
+    return And(map(Keyword, string.split()))
+
+    
 def process_line(line):
     line = line.strip()
     line = line.decode('utf8')
