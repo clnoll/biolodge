@@ -15,6 +15,7 @@ amazon river
 america
 american samoa
 amur river
+andaman islands
 andes
 andes of central and southern peru  # FIXME
 andorra
@@ -40,9 +41,13 @@ ascension island
 ashmore and cartier islands
 asia
 asia minor
+assam
 atlantic ocean
 atlas mountains
+auckland
+auckland islands
 australasia
+australasian region
 australia
 australian capital territory
 austria
@@ -90,11 +95,14 @@ cabo verde
 california
 cambodia
 cameroon
+campbell and macquarie islands
 canada
 canadian prairie provinces
 canal zone
 canary islands
+cape province
 caribbean area
+carolina  # FIXME: required for e.g. "south carolina"
 caroline islands
 caspian sea
 caucasus
@@ -123,6 +131,7 @@ cook islands
 coral sea islands
 costa rica
 croatia
+crozet island
 cuba
 curaçao
 cyprus
@@ -158,6 +167,7 @@ eurasia
 europe
 falkland island  # FIXME
 falkland islands
+fanning islands
 faroe islands
 fiji
 finland
@@ -175,12 +185,14 @@ gambia
 gansu sheng
 gaza strip
 georgia
+georgia island  # FIXME: required for e.g. "south georgia island"
 germany
 ghana
 gibraltar
 great basin
 great britain
 great britain miscellaneous island dependencies
+great coco island
 great lakes
 great plains
 great rift valley
@@ -205,12 +217,15 @@ guyana
 hainan sheng
 haiti
 hawaii
+hawaiian islands
 heard and mcdonald islands
 hebei sheng
 heilongjiang sheng
 henan sheng
+high plateau and eastern madagascar
 himalaya mountains
 hispaniola
+holarctic
 honduras
 hong kong
 hubei sheng
@@ -224,6 +239,7 @@ india
 indian ocean
 indian subcontinent
 indiana
+indies  # FIXME required for e.g. "west indies"
 indochina
 indonesia
 inner mongolia
@@ -238,6 +254,7 @@ italy
 jamaica
 jan mayen island
 japan
+java
 jiangsu sheng
 jiangxi sheng
 jilin sheng
@@ -250,6 +267,7 @@ kapiti island
 kazakhstan
 kentucky
 kenya
+kerguelen islands
 kermadec islands
 king island
 kiribati
@@ -265,10 +283,12 @@ lake baikal
 laos
 latin america
 latvia
+laysan island
 lebanon
 leeward islands
 lesotho
 lesser antilles
+lesser sundas
 liaoning sheng
 liberia
 libya
@@ -284,6 +304,7 @@ madagascar
 madeira islands
 maine
 malawi
+malay archipelago
 malaya
 malaysia
 maldives
@@ -334,6 +355,7 @@ myanmar
 namibia
 nauru
 near east
+nearctic
 nebraska
 nepal
 neptune
@@ -392,6 +414,7 @@ pacific ocean
 pakistan
 palau
 palearctic
+palearctic and nearctic regions
 palearctic region
 panama
 papua new guinea
@@ -402,6 +425,7 @@ patagonia
 pennsylvania
 persian gulf
 peru
+philippine islands
 philippines
 pitcairn island
 pluto
@@ -418,6 +442,7 @@ qinghai sheng
 queensland
 québec
 red sea
+rennell
 rhine river
 rhode island
 rio de la plata
@@ -477,6 +502,7 @@ south carolina
 south china sea
 south dakota
 south georgia and south sandwich islands
+south georgia island
 south island  # FIXME not parsed correctly
 south pacific ocean
 south sudan
@@ -497,6 +523,7 @@ suez canal
 sulawesi
 sumatra
 sun
+sundas
 suriname
 svalbard
 swan islands

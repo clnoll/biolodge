@@ -8,17 +8,22 @@ desert puna
 dry grasslands
 dry savanna
 forest streams
+forested regions
+gulf coast
 gulf-caribbean lowlands
 humid foothills
 humid forests
 humid lowlands
+inland waters
 islands
 magdalena valley
+cauca and magdalena valleys
 maran valley
 marañón valley
 moist chaco grasslands
 moist grasslands
 montane forests
+mountain streams
 pacific and caribbean slopes
 pacific lowlands
 pacific slope
@@ -32,3 +37,7 @@ tropical forests
 upland lava flows
 western slope of andes  # FIXME
 wet lowlands
+wooded ponds , swamps and streams  # FIXME
+pacific coast
+swamps and marshes
+islets

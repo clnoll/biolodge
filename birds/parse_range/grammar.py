@@ -50,12 +50,14 @@ HABITAT_QUALIFIER = oneOfKeywords([
     u'formerly',
     u'immediately adjacent',    
     u'locally in',
+    u'locally from',
     u'magellanic',
     u'mainly in',
     u'semiarid subtropical',
     u'subtropical',
     u'tropical',
     u'patchily distributed',
+    u'widespread',
 ])
 VERB = oneOfKeywords([
     u'breeds',
@@ -70,16 +72,19 @@ VERB = oneOfKeywords([
     u'winters to',
     u'winters on',
     u'introduced to',
+    u'visitor to',
 ])
 FILL_OPERATOR = Optional(COMPASS_DIRECTION) + oneOfKeywords(['to'])
-PARENTHETICAL_PHRASE = '(' + Word(CHARACTERS + ' ,?.-:') + ')'
+PARENTHETICAL_PHRASE = '(' + Word(CHARACTERS + unicode(nums) + u' ,?.-:±') + ')'
 HABITAT = (Word(CHARACTERS) ^ oneOfKeywordsInFile('habitats.txt')) + oneOfKeywords([
     u'in',
     u'of',
+    u'off',
 ])
 
 IGNORED_WORDS = oneOfKeywords([
     u'possibly',
+    u'mainly',
     u'the',
 ])
 
@@ -106,8 +111,7 @@ def make_grammar():
         Optional(Keyword('from')) +
         modified_region +
         Optional(Optional(Keyword('from') + modified_region) +
-                 FILL_OPERATOR +
-                 modified_region)
+                 OneOrMore(Group(FILL_OPERATOR + modified_region)))
     )
     grammar = region + ZeroOrMore(Suppress(CONJUNCTION) + region) + Optional(Suppress('.'))
 
@@ -129,10 +133,10 @@ def preprocess(text):
 
     # FIXME: use regexp
     text = (text
-            .replace(' i. ', ' island ')
+            .replace(' i.', ' island')
             .replace(' i.,', ' island,')
             .replace(' is.', ' island')
-            .replace(' arch. ', ' archipelago ')
+            .replace(' arch.', ' archipelago')
             .replace(' amaz. ', ' amazonian ')
             .replace(' ca. ', ' circa ')
     )
@@ -177,8 +181,11 @@ if __name__ == '__main__':
 
     grammar = make_grammar()
 
+    unparseable = [375]
+    
     birds = (Bird.objects
-             .filter(id__gte=364)
+             .filter(id__gte=522)
+             .exclude(id__in=unparseable)
              .order_by('id'))
     
     for bird in birds:
