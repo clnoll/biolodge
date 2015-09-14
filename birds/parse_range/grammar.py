@@ -47,8 +47,9 @@ HABITAT_QUALIFIER = oneOfKeywords([
     u'arctic',
     u'arid',
     u'coastal',
+    u'discontinuous',
     u'formerly',
-    u'immediately adjacent',    
+    u'immediately adjacent',
     u'locally in',
     u'locally from',
     u'magellanic',
@@ -68,8 +69,9 @@ VERB = oneOfKeywords([
     u'resident',
     u'primarily winters in',
     u'winters',
-    u'winters in',    
+    u'winters in',
     u'winters to',
+    u'winters south to',
     u'winters on',
     u'introduced to',
     u'visitor to',
@@ -97,6 +99,7 @@ IGNORED_PHRASES = Or([
     Phrase(u'primarily resident'),
     Phrase(u'where formerly occurred but was eradicated'),
     Phrase(u'later was re-introduced and also self-colonized'),
+    Phrase(u'on verge of extinction'),
 ])
 
 
@@ -181,10 +184,10 @@ if __name__ == '__main__':
 
     grammar = make_grammar()
 
-    unparseable = [375]
+    unparseable = [375, 529, 536, 587, 606]
     
     birds = (Bird.objects
-             .filter(id__gte=522)
+             .filter(id__gte=630)
              .exclude(id__in=unparseable)
              .order_by('id'))
     

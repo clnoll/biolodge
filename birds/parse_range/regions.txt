@@ -45,6 +45,7 @@ assam
 atlantic ocean
 atlas mountains
 auckland
+auckland island
 auckland islands
 australasia
 australasian region
@@ -54,8 +55,10 @@ austria
 azerbaijan
 azores
 baffin bay
+baffin island
 bahamas
 bahrain
+baja california
 balkan peninsula
 baltic states
 bangladesh
@@ -68,6 +71,7 @@ belgium
 belize
 benelux countries
 benin
+bering sea islands
 bermuda islands
 bhutan
 bismarck archipelago
@@ -169,6 +173,7 @@ falkland island  # FIXME
 falkland islands
 fanning islands
 faroe islands
+faeroe islands
 fiji
 finland
 florida
@@ -210,6 +215,7 @@ guianas
 guinea
 guinea-bissau
 guizhou sheng
+guld of st . lawence # FIXME 
 gulf coast
 gulf of mexico
 gulf of thailand
@@ -226,6 +232,7 @@ high plateau and eastern madagascar
 himalaya mountains
 hispaniola
 holarctic
+holarctic region
 honduras
 hong kong
 hubei sheng
@@ -252,6 +259,7 @@ island  # FIXME required by e.g. "north island"
 israel
 italy
 jamaica
+james bay
 jan mayen island
 japan
 java
@@ -279,6 +287,7 @@ kunlun mountains
 kuwait
 kyrgyzstan
 labrador
+lake alaotra
 lake baikal
 laos
 latin america
@@ -295,6 +304,7 @@ libya
 liechtenstein
 line islands
 lithuania
+long island
 louisiana
 luxembourg
 macau
@@ -310,6 +320,7 @@ malaysia
 maldives
 mali
 malta
+manchuria
 manitoba
 margarita island
 mariana islands
@@ -374,6 +385,7 @@ new mexico
 new south wales
 new york
 new zealand
+new zealand and offshore islands
 newfoundland
 nicaragua
 nicobar islands
