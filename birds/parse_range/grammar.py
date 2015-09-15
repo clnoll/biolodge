@@ -130,6 +130,7 @@ def make_grammar():
     modified_region = Group(Or([
         (Optional(Group(Optional(modified_compass_adjective) + HABITAT + HABITAT_PREPOSITION)) +
          Group(Optional(modified_compass_adjective) + REGION_ATOM)),
+        (Optional(HABITAT) + COMPASS_DIRECTION + 'of' + REGION_ATOM),
     ]))
     region = Group(
         Optional(VERB) +
