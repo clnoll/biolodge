@@ -28,15 +28,18 @@ def _oneOfStringsInFile(path, cls):
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                         path)
     with open(path) as fp:
-        lines = ifilter(None, imap(process_line, fp))
-        return _oneOfStrings(lines, cls)
+        return _oneOfStrings(read_lines(fp), cls)
 
 
 def _oneOfStrings(strings, cls):
     return Or(imap(cls, strings))
 
 
-def process_line(line):
+def read_lines(fp):
+    return ifilter(None, imap(_process_line, fp))
+
+
+def _process_line(line):
     line = line.strip()
     line = line.decode('utf8')
     # Strip inline comments
