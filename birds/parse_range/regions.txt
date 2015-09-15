@@ -147,6 +147,7 @@ commonwealth countries
 comoro islands
 comoros
 congo
+congo basin
 congo river
 connecticut
 cook islands
@@ -281,6 +282,7 @@ ireland
 island  # FIXME required by e.g. "north island"
 israel
 italy
+ivory coast
 jamaica
 james bay
 jan mayen island
@@ -315,6 +317,7 @@ kyrgyzstan
 labrador
 lake alaotra
 lake baikal
+lake tanganyika
 laos
 latin america
 latvia
@@ -457,6 +460,7 @@ pacific ocean
 pakistan
 palau
 palau island
+palawan
 palearctic
 palearctic and nearctic regions
 palearctic region
@@ -489,6 +493,7 @@ red sea
 rennell
 rhine river
 rhode island
+rift valley
 rio de la plata
 rocky mountains
 romania
@@ -575,6 +580,7 @@ sudety mountains
 suez canal
 sula island
 sulawesi
+sulu archipelago
 sumatra
 sun
 sundas
@@ -591,9 +597,11 @@ taiga south of alaskan tundra
 taiwan
 tajikistan
 talaud islands
+talisei island
 tanimbar island
 tanzania
 tasmania
+tendila island
 tennessee
 terres australes et antarctiques françaises
 texas
@@ -603,6 +611,7 @@ tibet
 tien shan
 tierra del fuego
 timor-leste
+togian islands
 togo
 tokelau
 tonga
@@ -670,7 +679,3 @@ zambezi river
 zambia
 zhejiang sheng
 zimbabwe
-congo basin
-ivory coast
-rift valley
-lake tanganyika

@@ -61,8 +61,8 @@ quebracho woodlands  # FIXME: "arid quebracho woodlands"
 sahel
 savanna
 scrub and heath
-semiarid grasslands
-semiarid grasslands and scrub
+grasslands
+grasslands and scrub
 swamps and marshes
 taiga
 taiga and wooded tundra

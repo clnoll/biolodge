@@ -188,6 +188,8 @@ def preprocess(text):
                      'eastern-central')
             .replace('southern-c',
                      'southern-central')
+            .replace('talisei, tendila, lembeh and togian islands',
+                     'talisei island, tendila island, lembeh island and togian islands')
     )
 
     # These single/double letters seem to fail as compass adjectives
@@ -244,7 +246,7 @@ if __name__ == '__main__':
         if not bird.raw_range:
             continue
 
-        print bird.id
+        print bird.id, bird.common_name, bird.genus, bird.species, bird.subspecies
 
         text = preprocess(bird.raw_range)
         print text
