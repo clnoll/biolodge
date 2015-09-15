@@ -17,6 +17,7 @@ from pyparsing import CharsNotIn
 
 from birds.parse_range.utils import oneOfKeywords
 from birds.parse_range.utils import oneOfKeywordsInFile
+from birds.parse_range.utils import oneOfPhrases
 from birds.parse_range.utils import oneOfPhrasesInFile
 
 
@@ -35,11 +36,32 @@ COMPASS_DIRECTION = oneOfKeywords([
 
 COMPASS_ADJECTIVE = oneOfKeywordsInFile('compass_adjectives.txt')
 
-COMPASS_MODIFIER = oneOfKeywords([
+REGION_MODIFIER = oneOfKeywords([
     u'adjacent',
-    u'extreme',
-    u'interior',
+    u'arctic',
+    u'arid',
+    u'coastal',
+    u'east slope of',  # FIXME
+    u'eastern slope of',  # FIXME
+    u'eastern arctic',  # FIXME
     u'equatorial',
+    u'extreme',
+    u'humid',
+    u'immediately adjacent',
+    u'interior',
+    u'magellanic',
+    u'extreme north coastal',  # FIXME
+    u'northern half of',
+    u'northeastern arctic',  # FIXME
+    u'northwestern arctic',  # FIXME
+    u'north central arctic',  # FIXME
+    u'semiarid subtropical',
+    u'semiarid',
+    u'subtropical',
+    u'temperate',
+    u'tropical',
+    u'west equatorial',  # FIXME
+    u'western slope of',  # FIXME
 ])
 
 CONJUNCTION = Suppress(oneOfKeywords([
@@ -52,32 +74,17 @@ CONJUNCTION = Suppress(oneOfKeywords([
     u', also on',
 ]))
 
-HABITAT_QUALIFIER = oneOfKeywords([
-    u'amazonian',
-    u'arctic',
-    u'arid',
-    u'humid',
-    u'coastal',
+OCURRENCE_QUALIFIER = oneOfPhrases([
     u'discontinuous',
     u'formerly',
-    u'immediately adjacent',
-    u'interior',
     u'locally in',
+    u'local in',
     u'locally on',
     u'locally from',
-    u'magellanic',
     u'mainly in',
     u'nomadic throughout',
-    u'semiarid',
-    u'semiarid subtropical',
-    u'subtropical',
-    u'tropical',
     u'patchily distributed',
     u'widespread',
-    u'western slope of',  # FIXME
-    u'eastern slope of',  # FIXME
-    u'northern half of',
-    u'temperate',
 ])
 
 VERB = oneOfKeywords([
@@ -131,10 +138,10 @@ def make_grammar():
         COMPASS_ADJECTIVE +
         Optional(Optional(Or(['-', 'and'])) + COMPASS_ADJECTIVE)
     )
-    modified_compass_adjective = Optional(COMPASS_MODIFIER) + Optional(compound_compass_adjective)
+    modifier = Optional(REGION_MODIFIER) + Optional(compound_compass_adjective)
     modified_region = Group(Or([
-        (Optional(Group(Optional(modified_compass_adjective) + HABITAT + HABITAT_PREPOSITION)) +
-         Group(Optional(modified_compass_adjective) + REGION_ATOM)),
+        (Optional(Group(Optional(modifier) + HABITAT + HABITAT_PREPOSITION)) +
+         Group(Optional(modifier) + REGION_ATOM)),
         (Optional(HABITAT) + COMPASS_DIRECTION + 'of' + REGION_ATOM),
     ]))
     region = Group(
@@ -146,7 +153,7 @@ def make_grammar():
     )
     grammar = region + ZeroOrMore(Suppress(CONJUNCTION) + region) + Optional(Suppress('.'))
 
-    grammar.ignore(HABITAT_QUALIFIER)
+    grammar.ignore(OCURRENCE_QUALIFIER)
 
     grammar.ignore(Optional(oneOf([u';', u',', u'.'])) + IGNORED_PHRASES + Optional(u'.'))
     grammar.ignore(PARENTHETICAL_PHRASE)
@@ -241,7 +248,7 @@ if __name__ == '__main__':
 
     grammar = make_grammar()
 
-    unparseable = [375, 529, 536, 587, 606, 631, 978, 1071]
+    unparseable = [327, 361, 375, 529, 536, 587, 606, 631, 978, 1071]
 
     birds = (Bird.objects
              .exclude(id__in=unparseable)

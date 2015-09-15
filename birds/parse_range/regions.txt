@@ -15,6 +15,8 @@ alps
 altai mountains
 amazon basin
 amazon river
+amazonian brazil
+amazonian brazil , south of the amazon
 america
 american samoa
 amur river
@@ -491,6 +493,7 @@ paracel islands
 paraguay
 patagonia
 peninsular florida
+peninsular india
 pennsylvania
 persian gulf
 peru

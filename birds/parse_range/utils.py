@@ -20,6 +20,10 @@ def oneOfKeywordsInFile(path):
     return _oneOfStringsInFile(path, Keyword)
 
 
+def oneOfPhrases(strings):
+    return _oneOfStrings(strings, Phrase)
+
+
 def oneOfPhrasesInFile(path):
     return _oneOfStringsInFile(path, Phrase)
 

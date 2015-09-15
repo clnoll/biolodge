@@ -20,6 +20,7 @@ chaco
 coast
 coasts  # FIXME: "arctic coasts"
 coasts and islands
+coniferous foothill forests
 desert puna
 dry forests
 dry grasslands
@@ -35,6 +36,7 @@ gulf coast
 gulf-caribbean lowlands
 high mountains
 highlands
+hills
 humid andes
 humid montane forests
 inland waters
@@ -57,6 +59,7 @@ montane areas
 montane forests
 mountain streams
 mountains
+oak-pine forests
 pacific and caribbean slopes
 pacific coast
 pacific cordillera
@@ -68,11 +71,13 @@ petén
 plains
 puna
 quebracho woodlands  # FIXME: "arid quebracho woodlands"
+regions
 rocky areas
 sahel
 savanna
 scrub
 scrub and heath
+steppes
 swamps and marshes
 taiga
 taiga and wooded tundra
@@ -85,6 +90,3 @@ wet lowlands
 wooded ponds , swamps and streams  # FIXME
 woodlands and scrub
 yungas
-oak-pine forests
-coniferous foothill forests
-coastal hills
