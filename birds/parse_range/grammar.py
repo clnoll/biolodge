@@ -16,7 +16,7 @@ from pyparsing import nums
 
 from birds.parse_range.utils import oneOfKeywords
 from birds.parse_range.utils import oneOfKeywordsInFile
-from birds.parse_range.utils import Phrase
+from birds.parse_range.utils import oneOfPhrasesInFile
 
 
 CHARACTERS = unicode(alphas) + u'ÉÎÑÓàáâãçèéêíïñóôõöúûüi'
@@ -98,16 +98,9 @@ IGNORED_WORDS = oneOfKeywords([
 ])
 
 IGNORED_PHRASES = Or([
+    oneOfPhrasesInFile('ignored_phrases.txt'),
     (Keyword(u'extinct') + Optional(oneOfKeywords([u'circa', u'ca']) + Word(nums))),
     (Keyword(u'extinct') + u';' + Keyword(u'last') + Keyword(u'reported') + Word(nums)),
-    Phrase(u'southward in winter'),
-    Phrase(u'introduced widely'),
-    Phrase(u'now only on wildlife reserves'),
-    Phrase(u'primarily resident'),
-    Phrase(u'where formerly occurred but was eradicated'),
-    Phrase(u'later was re-introduced and also self-colonized'),
-    Phrase(u'on verge of extinction'),
-    Phrase(u'just south of the central mountain ranges'),
 ])
 
 

@@ -8,22 +8,34 @@ from pyparsing import And
 from pyparsing import Or
 
 
-def oneOfKeywords(iterable):
-    return Or(imap(Keyword, iterable))
+def Phrase(string):
+    return And(map(Keyword, string.split()))
+
+
+def oneOfKeywords(strings):
+    return _oneOfStrings(strings, Keyword)
 
 
 def oneOfKeywordsInFile(path):
+    return _oneOfStringsInFile(path, Keyword)
+
+
+def oneOfPhrasesInFile(path):
+    return _oneOfStringsInFile(path, Phrase)
+
+
+def _oneOfStringsInFile(path, cls):
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                         path)
     with open(path) as fp:
         lines = ifilter(None, imap(process_line, fp))
-        return oneOfKeywords(lines)
+        return _oneOfStrings(lines, cls)
 
 
-def Phrase(string):
-    return And(map(Keyword, string.split()))
+def _oneOfStrings(strings, cls):
+    return Or(imap(cls, strings))
 
-    
+
 def process_line(line):
     line = line.strip()
     line = line.decode('utf8')
