@@ -1,9 +1,12 @@
+# eastern slope of andes
+# western slope of andes  # FIXME
+acacia scrub
 alpine lakes
 altiplano
 andean foothills
 andes
-arctic coasts
 aquatic lowlands
+arctic coasts
 atlantic coast
 base of eastern andes
 campos
@@ -14,24 +17,29 @@ coast
 coasts  # FIXME: "arctic coasts"
 coasts and islands
 desert puna
+dry forests
 dry grasslands
 dry savanna
+foothills
 forest streams
 forested regions
 forests
+forests
 gulf coast
 gulf-caribbean lowlands
-highlands
 high mountains
-humid foothills
-humid forests
-humid lowlands
+highlands
+humid andes
+humid montane forests
 inland waters
 islands
 islets
 karoo
 lakes and marshes
 lakes and swamps
+llanos
+lowland forests
+lowlands
 lowlands
 magdalena valley
 maran valley
@@ -52,6 +60,7 @@ puna
 quebracho woodlands  # FIXME: "arid quebracho woodlands"
 sahel
 savanna
+scrub and heath
 semiarid grasslands
 semiarid grasslands and scrub
 swamps and marshes
@@ -61,9 +70,7 @@ tepuis
 trans-fly savanna
 tundra
 upland lava flows
-western slope of andes  # FIXME
 wet lowlands
 wooded ponds , swamps and streams  # FIXME
+woodlands and scrub
 yungas
-lowland forests
-scrub and heath

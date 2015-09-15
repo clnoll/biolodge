@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 import re
 
-from pyparsing import Keyword
+from pyparsing import And
 from pyparsing import Group
+from pyparsing import Keyword
 from pyparsing import OneOrMore
 from pyparsing import Optional
 from pyparsing import Or
-from pyparsing import And
-from pyparsing import Word
 from pyparsing import Suppress
+from pyparsing import Word
 from pyparsing import ZeroOrMore
-from pyparsing import oneOf
 from pyparsing import alphas
 from pyparsing import nums
+from pyparsing import oneOf
 
 from birds.parse_range.utils import oneOfKeywords
 from birds.parse_range.utils import oneOfKeywordsInFile
@@ -26,6 +26,7 @@ REGION_ATOM = oneOfKeywordsInFile('regions.txt')
 # These should include 'n', 'sw', etc but that's not working currently and is
 # handled by preprocess()
 COMPASS_DIRECTION = oneOfKeywords([u'north', u'east', u'south', u'west'])
+
 COMPASS_ADJECTIVE = oneOfKeywordsInFile('compass_adjectives.txt')
 
 COMPASS_MODIFIER = oneOfKeywords([
@@ -34,6 +35,7 @@ COMPASS_MODIFIER = oneOfKeywords([
     u'interior',
     u'equatorial',
 ])
+
 CONJUNCTION = Suppress(oneOfKeywords([
     u',',
     u'and',
@@ -46,6 +48,7 @@ HABITAT_QUALIFIER = oneOfKeywords([
     u'amazonian',
     u'arctic',
     u'arid',
+    u'humid',
     u'coastal',
     u'discontinuous',
     u'formerly',
@@ -57,14 +60,17 @@ HABITAT_QUALIFIER = oneOfKeywords([
     u'magellanic',
     u'mainly in',
     u'nomadic throughout',
+    u'semiarid',
     u'semiarid subtropical',
     u'subtropical',
     u'tropical',
     u'patchily distributed',
     u'widespread',
-    u'western slope of',
+    u'western slope of',  # FIXME
+    u'eastern slope of',  # FIXME
     u'northern half of',
 ])
+
 VERB = oneOfKeywords([
     u'breeds',
     u'breeds from',
@@ -83,12 +89,23 @@ VERB = oneOfKeywords([
     u'introduced to',
     u'visitor to',
 ])
+
 FILL_OPERATOR = Optional(COMPASS_DIRECTION) + oneOfKeywords(['to'])
-PARENTHETICAL_PHRASE = '(' + Word(CHARACTERS + unicode(nums) + u' ,?.-:±') + ')'
-HABITAT = oneOfKeywordsInFile('habitats.txt') + oneOfKeywords([
+
+PARENTHETICAL_PHRASE = (
+    '(' +
+    Word(CHARACTERS + unicode(nums) + u' ,?.-:±/') +
+    ')'
+)
+
+HABITAT = oneOfKeywordsInFile('habitats.txt')
+
+HABITAT_PREPOSITION = oneOfKeywords([
     u'in',
     u'of',
     u'off',
+    u'off of',
+    u'from',
 ])
 
 IGNORED_WORDS = oneOfKeywords([
@@ -110,10 +127,10 @@ def make_grammar():
         Optional(Optional(Or(['-', 'and'])) + COMPASS_ADJECTIVE)
     )
     modified_compass_adjective = Optional(COMPASS_MODIFIER) + Optional(compound_compass_adjective)
-    modified_region = Group(
-        Optional(Group(Optional(modified_compass_adjective) + HABITAT)) +
-        Group(Optional(modified_compass_adjective) + REGION_ATOM)
-    )
+    modified_region = Group(Or([
+        (Optional(Group(Optional(modified_compass_adjective) + HABITAT + HABITAT_PREPOSITION)) +
+         Group(Optional(modified_compass_adjective) + REGION_ATOM)),
+    ]))
     region = Group(
         Optional(VERB) +
         Optional(Keyword('from')) +
@@ -129,8 +146,9 @@ def make_grammar():
     grammar.ignore(HABITAT_QUALIFIER)
 
     grammar.ignore(IGNORED_WORDS)
-    grammar.ignore(Optional(oneOf([u';', u','])) + IGNORED_PHRASES + Optional(u'.'))
-
+    grammar.ignore(Optional(oneOf([u';', u',', u'.'])) +
+                   IGNORED_PHRASES +
+                   Optional(u'.'))
 
     return grammar
 
@@ -159,6 +177,12 @@ def preprocess(text):
                      'misool island and salawati island')
             .replace('bangka, lembeh and butung islands',
                      'bangka island, lembeh island and butung island')
+            .replace('sangihe, siau, tahulandang and ruang islands',
+                     'sangihe island, siau island, tahulandang island and ruang island')
+            .replace('banggai and sula islands',
+                     'banggai island and sula island')
+            .replace('kofiau, kamuai, and misool island',
+                     'kofiau island, kamuai island and misool island')
             .replace('eastern-c',
                      'eastern-central')
             .replace('southern-c',
@@ -224,13 +248,15 @@ if __name__ == '__main__':
         text = preprocess(bird.raw_range)
         print text
 
-        # parsed = grammar.parseString(text, parseAll=True)
-
         try:
             parsed = grammar.parseString(text, parseAll=True)
         except Exception as ex:
-            pprint(grammar.parseString(text).asList(), width=30)
+            try:
+                pprint(grammar.parseString(text).asList(), width=30)
+            except:
+                print '[cannot partially parse]'
             print ex
+            import ipdb ; ipdb.set_trace()
         else:
             pprint(parsed.asList(), width=30)
 

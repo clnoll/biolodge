@@ -7,6 +7,7 @@
 # andes of northwestern peru  # FIXME: how should these be handled?
 # andes of southeastern peru  # FIXME: how should these be handled?
 # andes of southern-central colombia  # FIXME: how should these be handled?
+admiralty island
 afghanistan
 africa
 africa south of the sahara
@@ -70,6 +71,7 @@ bahrain
 baja california
 balkan peninsula
 baltic states
+banggai island
 bangka island
 bangladesh
 barbados
@@ -96,6 +98,7 @@ bosnia and herzegovina
 botswana
 bouvet island
 brazil
+brazil north of the amazon
 brazil south of the amazon
 brazilian mato grosso
 british columbia
@@ -106,6 +109,7 @@ buenos aires
 bulgaria
 burkina faso
 burma
+buru island
 burundi
 butung island
 cabo verde
@@ -122,6 +126,7 @@ caribbean area
 carolina  # FIXME: required for e.g. "south carolina"
 caroline islands
 caspian sea
+cauca valley , colombia
 caucasus
 cayman islands
 central african republic
@@ -147,6 +152,7 @@ connecticut
 cook islands
 coral sea islands
 costa rica
+cozumel island
 croatia
 crozet island
 cuba
@@ -155,6 +161,7 @@ cyprus
 czech republic e-xr
 czechoslovakia
 côte d'ivoire
+d'entrecasteaux islands
 danube river
 deep space
 delaware
@@ -203,6 +210,7 @@ galapagos islands
 gambia
 gansu sheng
 gaza strip
+geelvink bay
 georgia
 georgia island  # FIXME: required for e.g. "south georgia island"
 germany
@@ -213,6 +221,7 @@ great britain
 great britain miscellaneous island dependencies
 great coco island
 great lakes
+great nicobar island
 great plains
 great rift valley
 greater antilles
@@ -284,6 +293,7 @@ johnston island
 jordan
 jupiter
 jura mountains
+kamuai island
 kangaroo island
 kansas
 kapiti island
@@ -294,6 +304,7 @@ kerguelen islands
 kermadec islands
 king island
 kiribati
+kofiau island
 kola peninsula
 kolyma
 korea
@@ -320,7 +331,9 @@ libya
 liechtenstein
 line islands
 lithuania
+little nicobar island
 long island
+louisiade archipelago
 louisiana
 luxembourg
 macau
@@ -412,6 +425,7 @@ nigeria
 nile river
 nile valley
 ningxia huizu zizhiqu
+niuafo'ou island
 niue
 north america
 north atlantic ocean
@@ -442,6 +456,7 @@ outer space
 pacific ocean
 pakistan
 palau
+palau island
 palearctic
 palearctic and nearctic regions
 palearctic region
@@ -477,6 +492,7 @@ rhode island
 rio de la plata
 rocky mountains
 romania
+ruang island
 russia
 russian far east
 rwanda
@@ -496,6 +512,8 @@ salawati island
 samoa
 samoan islands
 san marino
+sangihe island
+santa marta mountains
 sao tome and principe
 saskatchewan
 saturn
@@ -513,9 +531,11 @@ shaanxi sheng
 shandong sheng
 shanghai
 shanxi sheng
+siau island
 siberia
 siberian tundra
 sichuan sheng
+sierra de perijá
 sierra leone
 singapore
 sint eustatius
@@ -553,6 +573,7 @@ sub-saharan africa
 sudan
 sudety mountains
 suez canal
+sula island
 sulawesi
 sumatra
 sun
@@ -565,9 +586,12 @@ sweden
 switzerland
 syria
 syrian and arabian deserts
+tahulandang island
 taiga south of alaskan tundra
 taiwan
 tajikistan
+talaud islands
+tanimbar island
 tanzania
 tasmania
 tennessee
@@ -603,6 +627,7 @@ uranus
 uruguay
 us
 utah
+utila island
 uzbekistan
 vanuatu
 vatican city
@@ -615,6 +640,7 @@ virgin islands of the united states
 virginia
 volga river
 volta river
+waigeo and surrounding islets
 waigeo island
 wake island
 wales
@@ -644,6 +670,7 @@ zambezi river
 zambia
 zhejiang sheng
 zimbabwe
-niuafo'ou island
-palau island
-nicobar islands
+congo basin
+ivory coast
+rift valley
+lake tanganyika
