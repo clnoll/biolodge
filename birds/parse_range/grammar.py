@@ -13,6 +13,7 @@ from pyparsing import ZeroOrMore
 from pyparsing import alphas
 from pyparsing import nums
 from pyparsing import oneOf
+from pyparsing import CharsNotIn
 
 from birds.parse_range.utils import oneOfKeywords
 from birds.parse_range.utils import oneOfKeywordsInFile
@@ -25,7 +26,12 @@ REGION_ATOM = oneOfKeywordsInFile('regions.txt')
 
 # These should include 'n', 'sw', etc but that's not working currently and is
 # handled by preprocess()
-COMPASS_DIRECTION = oneOfKeywords([u'north', u'east', u'south', u'west'])
+COMPASS_DIRECTION = oneOfKeywords([
+    u'north',
+    u'east',
+    u'south',
+    u'west',
+])
 
 COMPASS_ADJECTIVE = oneOfKeywordsInFile('compass_adjectives.txt')
 
@@ -41,6 +47,7 @@ CONJUNCTION = Suppress(oneOfKeywords([
     u'and',
     u', and',
     u', and to',  # FIXME
+    u'and in the',
     u';',
 ]))
 
@@ -69,6 +76,7 @@ HABITAT_QUALIFIER = oneOfKeywords([
     u'western slope of',  # FIXME
     u'eastern slope of',  # FIXME
     u'northern half of',
+    u'temperate',
 ])
 
 VERB = oneOfKeywords([
@@ -90,13 +98,15 @@ VERB = oneOfKeywords([
     u'visitor to',
 ])
 
-FILL_OPERATOR = Optional(COMPASS_DIRECTION) + oneOfKeywords(['to'])
+FILL_OPERATOR = Optional(COMPASS_DIRECTION) + oneOfKeywords(['to', 'through'])
 
 PARENTHETICAL_PHRASE = (
     '(' +
     Word(CHARACTERS + unicode(nums) + u' ,?.-:±/') +
     ')'
 )
+COLON_PHRASE = ':' + CharsNotIn('.;') + Optional(oneOf(['.', ';']))
+
 
 HABITAT = oneOfKeywordsInFile('habitats.txt')
 
@@ -142,6 +152,7 @@ def make_grammar():
     grammar = region + ZeroOrMore(Suppress(CONJUNCTION) + region) + Optional(Suppress('.'))
 
     grammar.ignore(PARENTHETICAL_PHRASE)
+    grammar.ignore(COLON_PHRASE)
 
     # FIXME
     grammar.ignore(HABITAT_QUALIFIER)
@@ -190,6 +201,8 @@ def preprocess(text):
                      'southern-central')
             .replace('talisei, tendila, lembeh and togian islands',
                      'talisei island, tendila island, lembeh island and togian islands')
+            .replace('temp. e andes',
+                     'temperate e andes')
     )
 
     # These single/double letters seem to fail as compass adjectives
@@ -197,10 +210,10 @@ def preprocess(text):
     # to use Keyword instead of oneOf.
     # FIXME: This is incorrect for e.g. the country "S Africa"
     for pattern, replacement in [
-            (r'\bn\b', 'northern'),
-            (r'\be\b', 'eastern'),
-            (r'\bs\b', 'southern'),
-            (r'\bw\b', 'western'),
+            (r'\bn\b', 'north'),
+            (r'\be\b', 'east'),
+            (r'\bs\b', 'south'),
+            (r'\bw\b', 'west'),
             (r'\bc\b', 'central'),
             (r'\bne\b', 'northeastern'),
             (r'\bse\b', 'southeastern'),
@@ -233,7 +246,7 @@ if __name__ == '__main__':
 
     grammar = make_grammar()
 
-    unparseable = [375, 529, 536, 587, 606, 631]
+    unparseable = [375, 529, 536, 587, 606, 631, 978]
 
     birds = (Bird.objects
              .exclude(id__in=unparseable)
@@ -246,10 +259,12 @@ if __name__ == '__main__':
         if not bird.raw_range:
             continue
 
-        print bird.id, bird.common_name, bird.genus, bird.species, bird.subspecies
+        print bird.id, bird.order, bird.family, bird.genus, bird.species, bird.subspecies, bird.common_name
+        print
 
         text = preprocess(bird.raw_range)
         print text
+        print
 
         try:
             parsed = grammar.parseString(text, parseAll=True)

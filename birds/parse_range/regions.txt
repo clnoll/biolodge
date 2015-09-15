@@ -1,3 +1,4 @@
+
 admiralty island
 afghanistan
 africa
@@ -36,6 +37,7 @@ argentina at base of andes  # FIXME
 arizona
 arkansas
 armenia
+aru island
 aru islands
 aruba
 ascension island
@@ -43,6 +45,7 @@ ashmore and cartier islands
 asia
 asia minor
 assam
+atlantic coast
 atlantic ocean
 atlas mountains
 auckland
@@ -59,12 +62,14 @@ baffin bay
 baffin island
 bahamas
 bahrain
+baja
 baja california
 balkan peninsula
 baltic states
 banggai island
 bangka island
 bangladesh
+banks group
 barbados
 bass strait
 bay of bengal
@@ -89,6 +94,7 @@ bosnia and herzegovina
 botswana
 bouvet island
 brazil
+brazil , south of the amazon  # FIXME
 brazil north of the amazon
 brazil south of the amazon
 brazilian mato grosso
@@ -108,6 +114,7 @@ california
 cambodia
 cameroon
 campbell and macquarie islands
+campeche
 canada
 canadian prairie provinces
 canal zone
@@ -116,7 +123,9 @@ cape province
 caribbean area
 carolina  # FIXME: required for e.g. "south carolina"
 caroline islands
+cascades
 caspian sea
+cauca valley
 cauca valley , colombia
 caucasus
 cayman islands
@@ -125,6 +134,7 @@ central america
 central australia
 central chernozem region
 chad
+chihuahua
 chile
 china
 chongqing
@@ -143,6 +153,8 @@ congo river
 connecticut
 cook islands
 coral sea islands
+cordillera
+coronados islands
 costa rica
 cozumel island
 croatia
@@ -154,6 +166,7 @@ czech republic e-xr
 czechoslovakia
 côte d'ivoire
 d'entrecasteaux islands
+dakota  # FIXME shouldn't replace S -> "southern"
 danube river
 deep space
 delaware
@@ -161,6 +174,7 @@ democratic republic of the congo
 denmark
 developed countries
 developing countries
+distrito federal , méxico
 djibouti
 dominica
 dominican republic
@@ -270,7 +284,10 @@ iowa
 iran
 iraq
 ireland
+isla margarita
+isla tiburón
 island  # FIXME required by e.g. "north island"
+isle of pines
 israel
 italy
 ivory coast
@@ -371,11 +388,13 @@ middle east
 middle west
 midway islands
 minnesota
+miranda
 misool island
 mississippi
 mississippi river
 missouri
 missouri river
+mohave deserts
 moldova
 moluccas
 monaco
@@ -384,6 +403,7 @@ montana
 montenegro
 montserrat
 moon
+morelos
 morocco
 mozambique
 myanmar
@@ -404,6 +424,7 @@ new england
 new guinea
 new guinea and adjacent islands
 new hampshire
+new ireland
 new jersey
 new mexico
 new south wales
@@ -447,6 +468,8 @@ ontario
 oregon
 orinoco and amazon river basins
 outer space
+owens valley
+owens valley of eastern-central california
 pacific ocean
 pakistan
 palau
@@ -461,6 +484,7 @@ papuan islands
 paracel islands
 paraguay
 patagonia
+peninsular florida
 pennsylvania
 persian gulf
 peru
@@ -479,6 +503,7 @@ pyrenees
 qatar
 qinghai sheng
 queensland
+quintana roo
 québec
 red sea
 rennell
@@ -507,8 +532,11 @@ saint-martin
 salawati island
 samoa
 samoan islands
+san diego county
 san marino
 sangihe island
+santa catalina island
+santa cruz county
 santa marta mountains
 sao tome and principe
 saskatchewan
@@ -533,14 +561,17 @@ siberian tundra
 sichuan sheng
 sierra de perijá
 sierra leone
+sierra nevada
 singapore
 sint eustatius
 sint maarten
 slovakia
 slovenia
 solar system
+solomon island
 solomon islands
 somalia
+sonora
 south africa
 south america
 south asia
@@ -602,15 +633,16 @@ tibet
 tien shan
 tierra del fuego
 timor-leste
+tobago
 togian islands
 togo
 tokelau
 tonga
 trinidad
-trinidad and tobago
 tristan da cunha
 tropical forests
 tropics
+tumbatu island
 tunisia
 turkey
 turkmenistan
@@ -626,6 +658,7 @@ ural mountains
 uranus
 uruguay
 us
+us west of atlantic seaboard
 utah
 utila island
 uzbekistan
@@ -663,10 +696,12 @@ yapen island
 yellow river
 yellow sea
 yemen
+yucatán
 yugoslavia
 yukon territory
 yunnan sheng
 zambezi river
 zambia
+zanzibar
 zhejiang sheng
 zimbabwe

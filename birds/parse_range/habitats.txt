@@ -1,3 +1,4 @@
+
 # eastern slope of andes
 # western slope of andes  # FIXME
 acacia scrub
@@ -8,8 +9,11 @@ andes
 aquatic lowlands
 arctic coasts
 atlantic coast
+base
 base of eastern andes
 campos
+caribbean coast
+caribbean lowlands
 caribbean slope
 cauca and magdalena valleys
 chaco
@@ -25,6 +29,8 @@ forest streams
 forested regions
 forests
 forests
+grasslands
+grasslands and scrub
 gulf coast
 gulf-caribbean lowlands
 high mountains
@@ -41,33 +47,38 @@ llanos
 lowland forests
 lowlands
 lowlands
+lowlands of pacific slope
 magdalena valley
 maran valley
 marañón valley
 moist chaco grasslands
 moist grasslands
+montane areas
 montane forests
 mountain streams
 mountains
 pacific and caribbean slopes
 pacific coast
+pacific cordillera
 pacific lowlands
 pacific slope
+pacific slope of western andes
 patagonian steppes
 petén
 plains
 puna
 quebracho woodlands  # FIXME: "arid quebracho woodlands"
+rocky areas
 sahel
 savanna
+scrub
 scrub and heath
-grasslands
-grasslands and scrub
 swamps and marshes
 taiga
 taiga and wooded tundra
 tepuis
 trans-fly savanna
+tropical and subtropical forests
 tundra
 upland lava flows
 wet lowlands
