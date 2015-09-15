@@ -2,10 +2,13 @@ central
 central and eastern
 central and northeastern
 central and southern
+central and southern eastern
+coastal northern
 east
 east central
 east-central
 eastern
+eastern and southern
 eastern-c
 eastern-central
 north
@@ -14,15 +17,17 @@ north-central
 northeast
 northeastern
 northern
-northern northern
-southwestern and southeastern
-northern to central
 northern and central
 northern and eastern
+northern eastern
+northern northern
+northern southern
+northern to central
 northern-central
 northwest
 northwestern
 northwestern and north central
+northwestern northern
 south
 south central
 south-central
@@ -30,21 +35,18 @@ southeast
 southeastern
 southeastern and extreme southwestern
 southern
-southernmost
 southern-c
 southern-central
+southernmost
 southwest
 southwestern
 southwestern and eastern
+southwestern and southeastern
+southwestern and southern
 west
 west central
 west-central
 western
 western and coastal eastern
-western-central
 western equatorial
-coastal northern
-eastern and southern
-northern southern
-northern eastern
-central and southern eastern
+western-central

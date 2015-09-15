@@ -50,16 +50,20 @@ HABITAT_QUALIFIER = oneOfKeywords([
     u'discontinuous',
     u'formerly',
     u'immediately adjacent',
+    u'interior',
     u'locally in',
+    u'locally on',
     u'locally from',
     u'magellanic',
     u'mainly in',
+    u'nomadic throughout',
     u'semiarid subtropical',
     u'subtropical',
     u'tropical',
     u'patchily distributed',
     u'widespread',
-    u'western slope of'
+    u'western slope of',
+    u'northern half of',
 ])
 VERB = oneOfKeywords([
     u'breeds',
@@ -73,6 +77,7 @@ VERB = oneOfKeywords([
     u'winters',
     u'winters in',
     u'winters to',
+    u'winters north to',
     u'winters south to',
     u'winters on',
     u'introduced to',
@@ -102,6 +107,7 @@ IGNORED_PHRASES = Or([
     Phrase(u'where formerly occurred but was eradicated'),
     Phrase(u'later was re-introduced and also self-colonized'),
     Phrase(u'on verge of extinction'),
+    Phrase(u'just south of the central mountain ranges'),
 ])
 
 
@@ -151,7 +157,11 @@ def preprocess(text):
             .replace('black, caspian and aral seas',
                      'black sea, caspian sea and aral sea')
             .replace('north, south and stewart islands',
-                     'north island, south island and stewart island'))
+                     'north island, south island and stewart island')
+            .replace('misool and salawati islands',
+                     'misool island and salawati island')
+            .replace('bangka, lembeh and butung islands',
+                     'bangka island, lembeh island and butung island'))
 
     # These single/double letters seem to fail as compass adjectives
     # because they match incorrectly as prefixes of words.  Possibly need
@@ -194,7 +204,7 @@ if __name__ == '__main__':
 
     grammar = make_grammar()
 
-    unparseable = [375, 529, 536, 587, 606]
+    unparseable = [375, 529, 536, 587, 606, 631]
 
     birds = (Bird.objects
              .exclude(id__in=unparseable)
@@ -219,7 +229,6 @@ if __name__ == '__main__':
         except Exception as ex:
             pprint(grammar.parseString(text).asList(), width=30)
             print ex
-            import ipdb ; ipdb.set_trace()
         else:
             pprint(parsed.asList(), width=30)
 

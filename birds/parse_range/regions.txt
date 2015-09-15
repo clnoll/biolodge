@@ -1,3 +1,12 @@
+# andes
+# andes of central and southern peru  # FIXME: how should these be handled?
+# andes of central colombia and extreme western venezuela  # FIXME: how should these be handled?
+# andes of central peru to bolivia  # FIXME: how should these be handled?
+# andes of colombia  # FIXME: how should these be handled?
+# andes of eastern ecuador  # FIXME: how should these be handled?
+# andes of northwestern peru  # FIXME: how should these be handled?
+# andes of southeastern peru  # FIXME: how should these be handled?
+# andes of southern-central colombia  # FIXME: how should these be handled?
 afghanistan
 africa
 africa south of the sahara
@@ -17,7 +26,7 @@ america
 american samoa
 amur river
 andaman islands
-andes
+andes of colombia
 andorra
 angola
 anguilla
@@ -61,6 +70,7 @@ bahrain
 baja california
 balkan peninsula
 baltic states
+bangka island
 bangladesh
 barbados
 bass strait
@@ -97,6 +107,7 @@ bulgaria
 burkina faso
 burma
 burundi
+butung island
 cabo verde
 california
 cambodia
@@ -172,11 +183,11 @@ ethiopia
 eurasia
 europe
 european russia
+faeroe islands
 falkland island  # FIXME
 falkland islands
 fanning islands
 faroe islands
-faeroe islands
 fiji
 finland
 florida
@@ -299,6 +310,7 @@ latvia
 laysan island
 lebanon
 leeward islands
+lembeh island
 lesotho
 lesser antilles
 lesser sundas
@@ -352,6 +364,7 @@ middle east
 middle west
 midway islands
 minnesota
+misool island
 mississippi
 mississippi river
 missouri
@@ -479,6 +492,7 @@ saint pierre and miquelon
 saint vincent and the grenadines
 saint-barthélemy
 saint-martin
+salawati island
 samoa
 samoan islands
 san marino
@@ -601,6 +615,7 @@ virgin islands of the united states
 virginia
 volga river
 volta river
+waigeo island
 wake island
 wales
 wallis and futuna islands
@@ -629,3 +644,6 @@ zambezi river
 zambia
 zhejiang sheng
 zimbabwe
+niuafo'ou island
+palau island
+nicobar islands
