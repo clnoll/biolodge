@@ -36,7 +36,7 @@ COMPASS_DIRECTION = oneOfKeywords([
 
 COMPASS_ADJECTIVE = oneOfKeywordsInFile('compass_adjectives.txt')
 
-REGION_MODIFIER = oneOfKeywords([
+REGION_MODIFIER = oneOfPhrases([
     u'adjacent',
     u'arctic',
     u'arid',
@@ -64,17 +64,7 @@ REGION_MODIFIER = oneOfKeywords([
     u'western slope of',  # FIXME
 ])
 
-CONJUNCTION = Suppress(oneOfKeywords([
-    u',',
-    u'and',
-    u', and',
-    u', and to',  # FIXME
-    u'and in the',
-    u';',
-    u', also on',
-]))
-
-OCURRENCE_QUALIFIER = oneOfPhrases([
+OCURRENCE_MODIFIER = oneOfPhrases([
     u'discontinuous',
     u'formerly',
     u'locally in',
@@ -85,6 +75,16 @@ OCURRENCE_QUALIFIER = oneOfPhrases([
     u'nomadic throughout',
     u'patchily distributed',
     u'widespread',
+])
+
+HABITAT = oneOfKeywordsInFile('habitats.txt')
+
+HABITAT_PREPOSITION = oneOfKeywords([
+    u'in',
+    u'of',
+    u'off',
+    u'off of',
+    u'from',
 ])
 
 VERB = oneOfKeywords([
@@ -108,23 +108,23 @@ VERB = oneOfKeywords([
 
 FILL_OPERATOR = Optional(COMPASS_DIRECTION) + oneOfKeywords(['to', 'through'])
 
+CONJUNCTION = Suppress(oneOfKeywords([
+    u',',
+    u'and',
+    u', and',
+    u', and to',  # FIXME
+    u'and in the',
+    u';',
+    u', also on',
+]))
+
 PARENTHETICAL_PHRASE = (
     '(' +
     Word(CHARACTERS + unicode(nums) + u' ,?.-:±/') +
     ')'
 )
+
 COLON_PHRASE = ':' + CharsNotIn('.;') + Optional(oneOf(['.', ';']))
-
-
-HABITAT = oneOfKeywordsInFile('habitats.txt')
-
-HABITAT_PREPOSITION = oneOfKeywords([
-    u'in',
-    u'of',
-    u'off',
-    u'off of',
-    u'from',
-])
 
 IGNORED_PHRASES = Or([
     oneOfPhrasesInFile('ignored_phrases.txt'),
@@ -153,7 +153,7 @@ def make_grammar():
     )
     grammar = region + ZeroOrMore(Suppress(CONJUNCTION) + region) + Optional(Suppress('.'))
 
-    grammar.ignore(OCURRENCE_QUALIFIER)
+    grammar.ignore(OCURRENCE_MODIFIER)
 
     grammar.ignore(Optional(oneOf([u';', u',', u'.'])) + IGNORED_PHRASES + Optional(u'.'))
     grammar.ignore(PARENTHETICAL_PHRASE)
