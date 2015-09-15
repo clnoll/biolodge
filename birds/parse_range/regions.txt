@@ -1,12 +1,3 @@
-# andes
-# andes of central and southern peru  # FIXME: how should these be handled?
-# andes of central colombia and extreme western venezuela  # FIXME: how should these be handled?
-# andes of central peru to bolivia  # FIXME: how should these be handled?
-# andes of colombia  # FIXME: how should these be handled?
-# andes of eastern ecuador  # FIXME: how should these be handled?
-# andes of northwestern peru  # FIXME: how should these be handled?
-# andes of southeastern peru  # FIXME: how should these be handled?
-# andes of southern-central colombia  # FIXME: how should these be handled?
 admiralty island
 afghanistan
 africa
