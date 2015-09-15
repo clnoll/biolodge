@@ -112,7 +112,11 @@ IGNORED_PHRASES = Or([
 
 
 def make_grammar():
-    modified_compass_adjective = Optional(COMPASS_MODIFIER) + Optional(COMPASS_ADJECTIVE)
+    compound_compass_adjective = (
+        COMPASS_ADJECTIVE +
+        Optional(Optional(Or(['-', 'and'])) + COMPASS_ADJECTIVE)
+    )
+    modified_compass_adjective = Optional(COMPASS_MODIFIER) + Optional(compound_compass_adjective)
     modified_region = Group(
         Optional(Group(Optional(modified_compass_adjective) + HABITAT)) +
         Group(Optional(modified_compass_adjective) + REGION_ATOM)
@@ -161,7 +165,12 @@ def preprocess(text):
             .replace('misool and salawati islands',
                      'misool island and salawati island')
             .replace('bangka, lembeh and butung islands',
-                     'bangka island, lembeh island and butung island'))
+                     'bangka island, lembeh island and butung island')
+            .replace('eastern-c',
+                     'eastern-central')
+            .replace('southern-c',
+                     'southern-central')
+    )
 
     # These single/double letters seem to fail as compass adjectives
     # because they match incorrectly as prefixes of words.  Possibly need
