@@ -49,6 +49,7 @@ CONJUNCTION = Suppress(oneOfKeywords([
     u', and to',  # FIXME
     u'and in the',
     u';',
+    u', also on',
 ]))
 
 HABITAT_QUALIFIER = oneOfKeywords([
@@ -118,12 +119,6 @@ HABITAT_PREPOSITION = oneOfKeywords([
     u'from',
 ])
 
-IGNORED_WORDS = oneOfKeywords([
-    u'possibly',
-    u'mainly',
-    u'the',
-])
-
 IGNORED_PHRASES = Or([
     oneOfPhrasesInFile('ignored_phrases.txt'),
     (Keyword(u'extinct') + Optional(oneOfKeywords([u'circa', u'ca']) + Word(nums))),
@@ -151,16 +146,11 @@ def make_grammar():
     )
     grammar = region + ZeroOrMore(Suppress(CONJUNCTION) + region) + Optional(Suppress('.'))
 
-    grammar.ignore(PARENTHETICAL_PHRASE)
-    grammar.ignore(COLON_PHRASE)
-
-    # FIXME
     grammar.ignore(HABITAT_QUALIFIER)
 
-    grammar.ignore(IGNORED_WORDS)
-    grammar.ignore(Optional(oneOf([u';', u',', u'.'])) +
-                   IGNORED_PHRASES +
-                   Optional(u'.'))
+    grammar.ignore(Optional(oneOf([u';', u',', u'.'])) + IGNORED_PHRASES + Optional(u'.'))
+    grammar.ignore(PARENTHETICAL_PHRASE)
+    grammar.ignore(COLON_PHRASE)
 
     return grammar
 
@@ -178,6 +168,7 @@ def preprocess(text):
             .replace(' arch.', ' archipelago')
             .replace(' amaz. ', ' amazonian ')
             .replace(' ca. ', ' circa ')
+            .replace(' pen.', ' peninsula')
     )
 
     text = (text
@@ -193,6 +184,8 @@ def preprocess(text):
                      'sangihe island, siau island, tahulandang island and ruang island')
             .replace('banggai and sula islands',
                      'banggai island and sula island')
+            .replace('banka and belitung islands',
+                     'banka island and belitung island')
             .replace('kofiau, kamuai, and misool island',
                      'kofiau island, kamuai island and misool island')
             .replace('eastern-c',
@@ -239,6 +232,8 @@ if __name__ == '__main__':
         # Optional primary key to start at
         [offset] = args
         offset = int(offset)
+    else:
+        offset = None
 
     from pprint import pprint
 
@@ -246,7 +241,7 @@ if __name__ == '__main__':
 
     grammar = make_grammar()
 
-    unparseable = [375, 529, 536, 587, 606, 631, 978]
+    unparseable = [375, 529, 536, 587, 606, 631, 978, 1071]
 
     birds = (Bird.objects
              .exclude(id__in=unparseable)

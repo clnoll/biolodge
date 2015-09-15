@@ -69,6 +69,7 @@ baltic states
 banggai island
 bangka island
 bangladesh
+banka island
 banks group
 barbados
 bass strait
@@ -76,6 +77,7 @@ bay of bengal
 beijing
 belarus
 belgium
+belitung island
 belize
 benelux countries
 benin
@@ -249,6 +251,7 @@ gulf coast
 gulf of mexico
 gulf of thailand
 guyana
+hainan island
 hainan sheng
 haiti
 hawaii
@@ -259,6 +262,7 @@ heilongjiang sheng
 henan sheng
 high plateau and eastern madagascar
 himalaya mountains
+himalayas
 hispaniola
 holarctic
 holarctic region
@@ -355,6 +359,7 @@ madeira islands
 maine
 malawi
 malay archipelago
+malay peninsula
 malaya
 malaysia
 maldives
@@ -406,6 +411,7 @@ moon
 morelos
 morocco
 mozambique
+mt . kinabalu
 myanmar
 namibia
 nauru
@@ -562,6 +568,7 @@ sichuan sheng
 sierra de perijá
 sierra leone
 sierra nevada
+sikkim
 singapore
 sint eustatius
 sint maarten
@@ -699,6 +706,7 @@ yemen
 yucatán
 yugoslavia
 yukon territory
+yunnan
 yunnan sheng
 zambezi river
 zambia

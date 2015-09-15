@@ -85,3 +85,6 @@ wet lowlands
 wooded ponds , swamps and streams  # FIXME
 woodlands and scrub
 yungas
+oak-pine forests
+coniferous foothill forests
+coastal hills
