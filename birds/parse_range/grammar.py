@@ -75,6 +75,7 @@ OCURRENCE_MODIFIER = oneOfPhrases([
     u'nomadic throughout',
     u'patchily distributed',
     u'widespread',
+    u'mainly',
 ])
 
 HABITAT = one_of_keywords_in_file('habitats.txt')
@@ -132,6 +133,10 @@ IGNORED_PHRASES = Or([
     (Keyword(u'extinct') + u';' + Keyword(u'last') + Keyword(u'reported') + Word(nums)),
 ])
 
+IGNORED_WORDS = one_of_keywords([
+    u'the',
+    u'possibly',
+])
 
 def make_grammar():
     compound_compass_adjective = (
@@ -156,6 +161,7 @@ def make_grammar():
     grammar.ignore(OCURRENCE_MODIFIER)
 
     grammar.ignore(Optional(oneOf([u';', u',', u'.'])) + IGNORED_PHRASES + Optional(u'.'))
+    grammar.ignore(IGNORED_WORDS)
     grammar.ignore(PARENTHETICAL_PHRASE)
     grammar.ignore(COLON_PHRASE)
 
