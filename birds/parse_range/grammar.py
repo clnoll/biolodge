@@ -15,28 +15,28 @@ from pyparsing import nums
 from pyparsing import oneOf
 from pyparsing import CharsNotIn
 
-from birds.parse_range.utils import oneOfKeywords
-from birds.parse_range.utils import oneOfKeywordsInFile
-from birds.parse_range.utils import oneOfPhrases
-from birds.parse_range.utils import oneOfPhrasesInFile
+from birds.parse_range.utils import one_of_keywords
+from birds.parse_range.utils import one_of_keywords_in_file
+from birds.parse_range.utils import one_of_phrases
+from birds.parse_range.utils import one_of_phrases_in_file
 
 
 CHARACTERS = unicode(alphas) + u'ÉÎÑÓàáâãçèéêíïñóôõöúûüi'
 
-REGION_ATOM = oneOfKeywordsInFile('regions.txt')
+REGION_ATOM = one_of_keywords_in_file('regions.txt')
 
 # These should include 'n', 'sw', etc but that's not working currently and is
 # handled by preprocess()
-COMPASS_DIRECTION = oneOfKeywords([
+COMPASS_DIRECTION = one_of_keywords([
     u'north',
     u'east',
     u'south',
     u'west',
 ])
 
-COMPASS_ADJECTIVE = oneOfKeywordsInFile('compass_adjectives.txt')
+COMPASS_ADJECTIVE = one_of_keywords_in_file('compass_adjectives.txt')
 
-REGION_MODIFIER = oneOfPhrases([
+REGION_MODIFIER = one_of_phrases([
     u'adjacent',
     u'arctic',
     u'arid',
@@ -77,9 +77,9 @@ OCURRENCE_MODIFIER = oneOfPhrases([
     u'widespread',
 ])
 
-HABITAT = oneOfKeywordsInFile('habitats.txt')
+HABITAT = one_of_keywords_in_file('habitats.txt')
 
-HABITAT_PREPOSITION = oneOfKeywords([
+HABITAT_PREPOSITION = one_of_keywords([
     u'in',
     u'of',
     u'off',
@@ -87,7 +87,7 @@ HABITAT_PREPOSITION = oneOfKeywords([
     u'from',
 ])
 
-VERB = oneOfKeywords([
+VERB = one_of_keywords([
     u'breeds',
     u'breeds from',
     u'breeds in',
@@ -106,9 +106,9 @@ VERB = oneOfKeywords([
     u'visitor to',
 ])
 
-FILL_OPERATOR = Optional(COMPASS_DIRECTION) + oneOfKeywords(['to', 'through'])
+FILL_OPERATOR = Optional(COMPASS_DIRECTION) + one_of_keywords(['to', 'through'])
 
-CONJUNCTION = Suppress(oneOfKeywords([
+CONJUNCTION = Suppress(one_of_keywords([
     u',',
     u'and',
     u', and',
@@ -127,8 +127,8 @@ PARENTHETICAL_PHRASE = (
 COLON_PHRASE = ':' + CharsNotIn('.;') + Optional(oneOf(['.', ';']))
 
 IGNORED_PHRASES = Or([
-    oneOfPhrasesInFile('ignored_phrases.txt'),
-    (Keyword(u'extinct') + Optional(oneOfKeywords([u'circa', u'ca']) + Word(nums))),
+    one_of_phrases_in_file('ignored_phrases.txt'),
+    (Keyword(u'extinct') + Optional(one_of_keywords([u'circa', u'ca']) + Word(nums))),
     (Keyword(u'extinct') + u';' + Keyword(u'last') + Keyword(u'reported') + Word(nums)),
 ])
 
