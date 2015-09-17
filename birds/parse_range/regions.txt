@@ -1,4 +1,3 @@
-
 admiralty island
 afghanistan
 africa
@@ -30,6 +29,7 @@ antarctic ocean
 antigua and barbuda
 appalachian mountains
 arab countries
+arabia
 arabian peninsula
 arabian sea
 aral sea
@@ -47,6 +47,7 @@ ashmore and cartier islands
 asia
 asia minor
 assam
+assam hills
 atlantic coast
 atlantic ocean
 atlas mountains
@@ -66,7 +67,9 @@ bahamas
 bahrain
 baja
 baja california
+balearic islands
 balkan peninsula
+balkans
 baltic states
 banggai island
 bangka island
@@ -132,6 +135,7 @@ caspian sea
 cauca valley
 cauca valley , colombia
 caucasus
+caucasus mountains
 cayman islands
 central african republic
 central america
@@ -159,8 +163,10 @@ cook islands
 coral sea islands
 cordillera
 coronados islands
+corsica
 costa rica
 cozumel island
+crete
 croatia
 crozet island
 cuba
@@ -191,7 +197,9 @@ eastern australia
 eastern hemisphere
 ecuador
 egypt
+egypt east of the nile
 el salvador
+elba
 england
 equatorial guinea
 eritrea
@@ -253,6 +261,7 @@ gulf coast
 gulf of mexico
 gulf of thailand
 guyana
+hainan
 hainan island
 hainan sheng
 haiti
@@ -262,7 +271,7 @@ heard and mcdonald islands
 hebei sheng
 heilongjiang sheng
 henan sheng
-high plateau and eastern madagascar
+high plateau and east madagascar
 himalaya mountains
 himalayas
 hispaniola
@@ -274,6 +283,7 @@ hubei sheng
 hudson bay
 hunan sheng
 hungary
+iberian peninsula
 iceland
 idaho
 illinois
@@ -307,6 +317,7 @@ jiangxi sheng
 jilin sheng
 johnston island
 jordan
+jordan valley
 jupiter
 jura mountains
 kamuai island
@@ -329,6 +340,7 @@ kunlun mountains
 kuwait
 kyrgyzstan
 labrador
+ladakh
 lake alaotra
 lake baikal
 lake tanganyika
@@ -358,6 +370,7 @@ macedonia
 mackenzie river delta
 madagascar
 madeira islands
+madras
 maine
 malawi
 malay archipelago
@@ -368,6 +381,7 @@ maldives
 mali
 malta
 manchuria
+manipur
 manitoba
 margarita island
 mariana islands
@@ -476,8 +490,7 @@ ontario
 oregon
 orinoco and amazon river basins
 outer space
-owens valley
-owens valley of eastern-central california
+owens valley of east-central california
 pacific ocean
 pakistan
 palau
@@ -486,6 +499,8 @@ palawan
 palearctic
 palearctic and nearctic regions
 palearctic region
+pamir mountains
+pamirs
 panama
 papua new guinea
 papuan islands
@@ -510,6 +525,7 @@ puerto rico
 puget sound
 pyrenees
 qatar
+qinghai
 qinghai sheng
 queensland
 quintana roo
@@ -518,12 +534,14 @@ red sea
 rennell
 rhine river
 rhode island
+rhodes
 rift valley
 rio de la plata
 rocky mountains
 romania
 ruang island
 russia
+russian altai
 russian far east
 rwanda
 réunion
@@ -548,6 +566,7 @@ santa catalina island
 santa cruz county
 santa marta mountains
 sao tome and principe
+sardinia
 saskatchewan
 saturn
 saudi arabia
@@ -567,11 +586,14 @@ shanxi sheng
 siau island
 siberia
 siberian tundra
+sichuan
 sichuan sheng
+sicily
 sierra de perijá
 sierra leone
 sierra nevada
 sikkim
+sinai peninsula
 singapore
 sint eustatius
 sint maarten
@@ -611,6 +633,7 @@ sudan
 sudety mountains
 suez canal
 sula island
+sula islands
 sulawesi
 sulu archipelago
 sumatra
@@ -624,6 +647,8 @@ sweden
 switzerland
 syria
 syrian and arabian deserts
+syrian desert
+são tomé
 tahulandang island
 taiga south of alaskan tundra
 taiwan
@@ -638,9 +663,11 @@ tennessee
 terres australes et antarctiques françaises
 texas
 thailand
+the guianas
 tianjin
 tibet
 tien shan
+tien shan mountains
 tierra del fuego
 timor-leste
 tobago
@@ -648,6 +675,7 @@ togian islands
 togo
 tokelau
 tonga
+tonkin
 trinidad
 tristan da cunha
 tropical forests
@@ -691,6 +719,8 @@ wallis and futuna islands
 washington
 west
 west bank
+cameroon mountain
+bengal
 west indies
 west virginia
 western australia
@@ -700,6 +730,7 @@ windward islands
 wisconsin
 wyoming
 xi river
+xinjiang
 xinjiang uygur zizhiqu
 yangtze river
 yapen island
@@ -711,8 +742,12 @@ yugoslavia
 yukon territory
 yunnan
 yunnan sheng
+zagros mountains
 zambezi river
 zambia
 zanzibar
 zhejiang sheng
 zimbabwe
+kenya border
+forêt du day
+central african republic

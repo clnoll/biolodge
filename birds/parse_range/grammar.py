@@ -38,33 +38,39 @@ COMPASS_ADJECTIVE = one_of_keywords_in_file('compass_adjectives.txt')
 
 REGION_MODIFIER = one_of_phrases([
     u'adjacent',
+    u'alpine',
     u'arctic',
     u'arid',
+    u'borders of',
     u'coastal',
     u'east slope of',  # FIXME
-    u'eastern slope of',  # FIXME
     u'eastern arctic',  # FIXME
+    u'eastern slope of',  # FIXME
     u'equatorial',
+    u'extreme north coastal',  # FIXME
     u'extreme',
     u'humid',
     u'immediately adjacent',
     u'interior',
+    u'lowland',
     u'magellanic',
-    u'extreme north coastal',  # FIXME
-    u'northern half of',
-    u'northeastern arctic',  # FIXME
-    u'northwestern arctic',  # FIXME
     u'north central arctic',  # FIXME
+    u'northeastern arctic',  # FIXME
+    u'northern half of',
+    u'northwestern arctic',  # FIXME
     u'semiarid subtropical',
     u'semiarid',
     u'subtropical',
     u'temperate',
     u'tropical',
     u'west equatorial',  # FIXME
+    u'west slope of',  # FIXME
     u'western slope of',  # FIXME
+    u'mid-montane',
+    u'south slopes of',
 ])
 
-OCURRENCE_MODIFIER = oneOfPhrases([
+OCURRENCE_MODIFIER = one_of_phrases([
     u'discontinuous',
     u'formerly',
     u'locally in',
@@ -225,8 +231,10 @@ def preprocess(text):
             (r'\bse\b', 'southeastern'),
             (r'\bsw\b', 'southwestern'),
             (r'\bnw\b', 'northwestern'),
+            (r'^mts\. ', 'mountains '),
             # Force punctuation to be word-end by adding space, so that Keyword
             # can be used rather than Literal
+            # FIXME: can this be avoided?
             (r'\b([,;.])', ' \\1'),
             (r'(\))([,;.])', '\\1 \\2'),
             # Remove comma before fill operator
@@ -254,7 +262,7 @@ if __name__ == '__main__':
 
     grammar = make_grammar()
 
-    unparseable = [327, 361, 375, 529, 536, 587, 606, 631, 978, 1071]
+    unparseable = [109, 327, 361, 375, 529, 536, 587, 606, 631, 978, 1071]
 
     birds = (Bird.objects
              .exclude(id__in=unparseable)
