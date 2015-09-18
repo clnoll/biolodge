@@ -100,3 +100,6 @@ wet lowlands
 wooded ponds , swamps and streams  # FIXME
 woodlands and scrub
 yungas
+escarpment
+dry scrub
+bush

@@ -2,6 +2,7 @@ admiralty island
 afghanistan
 africa
 africa south of the sahara
+african republic  # FIXME central...
 alabama
 alaska
 alaska peninsula
@@ -10,6 +11,7 @@ alberta
 aleutian islands
 aleutians
 algeria
+alor islands
 alps
 altai mountains
 amazon basin
@@ -68,6 +70,7 @@ bahrain
 baja
 baja california
 balearic islands
+bali
 balkan peninsula
 balkans
 baltic states
@@ -85,6 +88,7 @@ belgium
 belitung island
 belize
 benelux countries
+bengal
 benin
 bering sea islands
 bermuda islands
@@ -120,6 +124,7 @@ cabo verde
 california
 cambodia
 cameroon
+cameroon mountain
 campbell and macquarie islands
 campeche
 canada
@@ -215,7 +220,9 @@ fanning islands
 faroe islands
 fiji
 finland
+flores
 florida
+forêt du day
 france
 franz josef land
 french community
@@ -327,6 +334,7 @@ kapiti island
 kazakhstan
 kentucky
 kenya
+kenya border
 kerguelen islands
 kermadec islands
 king island
@@ -361,6 +369,7 @@ liechtenstein
 line islands
 lithuania
 little nicobar island
+lombok
 long island
 louisiade archipelago
 louisiana
@@ -427,6 +436,8 @@ moon
 morelos
 morocco
 mozambique
+mozambique north of zambezi river
+mozambique south of zambezi river
 mt . kinabalu
 myanmar
 namibia
@@ -583,6 +594,7 @@ shaanxi sheng
 shandong sheng
 shanghai
 shanxi sheng
+shore of lake tanganyika  # FIXME: north shore...
 siau island
 siberia
 siberian tundra
@@ -637,6 +649,7 @@ sula islands
 sulawesi
 sulu archipelago
 sumatra
+sumbawa
 sun
 sundas
 suriname
@@ -719,8 +732,6 @@ wallis and futuna islands
 washington
 west
 west bank
-cameroon mountain
-bengal
 west indies
 west virginia
 western australia
@@ -748,6 +759,3 @@ zambia
 zanzibar
 zhejiang sheng
 zimbabwe
-kenya border
-forêt du day
-central african republic

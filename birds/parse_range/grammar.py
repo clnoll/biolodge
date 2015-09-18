@@ -82,6 +82,7 @@ OCURRENCE_MODIFIER = one_of_phrases([
     u'patchily distributed',
     u'widespread',
     u'mainly',
+    u'discontinuous in',
 ])
 
 HABITAT = one_of_keywords_in_file('habitats.txt')
@@ -123,6 +124,7 @@ CONJUNCTION = Suppress(one_of_keywords([
     u'and in the',
     u';',
     u', also on',
+    u', and south to',  # FIXME
 ]))
 
 PARENTHETICAL_PHRASE = (
@@ -188,6 +190,7 @@ def preprocess(text):
             .replace(' amaz. ', ' amazonian ')
             .replace(' ca. ', ' circa ')
             .replace(' pen.', ' peninsula')
+            .replace(' r.', ' river')
     )
 
     text = (text
