@@ -8,8 +8,10 @@ andes
 aquatic lowlands
 arctic coasts
 atlantic coast
+bamboo forests
 base
 base of eastern andes
+bush
 campos
 caribbean coast
 caribbean lowlands
@@ -21,11 +23,15 @@ coast
 coasts  # FIXME: "arctic coasts"
 coasts and islands
 coniferous foothill forests
+deciduous forests
 desert puna
 desolate regions
 dry forests
 dry grasslands
 dry savanna
+dry scrub
+escarpment
+foothill forests
 foothills
 forest streams
 forested regions
@@ -40,6 +46,7 @@ gulf-caribbean lowlands
 high mountains
 highlands
 hills
+himalayas
 humid andes
 humid montane forests
 inland waters
@@ -61,9 +68,12 @@ moist chaco grasslands
 moist grasslands
 montane areas
 montane forests
+montane moorlands
+mountain slopes
 mountain streams
 mountains
 oak-pine forests
+oak-rhododendron forests
 pacific and caribbean slopes
 pacific coast
 pacific cordillera
@@ -100,6 +110,3 @@ wet lowlands
 wooded ponds , swamps and streams  # FIXME
 woodlands and scrub
 yungas
-escarpment
-dry scrub
-bush

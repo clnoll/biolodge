@@ -54,6 +54,7 @@ REGION_MODIFIER = one_of_phrases([
     u'interior',
     u'lowland',
     u'magellanic',
+    u'montane',
     u'north central arctic',  # FIXME
     u'northeastern arctic',  # FIXME
     u'northern half of',
@@ -68,6 +69,7 @@ REGION_MODIFIER = one_of_phrases([
     u'western slope of',  # FIXME
     u'mid-montane',
     u'south slopes of',
+    u'low altitude',
 ])
 
 OCURRENCE_MODIFIER = one_of_phrases([
@@ -80,6 +82,7 @@ OCURRENCE_MODIFIER = one_of_phrases([
     u'mainly in',
     u'nomadic throughout',
     u'patchily distributed',
+    u'patchily distributed in',
     u'widespread',
     u'mainly',
     u'discontinuous in',
