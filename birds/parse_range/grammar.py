@@ -154,7 +154,7 @@ def make_grammar():
         COMPASS_ADJECTIVE +
         Optional(Optional(Or(['-', 'and'])) + COMPASS_ADJECTIVE)
     )
-    modifier = Optional(REGION_MODIFIER) + Optional(compound_compass_adjective)
+    modifier = ZeroOrMore(REGION_MODIFIER) + Optional(compound_compass_adjective)
     modified_region = Group(Or([
         (Optional(Group(Optional(modifier) + HABITAT + HABITAT_PREPOSITION)) +
          Group(Optional(modifier) + REGION_ATOM)),
