@@ -7,6 +7,7 @@ andean foothills
 andes
 aquatic lowlands
 arctic coasts
+areas
 atlantic coast
 bamboo forests
 base
@@ -36,9 +37,7 @@ foothills
 forest streams
 forested regions
 forests
-forests
 forests and scrub
-grasslands
 grasslands
 grasslands and scrub
 gulf coast
@@ -58,7 +57,6 @@ lakes and swamps
 llanos
 lowland forests
 lowlands
-lowlands
 lowlands of pacific slope
 magdalena valley
 maran valley
@@ -66,9 +64,7 @@ marañón valley
 moist areas
 moist chaco grasslands
 moist grasslands
-montane areas
-montane forests
-montane moorlands
+moorlands
 mountain slopes
 mountain streams
 mountains
