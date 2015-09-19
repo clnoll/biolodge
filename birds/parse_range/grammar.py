@@ -52,8 +52,10 @@ REGION_MODIFIER = one_of_phrases([
     u'humid',
     u'immediately adjacent',
     u'interior',
+    u'low altitude',
     u'lowland',
     u'magellanic',
+    u'mid-montane',
     u'montane',
     u'north central arctic',  # FIXME
     u'northeastern arctic',  # FIXME
@@ -61,15 +63,14 @@ REGION_MODIFIER = one_of_phrases([
     u'northwestern arctic',  # FIXME
     u'semiarid subtropical',
     u'semiarid',
+    u'south slopes of',
     u'subtropical',
+    u'submontane',
     u'temperate',
     u'tropical',
     u'west equatorial',  # FIXME
     u'west slope of',  # FIXME
     u'western slope of',  # FIXME
-    u'mid-montane',
-    u'south slopes of',
-    u'low altitude',
 ])
 
 OCURRENCE_MODIFIER = one_of_phrases([
@@ -128,11 +129,12 @@ CONJUNCTION = Suppress(one_of_keywords([
     u';',
     u', also on',
     u', and south to',  # FIXME
+    u', in the',
 ]))
 
 PARENTHETICAL_PHRASE = (
     '(' +
-    Word(CHARACTERS + unicode(nums) + u' ,?.-:±/') +
+    Word(CHARACTERS + unicode(nums) + u' ,?.-:±/\'') +
     ')'
 )
 
@@ -273,6 +275,8 @@ if __name__ == '__main__':
     birds = (Bird.objects
              .exclude(id__in=unparseable)
              .order_by('id'))
+
+    # birds = birds.filter(raw_range__icontains='montane')
 
     if offset:
         birds = birds.filter(id__gte=offset)

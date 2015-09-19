@@ -150,6 +150,7 @@ chad
 chihuahua
 chile
 china
+chinese turkestan
 chongqing
 christmas island
 cocos
@@ -277,6 +278,7 @@ hawaiian islands
 heard and mcdonald islands
 hebei sheng
 heilongjiang sheng
+helan mountains
 henan sheng
 high plateau and east madagascar
 himalaya mountains
@@ -328,6 +330,7 @@ jordan valley
 jupiter
 jura mountains
 kalahari desert of north namibia
+kamchatka peninsula
 kamuai island
 kangaroo island
 kansas
@@ -352,6 +355,7 @@ labrador
 ladakh
 lake alaotra
 lake baikal
+lake baikal region
 lake tanganyika
 laos
 latin america
@@ -555,6 +559,7 @@ ruang island
 russia
 russian altai
 russian far east
+russian turkestan
 rwanda
 réunion
 río negro
@@ -568,6 +573,7 @@ saint pierre and miquelon
 saint vincent and the grenadines
 saint-barthélemy
 saint-martin
+sakhalin island
 salawati island
 samoa
 samoan islands
@@ -690,12 +696,15 @@ togo
 tokelau
 tonga
 tonkin
+transcaspia
+transcaucasia
 trinidad
 tristan da cunha
 tropical forests
 tropics
 tumbatu island
 tunisia
+turkestan
 turkey
 turkmenistan
 turks and caicos islands
@@ -711,6 +720,7 @@ uranus
 uruguay
 us
 us west of atlantic seaboard
+ussuriland
 utah
 utila island
 uzbekistan

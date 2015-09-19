@@ -1,7 +1,6 @@
 # eastern slope of andes
 # western slope of andes  # FIXME
 acacia scrub
-alpine lakes
 altiplano
 andean foothills
 andes
@@ -52,6 +51,7 @@ inland waters
 islands
 islets
 karoo
+lakes
 lakes and marshes
 lakes and swamps
 llanos
