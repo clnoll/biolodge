@@ -276,8 +276,6 @@ if __name__ == '__main__':
              .exclude(id__in=unparseable)
              .order_by('id'))
 
-    # birds = birds.filter(raw_range__icontains='montane')
-
     if offset:
         birds = birds.filter(id__gte=offset)
 
