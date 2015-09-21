@@ -3,7 +3,7 @@ from pprint import pprint
 from django.core.management.base import BaseCommand
 
 from birds.models import Bird
-from birds.parse_range.grammar import make_grammar
+from birds.parse_range.grammar import make_range_grammar
 from birds.parse_range.grammar import preprocess
 
 
@@ -15,7 +15,7 @@ class Command(BaseCommand):
                                     help="Optional primary key to start at")
 
     def handle(self, *args, **options):
-        grammar = make_grammar()
+        grammar = make_range_grammar()
         unparseable = [109, 327, 361, 375, 529, 536, 587, 606, 631, 978, 1071]
 
         birds = (Bird.objects

@@ -151,7 +151,8 @@ IGNORED_WORDS = one_of_keywords([
     u'possibly',
 ])
 
-def make_grammar():
+
+def make_range_grammar():
     compound_compass_adjective = (
         COMPASS_ADJECTIVE +
         Optional(Optional(Or(['-', 'and'])) + COMPASS_ADJECTIVE)
@@ -169,16 +170,18 @@ def make_grammar():
         Optional(Optional(Keyword('from') + modified_region) +
                  OneOrMore(Group(FILL_OPERATOR + modified_region)))
     )
-    grammar = region + ZeroOrMore(Suppress(CONJUNCTION) + region) + Optional(Suppress('.'))
+    range_grammar = region + ZeroOrMore(Suppress(CONJUNCTION) + region) + Optional(Suppress('.'))
 
-    grammar.ignore(OCURRENCE_MODIFIER)
+    range_grammar.ignore(OCURRENCE_MODIFIER)
+    range_grammar.ignore(Optional(oneOf([u';', u',', u'.'])) + IGNORED_PHRASES + Optional(u'.'))
+    range_grammar.ignore(IGNORED_WORDS)
+    range_grammar.ignore(PARENTHETICAL_PHRASE)
+    range_grammar.ignore(COLON_PHRASE)
 
-    grammar.ignore(Optional(oneOf([u';', u',', u'.'])) + IGNORED_PHRASES + Optional(u'.'))
-    grammar.ignore(IGNORED_WORDS)
-    grammar.ignore(PARENTHETICAL_PHRASE)
-    grammar.ignore(COLON_PHRASE)
 
-    return grammar
+
+
+    return range_grammar
 
 
 def preprocess(text):
