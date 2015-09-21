@@ -15,17 +15,25 @@ class Command(BaseCommand):
                                     help="Optional primary key to start at")
 
     def handle(self, *args, **options):
-        grammar = make_range_grammar()
+        output = []
+        grammar = make_range_grammar(output)
         unparseable = [109, 327, 361, 375, 529, 536, 587, 606, 631, 978, 1071]
 
         birds = (Bird.objects
                  .exclude(id__in=unparseable)
-                 .order_by('id'))
+                 .order_by('id'))[:5]
 
         if options['offset']:
             birds = birds.filter(id__gte=options['offset'])
 
         for bird in birds:
+
+            del output[:]
+            range_data = {
+                'region_atoms': [],
+            }
+            output.append(range_data)
+
             if not bird.raw_range:
                 continue
 
@@ -48,6 +56,8 @@ class Command(BaseCommand):
                 import ipdb ; ipdb.set_trace()
             else:
                 pprint(parsed.asList(), width=30)
+                [range_data] = output
+                pprint(range_data)
 
             print
             print '-' * 79

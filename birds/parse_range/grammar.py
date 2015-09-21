@@ -152,7 +152,13 @@ IGNORED_WORDS = one_of_keywords([
 ])
 
 
-def make_range_grammar():
+def make_range_grammar(output):
+    """
+    Arguments
+    ---------
+
+    output: a container (list) into which parse results will be stored
+    """
     compound_compass_adjective = (
         COMPASS_ADJECTIVE +
         Optional(Optional(Or(['-', 'and'])) + COMPASS_ADJECTIVE)
@@ -178,8 +184,16 @@ def make_range_grammar():
     range_grammar.ignore(PARENTHETICAL_PHRASE)
     range_grammar.ignore(COLON_PHRASE)
 
+    #
+    # Build dict of parsed data using parse actions
+    #
 
+    def region_atom_parse_action(tokens):
+        [range_data] = output
+        [token] = tokens.asList()
+        range_data['region_atoms'].append(token)
 
+    REGION_ATOM.setParseAction(region_atom_parse_action)
 
     return range_grammar
 
