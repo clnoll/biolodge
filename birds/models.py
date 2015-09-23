@@ -13,6 +13,8 @@ Example region table:
 """
 from django.db import models
 
+from jsonfield import JSONField
+
 
 class Region(models.Model):
 
@@ -40,6 +42,7 @@ class Bird(models.Model):
     species = models.CharField(max_length=50)
     subspecies = models.CharField(max_length=50, null=True, blank=True)
     raw_range = models.TextField()
+    parsed_range = JSONField()
     ebird_id = models.CharField(max_length=50)
     common_name = models.CharField(max_length=50)
 

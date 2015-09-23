@@ -21,7 +21,8 @@ class Command(BaseCommand):
 
         birds = (Bird.objects
                  .exclude(id__in=unparseable)
-                 .order_by('id'))[:5]
+                 .order_by('id')
+                 .filter(parsed_range=''))
 
         if options['offset']:
             birds = birds.filter(id__gte=options['offset'])
@@ -53,11 +54,15 @@ class Command(BaseCommand):
             try:
                 parsed = grammar.parseString(text, parseAll=True)
             except Exception as ex:
-                import ipdb ; ipdb.set_trace()
+                print 'Failed to parse!'
+                pass
+                # import ipdb ; ipdb.set_trace()
             else:
                 pprint(parsed.asList(), width=30)
                 [range_data] = output
-                pprint(range_data)
+                bird.parsed_range = range_data
+                bird.save()
+                pprint(bird.parsed_range)
 
             print
             print '-' * 79
