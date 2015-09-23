@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title>Maps</title>
+</head>
+
+<body>
+    <table>
+        <tbody>
+            {% for species, value in birds.items %}
+              <tr>
+                  <td>{{ species }}</td>
+                  <td>{{ value.matched_species_polys }}</td>
+                  <td>{{ value.unmatched_species_polys }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

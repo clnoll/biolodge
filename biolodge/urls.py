@@ -17,8 +17,10 @@ from django.conf.urls import include, url
 from django.contrib.gis import admin
 
 from birds.views import Birds
+from geo.views import MapView
 
 urlpatterns = [
     url(r'^$', Birds.as_view()),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'map/*', MapView.as_view()),
 ]
