@@ -2,8 +2,9 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.serializers import ModelSerializer
 
-from birds.forms import MapForm
+from birds.forms import RangeForm
 from birds.models import Bird
+from geo.models import WorldBorder
 
 
 class BirdSerializer(ModelSerializer):
@@ -17,7 +18,9 @@ class Birds(generics.ListAPIView):
 
 
 def map_view(request):
-    data = {
-        'form': MapForm(),
-    }
-    return render(request, 'birds/map.html', data)
+    region = WorldBorder.objects.get(name='Indonesia')
+    form = RangeForm(data={
+        'name': region.name,
+        'mpoly': region.mpoly,
+    })
+    return render(request, 'birds/map.html', {'form': form})
