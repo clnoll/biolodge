@@ -36,14 +36,14 @@ class Region(models.Model):
 
 class Bird(models.Model):
 
-    order = models.CharField(max_length=50)
-    family = models.CharField(max_length=50)
-    genus = models.CharField(max_length=50)
-    species = models.CharField(max_length=50)
-    subspecies = models.CharField(max_length=50, null=True, blank=True)
+    order = models.CharField(max_length=100)
+    family = models.CharField(max_length=100)
+    genus = models.CharField(max_length=100)
+    species = models.CharField(max_length=100)
+    subspecies = models.CharField(max_length=100, null=True, blank=True)
     raw_range = models.TextField()
     parsed_range = JSONField()
-    ebird_id = models.CharField(max_length=50)
-    common_name = models.CharField(max_length=50)
+    ebird_id = models.CharField(max_length=100)
+    common_name = models.CharField(max_length=100)
 
     regions = models.ManyToManyField(Region)
