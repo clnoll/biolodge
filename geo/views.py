@@ -1,3 +1,5 @@
+import operator
+
 from django.shortcuts import render
 from django.views.generic import View
 
@@ -9,13 +11,16 @@ from geo.models import WorldBorder
 class MapView(View):
 
     def get(self, request):
-        borders = set(s.lower() for s in WorldBorder.objects.values_list('name', flat=True))
+        world_borders = {
+            border.name.lower(): border
+            for border in WorldBorder.objects.all()
+        }
 
         species_with_known_range = (Bird.objects
                                     .exclude(parsed_range='')
                                     .exclude(common_name=''))
 
-        species_with_known_range = species_with_known_range[:20]
+        species_with_known_range = species_with_known_range[:20]  # TODO: pagination
 
         data = {
             'birds': {},
@@ -26,31 +31,32 @@ class MapView(View):
 
         for species in species_with_known_range:
             name = species.common_name
-            birds[name] = {}
-            birds[name]['matched_species_polys'] = []
-            birds[name]['unmatched_species_polys'] = []
+            species_regions = set(species.parsed_range['region_atoms'])
+            species_data = {}
 
-            species_regions = species.parsed_range['region_atoms']
-            for region in species_regions:
-                if region in borders:
-                    birds[name]['matched_species_polys'].append(region)
-                    region = WorldBorder.objects.get(name__iexact=region)
-                else:
-                    birds[name]['unmatched_species_polys'].append(region)
+            species_data['matched_species_regions'] = (
+                species_regions & set(world_borders))
+            species_data['unmatched_species_regions'] = (
+                species_regions - species_data['matched_species_regions'])
 
-            if birds[name]['matched_species_polys']:
-                region_names = birds[name]['matched_species_polys']
-                mpoly = WorldBorder.objects.get(name__iexact=region_names[0]).mpoly
-                for region_name in region_names[1:]:
-                    mpoly += WorldBorder.objects.get(name__iexact=region_name).mpoly
+            if species_data['matched_species_regions']:
+                region_names = species_data['matched_species_regions']
+
+                mpoly = reduce(
+                    operator.add,
+                    [world_borders[region_name].mpoly
+                     for region_name in region_names])
 
                 form_data = {
                     'name': name,
                     'mpoly': mpoly,
                 }
-                birds[name]['form'] = RangeForm(data=form_data,
-                                                auto_id='bird_%d_%%s' % species.id)
+                species_data['form'] = RangeForm(
+                    data=form_data,
+                    auto_id='bird_%d_%%s' % species.id)
             else:
-                birds[name]['form'] = None
+                species_data['form'] = None
+
+            birds[name] = species_data
 
         return render(request, 'geo/geo.html', data)

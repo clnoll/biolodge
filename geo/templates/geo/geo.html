@@ -10,8 +10,8 @@
             {% for species, value in birds.items %}
               <tr>
                   <td>{{ species }}</td>
-                  <td>{{ value.matched_species_polys }}</td>
-                  <td>{{ value.unmatched_species_polys }}</td>
+                  <td>{{ value.matched_species_regions }}</td>
+                  <td>{{ value.unmatched_species_regions }}</td>
                   <td>{{ value.form.as_p }}</td>
               </tr>
             {% endfor %}
