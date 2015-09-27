@@ -70,7 +70,7 @@ class BirdListView(View):
 
         data = {
             'birds': bird_dicts,
-            'form_media': RangeForm().media,
+            'map_widget_media': RangeForm().media,
             'previous_page': previous_page,
             'next_page': next_page,
         }
