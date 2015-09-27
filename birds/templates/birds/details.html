@@ -5,18 +5,10 @@
 </head>
 
 <body>
-    <table>
-        <tbody>
-            {% for bird in birds %}
-              <tr>
-                  <td>{{ bird.name }}</td>
-                  <td>{{ bird.matched_regions }}</td>
-                  <td>{{ bird.unmatched_regions }}</td>
-                  <td>{{ bird.form.as_p }}</td>
-              </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+  <div> {{ birds.names }} </div>
+  <div> {{ birds.matched_regions }} </div>
+  <div> {{ birds.unmatched_regins }} </div>
+  <div> {{ birds.form.as_p }} </div>
 </body>
 
 </html>
