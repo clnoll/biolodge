@@ -48,7 +48,8 @@ class MapView(View):
                     'name': name,
                     'mpoly': mpoly,
                 }
-                birds[name]['form'] = RangeForm(data=form_data)
+                birds[name]['form'] = RangeForm(data=form_data,
+                                                auto_id='bird_%d_%%s' % species.id)
             else:
                 birds[name]['form'] = None
 
