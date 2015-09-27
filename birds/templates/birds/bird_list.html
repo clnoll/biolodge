@@ -33,7 +33,7 @@
       <tbody>
         {% for bird in birds %}
         <tr>
-          <td><strong>{{ bird.name }}</strong></td>
+          <td><strong>{{ bird.name }}</strong><br><em>{{ bird.genus }} {{ bird.species }} {{ bird.subspecies }}</em></td>
           <td>{{ bird.raw_range }}</td>
           <td>{{ bird.form.as_p }}</td>
           <td>{{ bird.matched_regions|join:"," }}</td>
