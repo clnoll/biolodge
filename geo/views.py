@@ -16,47 +16,43 @@ class MapView(View):
             for border in WorldBorder.objects.all()
         }
 
-        species_with_known_range = (Bird.objects
-                                    .exclude(parsed_range='')
-                                    .exclude(common_name=''))
+        birds = (Bird.objects
+                 .exclude(parsed_range='')
+                 .exclude(common_name=''))
 
-        species_with_known_range = species_with_known_range[:20]  # TODO: pagination
+        birds = birds[:20]  # TODO: pagination
+
+        bird_dicts = []
+        for bird in birds:
+            bird_regions = set(bird.parsed_range['region_atoms'])
+
+            bird_dict = {
+                'name': bird.common_name,
+                'matched_regions': bird_regions & set(world_borders),
+                'unmatched_regions': bird_regions - set(world_borders),
+            }
+
+            if bird_dict['matched_regions']:
+                bird_world_borders = [
+                    world_borders[region_name]
+                    for region_name in bird_dict['matched_regions']]
+                bird_dict['form'] = _get_range_form(bird, bird_world_borders)
+            else:
+                bird_dict['form'] = None
+
+            bird_dicts.append(bird_dict)
 
         data = {
-            'birds': {},
+            'birds': bird_dicts,
             'form_media': RangeForm().media,
         }
-
-        birds = data['birds']
-
-        for species in species_with_known_range:
-            name = species.common_name
-            species_regions = set(species.parsed_range['region_atoms'])
-            species_data = {}
-
-            species_data['matched_species_regions'] = (
-                species_regions & set(world_borders))
-            species_data['unmatched_species_regions'] = (
-                species_regions - species_data['matched_species_regions'])
-
-            if species_data['matched_species_regions']:
-                region_names = species_data['matched_species_regions']
-
-                mpoly = reduce(
-                    operator.add,
-                    [world_borders[region_name].mpoly
-                     for region_name in region_names])
-
-                form_data = {
-                    'name': name,
-                    'mpoly': mpoly,
-                }
-                species_data['form'] = RangeForm(
-                    data=form_data,
-                    auto_id='bird_%d_%%s' % species.id)
-            else:
-                species_data['form'] = None
-
-            birds[name] = species_data
-
         return render(request, 'geo/geo.html', data)
+
+
+def _get_range_form(bird, world_borders):
+    form_data = {
+        'mpoly': reduce(operator.add, (border.mpoly
+                                       for border in world_borders)),
+    }
+    return RangeForm(data=form_data,
+                     auto_id='bird_%d_%%s' % bird.id)

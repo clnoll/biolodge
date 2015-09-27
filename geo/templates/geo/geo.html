@@ -7,12 +7,12 @@
 <body>
     <table>
         <tbody>
-            {% for species, value in birds.items %}
+            {% for bird in birds %}
               <tr>
-                  <td>{{ species }}</td>
-                  <td>{{ value.matched_species_regions }}</td>
-                  <td>{{ value.unmatched_species_regions }}</td>
-                  <td>{{ value.form.as_p }}</td>
+                  <td>{{ bird.name }}</td>
+                  <td>{{ bird.matched_regions }}</td>
+                  <td>{{ bird.unmatched_regions }}</td>
+                  <td>{{ bird.form.as_p }}</td>
               </tr>
             {% endfor %}
         </tbody>
