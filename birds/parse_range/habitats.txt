@@ -1,0 +1,108 @@
+# eastern slope of andes
+# western slope of andes  # FIXME
+acacia scrub
+altiplano
+andean foothills
+andes
+aquatic lowlands
+arctic coasts
+areas
+atlantic coast
+bamboo forests
+base
+base of eastern andes
+bush
+campos
+caribbean coast
+caribbean lowlands
+caribbean slope
+cauca and magdalena valleys
+central highlands
+chaco
+coast
+coasts  # FIXME: "arctic coasts"
+coasts and islands
+coniferous foothill forests
+deciduous forests
+desert puna
+desolate regions
+dry forests
+dry grasslands
+dry savanna
+dry scrub
+escarpment
+foothill forests
+foothills
+forest streams
+forested regions
+forests
+forests and scrub
+grasslands
+grasslands and scrub
+gulf coast
+gulf-caribbean lowlands
+high mountains
+highlands
+hills
+himalayas
+humid andes
+humid montane forests
+inland waters
+islands
+islets
+karoo
+lakes
+lakes and marshes
+lakes and swamps
+llanos
+lowland forests
+lowlands
+lowlands of pacific slope
+magdalena valley
+maran valley
+marañón valley
+moist areas
+moist chaco grasslands
+moist grasslands
+moorlands
+mountain slopes
+mountain streams
+mountains
+oak-pine forests
+oak-rhododendron forests
+pacific and caribbean slopes
+pacific coast
+pacific cordillera
+pacific lowlands
+pacific slope
+pacific slope of western andes
+patagonian steppes
+petén
+plains
+primary forests
+puna
+quebracho woodlands  # FIXME: "arid quebracho woodlands"
+regions
+rocky areas
+rocky deserts
+rocky heights
+rocky hill country
+sahel
+savanna
+scrub
+scrub and heath
+steppes
+swamps and marshes
+taiga
+taiga and wooded tundra
+tepuis
+terai
+trans-fly savanna
+tropical and subtropical forests
+tundra
+upland lava flows
+wet grasslands
+wet lowlands
+wooded ponds , swamps and streams  # FIXME
+woodlands and scrub
+yungas

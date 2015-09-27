@@ -1,3 +1,4 @@
 django==1.8.4
 djangorestframework==3.2
 ipdb
+pyparsing==2.0.3

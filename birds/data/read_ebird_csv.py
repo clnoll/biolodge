@@ -1,7 +1,7 @@
 import csv
 import os
 
-from birds.models import Subspecies
+from birds.models import Bird
 
 
 CSV_NAME = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -9,20 +9,19 @@ CSV_NAME = os.path.join(os.path.dirname(os.path.abspath(__file__)),
 
 input_field_map = {'Order': 'order',
                    'Family': 'family',
-                   'Range': 'raw_location',
+                   'Range': 'raw_range',
                    'English name': 'common_name',
                    'SPECIES_CODE v2015': 'ebird_id'}
 
 
-def csv_to_db():
-    csv_name = CSV_NAME
+def csv_to_db(csv_name=CSV_NAME):
     objects = []
     with open(csv_name) as fp:
         rdr = csv.DictReader(fp)
         for line in rdr:
             mapped_data = remap_field_names(line)
-            objects.append(Subspecies(**mapped_data))
-    Subspecies.objects.bulk_create(objects)
+            objects.append(Bird(**mapped_data))
+    Bird.objects.bulk_create(objects)
 
 
 def remap_field_names(line):
@@ -32,7 +31,7 @@ def remap_field_names(line):
     for key, val in line.items():
         if key in input_field_map.keys():
             mapped_key = input_field_map[key]
-            data[mapped_key] = val.decode(errors='ignore')
+            data[mapped_key] = val.decode('latin1')
     return data
 
 
