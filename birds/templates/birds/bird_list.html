@@ -1,31 +1,50 @@
+{% load staticfiles %}
+
 <html>
-<head>
-  <title>Birds</title>
-  {{ form_media }}
-</head>
 
-<body>
+  <head>
 
-    {% if previous_page %}
-    <a href={% url 'bird_list' %}?page={{ previous_page }}>Previous</a>
-    {% endif %}
-    {% if next_page %}
-    <a href={% url 'bird_list' %}?page={{ next_page }}>Next</a>
-    {% endif %}
+    <title>Birds</title>
 
-    <table>
-        <tbody>
-            {% for bird in birds %}
-              <tr>
-                  <td>{{ bird.name }}</td>
-                  <td>{{ bird.matched_regions }}</td>
-                  <td>{{ bird.unmatched_regions }}</td>
-                  <td>{{ bird.form.as_p }}</td>
-              </tr>
-            {% endfor %}
-        </tbody>
+    {{ form_media }}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static "birds/css/birds.css" %}">
+
+  </head>
+
+  <body>
+
+    {% include "birds/_bird_list_paginator.html" %}
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Range</th>
+          <th></th>
+          <th>Matched regions</th>
+          <th>Unmatched regions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for bird in birds %}
+        <tr>
+          <td><strong>{{ bird.name }}</strong><br><em>{{ bird.genus }} {{ bird.species }} {{ bird.subspecies }}</em></td>
+          <td>{{ bird.raw_range }}</td>
+          <td>{{ bird.form.as_p }}</td>
+          <td>{{ bird.matched_regions|join:"," }}</td>
+          <td>{{ bird.unmatched_regions|join:"," }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
 
-</body>
+    {% include "birds/_bird_list_paginator.html" %}
+
+  </body>
 
 </html>
