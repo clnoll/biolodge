@@ -61,11 +61,32 @@ class BirdDetailView(View):
 
 class BirdListView(View):
 
+    PAGE_SIZE = 10
+
     def get(self, request):
+        birds = (Bird.objects
+                 .exclude(parsed_range='')
+                 .exclude(common_name=''))
+
+        # Calculate pagination
+        page = int(request.GET.get('page', '1'))
+        birds_last_index = birds.count() - 1
+        page_first_index = (page - 1) * self.PAGE_SIZE
+        page_last_index = min(page * self.PAGE_SIZE - 1,
+                              birds_last_index)
+        previous_page = page - 1 if page > 1 else None
+        next_page = page + 1 if birds_last_index > page_last_index else None
+        birds = birds[page_first_index:page_last_index + 1]
+
+        bird_dicts = _get_map_data()
+
         data = {
-            'birds': _get_map_data(),
+            'birds': bird_dicts,
             'form_media': RangeForm().media,
+            'previous_page': previous_page,
+            'next_page': next_page,
         }
+
         return render(request, 'birds/bird_list.html', data)
 
 
@@ -94,6 +115,11 @@ def _get_map_data(queryset=None):
         bird_dict = {
             '_id': bird.id,
             'name': bird.common_name,
+            'genus': bird.genus,
+            'species': bird.species,
+            'subspecies': bird.subspecies,
+            'raw_range': bird.raw_range,
+            'parsed_range': bird.parsed_range,
             'matched_regions': bird_regions & set(world_borders),
             'unmatched_regions': bird_regions - set(world_borders),
         }
