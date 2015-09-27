@@ -30,19 +30,19 @@
         <tr>
           <th>Name</th>
           <th>Range</th>
+          <th></th>
           <th>Matched regions</th>
           <th>Unmatched regions</th>
-          <th>Map</th>
         </tr>
       </thead>
       <tbody>
         {% for bird in birds %}
         <tr>
-          <td>{{ bird.name }}</td>
+          <td><strong>{{ bird.name }}</strong></td>
           <td>{{ bird.raw_range }}</td>
+          <td>{{ bird.form.as_p }}</td>
           <td>{{ bird.matched_regions|join:"," }}</td>
           <td>{{ bird.unmatched_regions|join:"," }}</td>
-          <td>{{ bird.form.as_p }}</td>
         </tr>
         {% endfor %}
       </tbody>
