@@ -5,6 +5,14 @@
 </head>
 
 <body>
+
+    {% if previous_page %}
+    <a href={% url 'bird_list' %}?page={{ previous_page }}>Previous</a>
+    {% endif %}
+    {% if next_page %}
+    <a href={% url 'bird_list' %}?page={{ next_page }}>Next</a>
+    {% endif %}
+
     <table>
         <tbody>
             {% for bird in birds %}
@@ -17,6 +25,7 @@
             {% endfor %}
         </tbody>
     </table>
+
 </body>
 
 </html>

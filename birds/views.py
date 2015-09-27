@@ -21,6 +21,7 @@ class BirdListAPIView(generics.ListAPIView):
 
 
 class BirdListView(View):
+    PAGE_SIZE = 10
 
     def get(self, request):
         world_borders = {
@@ -32,7 +33,15 @@ class BirdListView(View):
                  .exclude(parsed_range='')
                  .exclude(common_name=''))
 
-        birds = birds[:20]  # TODO: pagination
+        # Calculate pagination
+        page = int(request.GET.get('page', '1'))
+        birds_last_index = birds.count() - 1
+        page_first_index = (page - 1) * self.PAGE_SIZE
+        page_last_index = min(page * self.PAGE_SIZE - 1,
+                              birds_last_index)
+        previous_page = page - 1 if page > 1 else None
+        next_page = page + 1 if birds_last_index > page_last_index else None
+        birds = birds[page_first_index:page_last_index + 1]
 
         bird_dicts = []
         for bird in birds:
@@ -57,7 +66,10 @@ class BirdListView(View):
         data = {
             'birds': bird_dicts,
             'form_media': RangeForm().media,
+            'previous_page': previous_page,
+            'next_page': next_page,
         }
+
         return render(request, 'birds/bird_list.html', data)
 
 
