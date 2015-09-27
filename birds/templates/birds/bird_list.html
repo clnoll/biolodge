@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <html>
 
   <head>
@@ -5,6 +7,8 @@
     <title>Birds</title>
 
     {{ form_media }}
+
+    <link rel="stylesheet" type="text/css" href="{% static "birds/css/birds.css" %}">
 
   </head>
 
