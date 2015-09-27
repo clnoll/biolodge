@@ -8,11 +8,15 @@
 
     {{ form_media }}
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="{% static "birds/css/birds.css" %}">
 
   </head>
 
-<body>
+  <body>
 
     {% if previous_page %}
     <a href={% url 'bird_list' %}?page={{ previous_page }}>Previous</a>
@@ -21,19 +25,31 @@
     <a href={% url 'bird_list' %}?page={{ next_page }}>Next</a>
     {% endif %}
 
-    <table>
-        <tbody>
-            {% for bird in birds %}
-              <tr>
-                  <td>{{ bird.name }}</td>
-                  <td>{{ bird.matched_regions }}</td>
-                  <td>{{ bird.unmatched_regions }}</td>
-                  <td>{{ bird.form.as_p }}</td>
-              </tr>
-            {% endfor %}
-        </tbody>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Range</th>
+          <th>Parsed range</th>
+          <th>Matched regions</th>
+          <th>Unmatched regions</th>
+          <th>Map</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for bird in birds %}
+        <tr>
+          <td>{{ bird.name }}</td>
+          <td>{{ bird.raw_range }}</td>
+          <td>{{ bird.parsed_range }}</td>
+          <td>{{ bird.matched_regions|join:"," }}</td>
+          <td>{{ bird.unmatched_regions|join:"," }}</td>
+          <td>{{ bird.form.as_p }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
 
-</body>
+  </body>
 
 </html>

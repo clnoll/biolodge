@@ -49,6 +49,8 @@ class BirdListView(View):
 
             bird_dict = {
                 'name': bird.common_name,
+                'raw_range': bird.raw_range,
+                'parsed_range': bird.parsed_range,
                 'matched_regions': bird_regions & set(world_borders),
                 'unmatched_regions': bird_regions - set(world_borders),
             }
