@@ -1,0 +1,22 @@
+<html>
+<head>
+  <title>Birds</title>
+  {{ form_media }}
+</head>
+
+<body>
+    <table>
+        <tbody>
+            {% for bird in birds %}
+              <tr>
+                  <td>{{ bird.name }}</td>
+                  <td>{{ bird.matched_regions }}</td>
+                  <td>{{ bird.unmatched_regions }}</td>
+                  <td>{{ bird.form.as_p }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>
