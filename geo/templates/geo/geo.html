@@ -1,0 +1,22 @@
+<html>
+<head>
+  <title>Maps</title>
+  {{ form_media }}
+</head>
+
+<body>
+    <table>
+        <tbody>
+            {% for species, value in birds.items %}
+              <tr>
+                  <td>{{ species }}</td>
+                  <td>{{ value.matched_species_polys }}</td>
+                  <td>{{ value.unmatched_species_polys }}</td>
+                  <td>{{ value.form.as_p }}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>
