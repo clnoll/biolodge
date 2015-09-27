@@ -30,7 +30,6 @@
         <tr>
           <th>Name</th>
           <th>Range</th>
-          <th>Parsed range</th>
           <th>Matched regions</th>
           <th>Unmatched regions</th>
           <th>Map</th>
@@ -41,7 +40,6 @@
         <tr>
           <td>{{ bird.name }}</td>
           <td>{{ bird.raw_range }}</td>
-          <td>{{ bird.parsed_range }}</td>
           <td>{{ bird.matched_regions|join:"," }}</td>
           <td>{{ bird.unmatched_regions|join:"," }}</td>
           <td>{{ bird.form.as_p }}</td>
