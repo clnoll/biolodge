@@ -7,7 +7,7 @@ from rest_framework.serializers import ModelSerializer
 
 from birds.forms import RangeForm
 from birds.models import Bird
-from utils import get_map_data_from_birds
+from geo.models import WorldBorder
 
 
 class BirdSerializer(ModelSerializer):
@@ -20,58 +20,64 @@ class BirdListAPIView(generics.ListAPIView):
     serializer_class = BirdSerializer
 
 
-class BirdDetails(generics.DetailView):
+class BirdDetailView(View):
 
     def get(self, request):
+        import ipdb; ipdb.set_trace()
         bird_pks = self.kwargs['pk']
+        queryset = Bird.objects.filter(pk__in=bird_pks)
 
         data = {
-            'birds': get_map_data_from_birds(birds=bird_pks),
+            'birds': _get_map_data(queryset=queryset),
             'form_media': RangeForm().media,
         }
 
-        return render(request, 'birds/detail.html', data)
+        return render(request, 'birds/details.html', data)
 
 
 class BirdListView(View):
 
     def get(self, request):
-        world_borders = {
-            border.name.lower(): border
-            for border in WorldBorder.objects.all()
-        }
-
-        birds = (Bird.objects
-                 .exclude(parsed_range='')
-                 .exclude(common_name=''))
-
-        birds = birds[:20]  # TODO: pagination
-
-        bird_dicts = []
-        for bird in birds:
-            bird_regions = set(bird.parsed_range['region_atoms'])
-
-            bird_dict = {
-                'name': bird.common_name,
-                'matched_regions': bird_regions & set(world_borders),
-                'unmatched_regions': bird_regions - set(world_borders),
-            }
-
-            if bird_dict['matched_regions']:
-                bird_world_borders = [
-                    world_borders[region_name]
-                    for region_name in bird_dict['matched_regions']]
-                bird_dict['form'] = _get_range_form(bird, bird_world_borders)
-            else:
-                bird_dict['form'] = None
-
-            bird_dicts.append(bird_dict)
-
         data = {
-            'birds': bird_dicts,
+            'birds': _get_map_data(),
             'form_media': RangeForm().media,
         }
         return render(request, 'birds/bird_list.html', data)
+
+
+def _get_map_data(queryset=None):
+    world_borders = {
+        border.name.lower(): border
+        for border in WorldBorder.objects.all()
+    }
+
+    birds = (Bird.objects
+             .exclude(parsed_range='')
+             .exclude(common_name=''))
+
+    birds = birds[:20]  # TODO: pagination
+
+    bird_dicts = []
+    for bird in birds:
+        bird_regions = set(bird.parsed_range['region_atoms'])
+
+        bird_dict = {
+            'name': bird.common_name,
+            'matched_regions': bird_regions & set(world_borders),
+            'unmatched_regions': bird_regions - set(world_borders),
+        }
+
+        if bird_dict['matched_regions']:
+            bird_world_borders = [
+                world_borders[region_name]
+                for region_name in bird_dict['matched_regions']]
+            bird_dict['form'] = _get_range_form(bird, bird_world_borders)
+        else:
+            bird_dict['form'] = None
+
+        bird_dicts.append(bird_dict)
+
+    return bird_dicts
 
 
 def _get_range_form(bird, world_borders):
