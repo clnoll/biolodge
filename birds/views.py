@@ -1,11 +1,13 @@
 import operator
 
+from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic import View
 from rest_framework import generics
 from rest_framework.serializers import ModelSerializer
 
 from birds.forms import RangeForm
+from birds.forms import FilterForm
 from birds.models import Bird
 from geo.models import WorldBorder
 
@@ -22,16 +24,18 @@ class BirdListAPIView(generics.ListAPIView):
 
 class BirdListView(View):
     PAGE_SIZE = 10
+    queryset = (Bird.objects
+                .all()
+                .exclude(parsed_range='')
+                .exclude(common_name=''))
 
-    def get(self, request):
+    def get(self, request, queryset=None):
         world_borders = {
             border.name.lower(): border
             for border in WorldBorder.objects.all()
         }
 
-        birds = (Bird.objects
-                 .exclude(parsed_range='')
-                 .exclude(common_name=''))
+        birds = queryset or self.queryset
 
         # Calculate pagination
         page = int(request.GET.get('page', '1'))
@@ -73,6 +77,7 @@ class BirdListView(View):
             'map_widget_media': RangeForm().media,
             'previous_page': previous_page,
             'next_page': next_page,
+            'filter_form': FilterForm(),
         }
 
         return render(request, 'birds/bird_list.html', data)
@@ -85,3 +90,30 @@ def _get_range_form(bird, world_borders):
     }
     return RangeForm(data=form_data,
                      auto_id='bird_%d_%%s' % bird.id)
+
+
+class BirdListFilter(View):
+
+    def post(self, request):
+        name_query = self.get_name_query(request.POST['name'])
+        range_query = self.get_range_query(request.POST['range'])
+        queryset = BirdListView.queryset.filter(name_query & range_query)
+        return BirdListView().get(request, queryset=queryset)
+
+    def get_name_query(self, string):
+        query = Q()
+        string = string.strip()
+        for word in string.split():
+            query |= Q(common_name__icontains=word)
+            query |= Q(genus__icontains=word)
+            query |= Q(species__icontains=word)
+            query |= Q(subspecies__icontains=word)
+        return query
+
+    def get_range_query(self, string):
+        query = Q()
+        string = string.strip()
+        if string:
+            return Q(raw_range__icontains=string)
+        else:
+            return Q()

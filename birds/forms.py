@@ -6,3 +6,8 @@ from django.contrib.gis.forms import fields as gis_fields
 
 class RangeForm(forms.Form):
     mpoly = gis_fields.MultiPolygonField(label='')
+
+
+class FilterForm(forms.Form):
+    name = fields.CharField()
+    range = fields.CharField()

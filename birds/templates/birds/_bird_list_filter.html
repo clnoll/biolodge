@@ -1,0 +1,5 @@
+<form action="{% url 'bird_list_filter' %}" method="post">
+    {% csrf_token %}
+    {{ filter_form }}
+    <input type="submit" value="Submit" />
+</form>
