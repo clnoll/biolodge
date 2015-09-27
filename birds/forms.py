@@ -1,5 +1,8 @@
-from django.contrib.gis import forms
+from django.forms import forms
+from django.forms import fields
+
+from django.contrib.gis.forms import fields as gis_fields
 
 
 class RangeForm(forms.Form):
-    mpoly = forms.MultiPolygonField(label='')
+    mpoly = gis_fields.MultiPolygonField(label='')
