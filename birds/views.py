@@ -22,16 +22,13 @@ class BirdListAPIView(generics.ListAPIView):
 
 class BirdDetailView(View):
 
-    def get(self, request):
-        import ipdb; ipdb.set_trace()
-        bird_pks = self.kwargs['pk']
-        queryset = Bird.objects.filter(pk__in=bird_pks)
+    def get(self, request, pks):
+        queryset = Bird.objects.filter(pk__in=pks.split(','))
 
         data = {
             'birds': _get_map_data(queryset=queryset),
             'form_media': RangeForm().media,
         }
-
         return render(request, 'birds/details.html', data)
 
 
@@ -51,15 +48,20 @@ def _get_map_data(queryset=None):
         for border in WorldBorder.objects.all()
     }
 
-    birds = (Bird.objects
-             .exclude(parsed_range='')
-             .exclude(common_name=''))
-
-    birds = birds[:20]  # TODO: pagination
+    if all([query._meta.object_name == 'Bird' for query in queryset]):
+        birds = queryset
+    else:
+        birds = (Bird.objects
+                 .exclude(parsed_range='')
+                 .exclude(common_name=''))
+        birds = birds[:20]  # TODO: pagination
 
     bird_dicts = []
     for bird in birds:
-        bird_regions = set(bird.parsed_range['region_atoms'])
+        if bird.parsed_range != '':
+            bird_regions = set(bird.parsed_range['region_atoms'])
+        else:
+            bird_regions = set()
 
         bird_dict = {
             'name': bird.common_name,
