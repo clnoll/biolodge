@@ -43,20 +43,13 @@ class MapView(View):
                 mpoly = WorldBorder.objects.get(name__iexact=region_names[0]).mpoly
                 for region_name in region_names[1:]:
                     mpoly += WorldBorder.objects.get(name__iexact=region_name).mpoly
-                form = RangeForm(data={
+
+                form_data = {
                     'name': name,
                     'mpoly': mpoly,
-                })
-                birds[name]['form'] = form
+                }
+                birds[name]['form'] = RangeForm(data=form_data)
             else:
                 birds[name]['form'] = None
-
-            print 'Created entry: name=%s, form=%s,%s, #regions=%d' % (
-                name,
-                bool(form),
-                id(form),
-                len(birds[name]['matched_species_polys']),
-            )
-
 
         return render(request, 'geo/geo.html', data)
