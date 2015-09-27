@@ -4,7 +4,7 @@ from rest_framework.serializers import ModelSerializer
 
 from birds.forms import RangeForm
 from birds.models import Bird
-from geo.models import WorldBorder
+from utils import get_map_data_from_birds
 
 
 class BirdSerializer(ModelSerializer):
@@ -17,10 +17,14 @@ class Birds(generics.ListAPIView):
     serializer_class = BirdSerializer
 
 
-def map_view(request):
-    region = WorldBorder.objects.get(name='Indonesia')
-    form = RangeForm(data={
-        'name': region.name,
-        'mpoly': region.mpoly,
-    })
-    return render(request, 'birds/map.html', {'form': form})
+class BirdDetails(generics.DetailView):
+
+    def get(self, request):
+        bird_pks = self.kwargs['pk']
+
+        data = {
+            'birds': get_map_data_from_birds(birds=bird_pks),
+            'form_media': RangeForm().media,
+        }
+
+        return render(request, 'birds/detail.html', data)
