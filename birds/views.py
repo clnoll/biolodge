@@ -52,9 +52,11 @@ class BirdDetailView(View):
         else:
             concat_birds['form'] = None
 
-        from django.contrib.gis.serializers import geojson
-        serializer = geojson.Serializer()
-        world_borders_json = serializer.serialize(bird_world_borders)
+        # from django.contrib.gis.serializers import geojson
+        # serializer = geojson.Serializer()
+        # world_borders_json = serializer.serialize(bird_world_borders)
+        with open('/Users/dan/src/1p/openlayers/data/geojson/countries.geojson') as fp:
+            world_borders_json = fp.read()
 
         data = {
             'birds': concat_birds,
