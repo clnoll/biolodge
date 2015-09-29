@@ -52,9 +52,14 @@ class BirdDetailView(View):
         else:
             concat_birds['form'] = None
 
+        from django.contrib.gis.serializers import geojson
+        serializer = geojson.Serializer()
+        world_borders_json = serializer.serialize(bird_world_borders)
+
         data = {
             'birds': concat_birds,
             'form_media': RangeForm().media,
+            'world_borders_json': world_borders_json,
         }
         return render(request, 'birds/details.html', data)
 
