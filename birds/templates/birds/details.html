@@ -61,7 +61,8 @@ var styles = [style];
 
 var vectorLayer = new ol.layer.Vector({
   source: new ol.source.Vector({
-    features: worldBordersJSON,
+    url: 'http://localhost:9999/worldborders.json',
+    format: new ol.format.GeoJSON()
   }),
   style: function(feature, resolution) {
     style.getText().setText(resolution < 5000 ? feature.get('name') : '');
