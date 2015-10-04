@@ -36,11 +36,12 @@
       $.ajax({
         url: "{{ geojson_url }}",
         success: function(result) {
-          console.log(result.birds.length);
-          for (var i = 0; i < result.birds[0].geojson.features.length; i++) {
-            geojsonLayer.addData(result.birds[0].geojson.features[i]);
-            map.fitBounds(geojsonLayer.getBounds());              
+          for (var j = 0; j < result.birds.length; j++){
+            for (var i = 0; i < result.birds[j].geojson.features.length; i++) {
+              geojsonLayer.addData(result.birds[j].geojson.features[i]);
+            }                          
           }
+          map.fitBounds(geojsonLayer.getBounds());
         }
       });
 
