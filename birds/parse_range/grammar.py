@@ -158,7 +158,10 @@ class ASTNode(object):
         self.data = tokens.asList()
 
     def __repr__(self):
-        return self.__class__.__name__ + ':' + str(self.data)
+        if self.data:
+            return self.__class__.__name__ + ':' + str(self.data)
+        else:
+            return ''
 
 
 class CompassDirectionNode(ASTNode): pass
