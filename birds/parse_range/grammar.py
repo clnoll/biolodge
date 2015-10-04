@@ -155,12 +155,10 @@ IGNORED_WORDS = one_of_keywords([
 class ASTNode(object):
 
     def __init__(self, tokens):
-        self.tokens = tokens.asList()
+        self.data = tokens.asList()
 
-    def __str__(self):
-        return self.__class__.__name__ + ':' + str(self.__dict__)
-
-    __repr__ = __str__
+    def __repr__(self):
+        return self.__class__.__name__ + ':' + str(self.data)
 
 
 class RegionNode(ASTNode):
