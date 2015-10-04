@@ -61,7 +61,7 @@ var styles = [style];
 
 var vectorLayer = new ol.layer.Vector({
   source: new ol.source.Vector({
-    url: 'http://localhost:9999/worldborders.json',
+    url: '/world_borders/',
     format: new ol.format.GeoJSON()
   }),
   style: function(feature, resolution) {

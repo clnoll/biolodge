@@ -1,5 +1,6 @@
 import operator
 
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import View
 from rest_framework import generics
@@ -65,6 +66,19 @@ class BirdDetailView(View):
             'world_borders_json': world_borders_json,
         }
         return render(request, 'birds/details.html', data)
+
+
+class WorldBordersView(View):
+    def get(self, request):
+        from django.contrib.gis.serializers import geojson
+        from django.db.models import Q
+        import json
+        serializer = geojson.Serializer()
+        world_borders = (WorldBorder.objects
+                         .filter(Q(name__icontains='peru') |
+                                 Q(name__icontains='brazil')))
+        world_borders_json = serializer.serialize(world_borders)
+        return JsonResponse(json.loads(world_borders_json))
 
 
 class BirdListView(View):
