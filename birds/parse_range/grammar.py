@@ -152,6 +152,29 @@ IGNORED_WORDS = one_of_keywords([
 ])
 
 
+class ASTNode(object):
+
+    def __init__(self, tokens):
+        self.tokens = tokens.asList()
+
+    def __str__(self):
+        return self.__class__.__name__ + ':' + str(self.__dict__)
+
+    __repr__ = __str__
+
+
+class RegionNode(ASTNode):
+    pass
+
+
+class ModifiedRegionNode(ASTNode):
+    pass
+
+
+class FillOperatorNode(ASTNode):
+    pass
+
+
 def make_range_grammar(output):
     """
     Arguments
@@ -184,16 +207,9 @@ def make_range_grammar(output):
     range_grammar.ignore(PARENTHETICAL_PHRASE)
     range_grammar.ignore(COLON_PHRASE)
 
-    #
-    # Build dict of parsed data using parse actions
-    #
-
-    def region_atom_parse_action(tokens):
-        [range_data] = output
-        [token] = tokens.asList()
-        range_data['region_atoms'].append(token)
-
-    REGION_ATOM.setParseAction(region_atom_parse_action)
+    region.setParseAction(RegionNode)
+    modified_region.setParseAction(ModifiedRegionNode)
+    FILL_OPERATOR.setParseAction(FillOperatorNode)
 
     return range_grammar
 
