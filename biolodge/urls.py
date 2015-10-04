@@ -11,7 +11,7 @@ from birds.views import WorldBordersView
 
 urlpatterns = [
     url(r'^$', BirdListView.as_view()),
-    url(r'^api/birds/(?P<pks>[\d,]+)/$', BirdDetailAPIView.as_view()),
+    url(r'^api/birds/(?P<pks>[\d,]+)/$', BirdDetailAPIView.as_view(), name='birds_geojson'),
     url(r'^birds/(?P<pks>[\d,]+)/$', BirdDetailView.as_view()),
     url(r'^api/birds/$', BirdListAPIView.as_view()),
     url(r'^birds/$', BirdListView.as_view(), name='bird_list'),

@@ -3,6 +3,7 @@ import operator
 
 from django.contrib.gis.serializers import geojson
 from django.core.serializers import serialize
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -95,9 +96,12 @@ class BirdDetailView(View):
         else:
             concat_birds['form'] = None
 
+        geojson_url = reverse('birds_geojson', kwargs={'pks': pks})
+
         data = {
             'birds': concat_birds,
             'form_media': RangeForm().media,
+            'geojson_url': geojson_url,
         }
         return render(request, 'birds/details.html', data)
 

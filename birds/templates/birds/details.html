@@ -27,10 +27,20 @@
         id: 'mapbox.streets'
       }).addTo(map);
 
-      var geojsonLayer = new L.GeoJSON.AJAX("/world_borders/");
-      geojsonLayer.addTo(map);
-      geojsonLayer.on('data:loaded', function() {
-        map.fitBounds(geojsonLayer.getBounds());
+      var geojsonLayer;
+
+      $.ajax({
+        url: "{{ geojson_url }}",
+        success: function(result) {
+          console.log(result.birds.length);
+          for (var i = 0; i < result.birds.length; i++) {
+            result_features = result.birds[i].features;
+            console.log(result_features);
+            geojsonLayer = L.GeoJSON(result_features);
+            geojsonLayer.addTo(map);
+            map.fitBounds(geojsonLayer.getBounds());
+          };
+        }
       });
 
     </script>
