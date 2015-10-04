@@ -10,7 +10,6 @@
 
     <link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css">
     <script src="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.js"></script>
-    <script src="{% static 'birds/js/leaflet.ajax.min.js' %}"></script>
 
   </head>
 
@@ -27,11 +26,17 @@
         id: 'mapbox.streets'
       }).addTo(map);
 
-      var geojsonLayer = new L.GeoJSON.AJAX('/world_borders/');
-      geojsonLayer.on('data:loaded', function(){
-        geojsonLayer.addTo(map);
-      });
-
+      var geojsonLayer = new L.GeoJSON({
+        crs: {
+          type: "name",
+          properties: {
+            name: "EPSG:4326"
+          }
+        },
+        type: "FeatureCollection",
+        features: [ ]
+      })
+      geojsonLayer.addTo(map);
 
       $.ajax({
         url: "{{ geojson_url }}",
