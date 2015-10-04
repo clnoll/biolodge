@@ -161,16 +161,14 @@ class ASTNode(object):
         return self.__class__.__name__ + ':' + str(self.data)
 
 
-class RegionNode(ASTNode):
-    pass
-
-
-class ModifiedRegionNode(ASTNode):
-    pass
-
-
-class FillOperatorNode(ASTNode):
-    pass
+class CompassDirectionNode(ASTNode): pass
+class FillOperatorNode(ASTNode): pass
+class HabitatNode(ASTNode): pass
+class ModifiedRegionNode(ASTNode): pass
+class ModifierNode(ASTNode): pass
+class RegionAtomNode(ASTNode): pass
+class RegionNode(ASTNode): pass
+class VerbNode(ASTNode): pass
 
 
 def make_range_grammar(output):
@@ -205,9 +203,14 @@ def make_range_grammar(output):
     range_grammar.ignore(PARENTHETICAL_PHRASE)
     range_grammar.ignore(COLON_PHRASE)
 
-    region.setParseAction(RegionNode)
-    modified_region.setParseAction(ModifiedRegionNode)
+    COMPASS_DIRECTION.setParseAction(CompassDirectionNode)
+    HABITAT.setParseAction(HabitatNode)
     FILL_OPERATOR.setParseAction(FillOperatorNode)
+    modified_region.setParseAction(ModifiedRegionNode)
+    modifier.setParseAction(ModifierNode)
+    region.setParseAction(RegionNode)
+    REGION_ATOM.setParseAction(RegionAtomNode)
+    VERB.setParseAction(VerbNode)
 
     return range_grammar
 
