@@ -155,13 +155,10 @@ IGNORED_WORDS = one_of_keywords([
 class ASTNode(object):
 
     def __init__(self, tokens):
-        self.data = tokens.asList()
+        self.tokens = tokens.asList()
 
     def __repr__(self):
-        if self.data:
-            return self.__class__.__name__ + ':' + str(self.data)
-        else:
-            return ''
+        return self.__class__.__name__ + ':' + str(self.__dict__)
 
 
 class CompassDirectionNode(ASTNode): pass
@@ -174,13 +171,7 @@ class RegionNode(ASTNode): pass
 class VerbNode(ASTNode): pass
 
 
-def make_range_grammar(output):
-    """
-    Arguments
-    ---------
-
-    output: a container (list) into which parse results will be stored
-    """
+def make_range_grammar():
     compound_compass_adjective = (
         COMPASS_ADJECTIVE +
         Optional(Optional(Or(['-', 'and'])) + COMPASS_ADJECTIVE)

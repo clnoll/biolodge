@@ -42,7 +42,7 @@ class Bird(models.Model):
     species = models.CharField(max_length=100)
     subspecies = models.CharField(max_length=100, null=True, blank=True)
     raw_range = models.TextField()
-    parsed_range = JSONField()
+    parsed_range = models.TextField()
     ebird_id = models.CharField(max_length=100)
     common_name = models.CharField(max_length=100)
 
