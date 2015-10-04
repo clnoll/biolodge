@@ -4,7 +4,9 @@ import operator
 from django.contrib.gis.geos import Polygon
 from django.contrib.gis.serializers import geojson
 from django.core.serializers import serialize
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import View
 from rest_framework import generics
@@ -96,12 +98,12 @@ class BirdDetailAPIView(View):
 
             regions = bird_range(bird)
             if regions:
-                bird_dict['geojson'] = serializer.serialize(regions)
+                bird_dict['geojson'] = json.loads(serializer.serialize(regions))
             else:
                 bird_dict['geojson'] = None
             bird_regions.append(bird_dict)
 
-        return HttpResponse(json.dumps(bird_regions))
+        return JsonResponse({'birds': bird_regions})
 
 
 class BirdDetailView(View):
@@ -136,11 +138,24 @@ class BirdDetailView(View):
         else:
             concat_birds['form'] = None
 
+        geojson_url = reverse('birds_geojson', kwargs={'pks': pks})
+
         data = {
             'birds': concat_birds,
             'form_media': RangeForm().media,
+            'geojson_url': geojson_url,
         }
         return render(request, 'birds/details.html', data)
+
+
+class WorldBordersView(View):
+    def get(self, request):
+        from django.contrib.gis.serializers import geojson
+        from django.db.models import Q
+        import json
+        serializer = geojson.Serializer()
+        world_borders_json = serializer.serialize([])
+        return JsonResponse(json.loads(world_borders_json))
 
 
 class BirdListView(View):
