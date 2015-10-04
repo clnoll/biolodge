@@ -112,10 +112,7 @@ class WorldBordersView(View):
         from django.db.models import Q
         import json
         serializer = geojson.Serializer()
-        world_borders = (WorldBorder.objects
-                         .filter(Q(name__icontains='peru') |
-                                 Q(name__icontains='brazil')))
-        world_borders_json = serializer.serialize(world_borders)
+        world_borders_json = serializer.serialize([])
         return JsonResponse(json.loads(world_borders_json))
 
 
