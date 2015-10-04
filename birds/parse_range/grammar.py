@@ -166,12 +166,16 @@ class ASTNode(object):
         return self.__class__.__name__ + ':' + str(self.__dict__)
 
 
+class CompassAdjectiveNode(ASTNode): pass
 class CompassDirectionNode(ASTNode): pass
+class CompoundCompassAdjectiveNode(ASTNode): pass
 class FillOperatorNode(ASTNode): pass
 class HabitatNode(ASTNode): pass
+class HabitatPrepositionNode(ASTNode): pass
 class ModifiedRegionNode(ASTNode): pass
 class ModifierNode(ASTNode): pass
 class RegionAtomNode(ASTNode): pass
+class RegionModifierNode(ASTNode): pass
 class RegionNode(ASTNode): pass
 class VerbNode(ASTNode): pass
 
@@ -202,13 +206,17 @@ def make_range_grammar():
     range_grammar.ignore(PARENTHETICAL_PHRASE)
     range_grammar.ignore(COLON_PHRASE)
 
+    COMPASS_ADJECTIVE.setParseAction(CompassAdjectiveNode)
     COMPASS_DIRECTION.setParseAction(CompassDirectionNode)
+    compound_compass_adjective.setParseAction(CompoundCompassAdjectiveNode)
     HABITAT.setParseAction(HabitatNode)
+    HABITAT_PREPOSITION.setParseAction(HabitatPrepositionNode)
     FILL_OPERATOR.setParseAction(FillOperatorNode)
     modified_region.setParseAction(ModifiedRegionNode)
     modifier.setParseAction(ModifierNode)
     region.setParseAction(RegionNode)
     REGION_ATOM.setParseAction(RegionAtomNode)
+    REGION_MODIFIER.setParseAction(RegionModifierNode)
     VERB.setParseAction(VerbNode)
 
     return range_grammar
