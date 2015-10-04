@@ -1,6 +1,9 @@
+import json
 import operator
 
+from django.contrib.gis.serializers import geojson
 from django.core.serializers import serialize
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import View
 from rest_framework import generics
@@ -23,12 +26,8 @@ class BirdListAPIView(generics.ListAPIView):
 
 class BirdDetailAPIView(View):
 
-    def get_birds_regions_by_id(self, request, pks):
-        import ipdb; ipdb.set_trace()
-        world_borders = {
-            border.name.lower(): border
-            for border in WorldBorder.objects.all()
-        }
+    def get(self, request, pks):
+        serializer = geojson.Serializer()
 
         bird_regions = []
 
@@ -37,20 +36,30 @@ class BirdDetailAPIView(View):
 
         for bird in birds:
             bird_dict = {}
-            bird_dict[bird.name] = {}
-            bird_dict[bird.name]['form'] = _get_range_form(bird, world_borders)
-            bird_dict[bird.name]['matched_regions'] = bird['matched_regions']
-            bird_dict[bird.name]['unmatched_regions'] = bird['unmatched_regions']
+            bird_dict['name'] = ('%s %s %s' % (bird['genus'],
+                                               bird['species'],
+                                               bird['subspecies'])).strip()
 
+            regions = get_world_border_polys(bird['matched_regions'])
+            if regions:
+                bird_dict['geojson'] = serializer.serialize(regions)
+            else:
+                bird_dict['geojson'] = None
             bird_regions.append(bird_dict)
 
-        return bird_regions
+        return HttpResponse(json.dumps(bird_regions))
 
-    # def get_birds_regions_by_name(self, request, names):
-        # return bird_regions
 
-    # def get_birds_by_regions(self, request, regions):
-        # return bird_regions
+def get_world_border_polys(matched_region_names):
+    world_borders = {
+        border.name.lower(): border
+        for border in WorldBorder.objects.all()
+    }
+
+    region_world_borders = [world_borders[region_name]
+                            for region_name in matched_region_names]
+
+    return region_world_borders
 
 
 class BirdDetailView(View):
