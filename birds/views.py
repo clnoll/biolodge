@@ -1,5 +1,9 @@
+import json
 import operator
 
+from django.contrib.gis.serializers import geojson
+from django.core.serializers import serialize
+from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import View
@@ -19,6 +23,44 @@ class BirdSerializer(ModelSerializer):
 class BirdListAPIView(generics.ListAPIView):
     queryset = Bird.objects.all()
     serializer_class = BirdSerializer
+
+
+class BirdDetailAPIView(View):
+
+    def get(self, request, pks):
+        serializer = geojson.Serializer()
+
+        bird_regions = []
+
+        queryset = Bird.objects.filter(pk__in=pks.split(','))
+        birds = _get_map_data(queryset=queryset)
+
+        for bird in birds:
+            bird_dict = {}
+            bird_dict['name'] = ('%s %s %s' % (bird['genus'],
+                                               bird['species'],
+                                               bird['subspecies'])).strip()
+
+            regions = get_world_border_polys(bird['matched_regions'])
+            if regions:
+                bird_dict['geojson'] = serializer.serialize(regions)
+            else:
+                bird_dict['geojson'] = None
+            bird_regions.append(bird_dict)
+
+        return HttpResponse(json.dumps(bird_regions))
+
+
+def get_world_border_polys(matched_region_names):
+    world_borders = {
+        border.name.lower(): border
+        for border in WorldBorder.objects.all()
+    }
+
+    region_world_borders = [world_borders[region_name]
+                            for region_name in matched_region_names]
+
+    return region_world_borders
 
 
 class BirdDetailView(View):
