@@ -4,6 +4,7 @@ import operator
 from django.contrib.gis.serializers import geojson
 from django.core.serializers import serialize
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import View
 from rest_framework import generics
@@ -42,12 +43,12 @@ class BirdDetailAPIView(View):
 
             regions = get_world_border_polys(bird['matched_regions'])
             if regions:
-                bird_dict['geojson'] = serializer.serialize(regions)
+                bird_dict['geojson'] = json.loads(serializer.serialize(regions))
             else:
                 bird_dict['geojson'] = None
             bird_regions.append(bird_dict)
 
-        return HttpResponse(json.dumps(bird_regions))
+        return JsonResponse({'birds': bird_regions})
 
 
 def get_world_border_polys(matched_region_names):
