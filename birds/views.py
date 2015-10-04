@@ -1,6 +1,7 @@
 import json
 import operator
 
+from django.contrib.gis.geos import Polygon
 from django.contrib.gis.serializers import geojson
 from django.core.serializers import serialize
 from django.http import HttpResponse
@@ -24,6 +25,61 @@ class BirdListAPIView(generics.ListAPIView):
     serializer_class = BirdSerializer
 
 
+class BirdSelectionAPIView(View):
+
+    def get(self, request, coords):
+        serializer = geojson.Serializer()
+
+        birds = birds_with_mpolys()
+
+        input_poly = Polygon(coords)
+
+        intersecting_polys = []
+
+        for bird in birds:
+            if _intersects(bird.mpoly, input_poly):
+                intersecting_polys.append({
+                    'name': bird_name(bird),
+                    'geojson': serializer.serialize(bird.mpoly),
+                })
+
+        return HttpResponse(json.dumps(intersecting_polys))
+
+    @staticmethod
+    def _intersects(poly1, poly2):
+        pass
+
+@staticmethod
+def birds_with_mpolys(birds=None):
+    birds = []
+    if birds is None:
+        birds = Bird.objects.all()
+    for bird in birds:
+        bird['mpoly'] = bird_range(bird)
+        birds.append(bird)
+    return birds
+
+
+def bird_name(bird):
+    return ('%s %s %s' % (bird['genus'],
+                          bird['species'],
+                          bird['subspecies'])).strip()
+
+
+def bird_range(bird):
+    world_borders = {
+        border.name.lower(): border
+        for border in WorldBorder.objects.all()
+    }
+    region_world_borders = [world_borders[region_name]
+                            for region_name in bird['matched_regions']]
+
+    bird_region = reduce(operator.add, (border.mpoly
+                         for border in region_world_borders))
+
+    return bird_region
+
+
 class BirdDetailAPIView(View):
 
     def get(self, request, pks):
@@ -36,11 +92,9 @@ class BirdDetailAPIView(View):
 
         for bird in birds:
             bird_dict = {}
-            bird_dict['name'] = ('%s %s %s' % (bird['genus'],
-                                               bird['species'],
-                                               bird['subspecies'])).strip()
+            bird_dict['name'] = bird_name(bird)
 
-            regions = get_world_border_polys(bird['matched_regions'])
+            regions = bird_range(bird)
             if regions:
                 bird_dict['geojson'] = serializer.serialize(regions)
             else:
@@ -48,18 +102,6 @@ class BirdDetailAPIView(View):
             bird_regions.append(bird_dict)
 
         return HttpResponse(json.dumps(bird_regions))
-
-
-def get_world_border_polys(matched_region_names):
-    world_borders = {
-        border.name.lower(): border
-        for border in WorldBorder.objects.all()
-    }
-
-    region_world_borders = [world_borders[region_name]
-                            for region_name in matched_region_names]
-
-    return region_world_borders
 
 
 class BirdDetailView(View):

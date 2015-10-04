@@ -14,6 +14,7 @@ Example region table:
 from django.db import models
 
 from jsonfield import JSONField
+import operator
 
 
 class Region(models.Model):
@@ -47,3 +48,50 @@ class Bird(models.Model):
     common_name = models.CharField(max_length=100)
 
     regions = models.ManyToManyField(Region)
+
+    @property
+    def mpoly(self):
+        world_borders = {
+            border.name.lower(): border
+            for border in WorldBorder.objects.all()
+        }
+        region_world_borders = [world_borders[region_name]
+                                for region_name in bird.matched_regions]
+
+        bird_region = reduce(operator.add, (border.mpoly
+                             for border in region_world_borders))
+
+        return bird_region
+
+    @property
+    def matched_regions(self):
+        if self.is_valid:
+            return self._get_map_data()['matched_region']
+        return []
+
+    @property
+    def unmatched_regions(self):
+        if self.is_valid:
+            return self._get_map_data()['unmatched_region']
+        return []
+
+    @property
+    def is_valid(self):
+        if self.parsed_range == '' or self.common_name == '':
+            return False
+        return True
+
+    @staticmethod
+    def _get_map_data(self):
+        world_borders = {
+            border.name.lower(): border
+            for border in WorldBorder.objects.all()
+        }
+
+        bird_regions = set(self.parsed_range['region_atoms'])
+
+        matched_regions = bird_regions & set(world_borders),
+        unmatched_regions = bird_regions - set(world_borders),
+
+        return {'matched_regions': matched_regions,
+                'unmatched_regions': unmatched_regions}
