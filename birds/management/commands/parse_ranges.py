@@ -1,10 +1,14 @@
 from pprint import pprint
+import sys
 
 from django.core.management.base import BaseCommand
 
 from birds.models import Bird
 from birds.parse_range.grammar import make_range_grammar
 from birds.parse_range.grammar import preprocess
+
+
+PARSE_RANGE_FAILURE_STRING = '<FAILED_TO_PARSE_RANGE>'
 
 
 class Command(BaseCommand):
@@ -21,13 +25,16 @@ class Command(BaseCommand):
 
         birds = (Bird.objects
                  .exclude(id__in=unparseable)
+                 .exclude(parsed_range=PARSE_RANGE_FAILURE_STRING)
                  .order_by('id')
                  .filter(parsed_range=''))
 
         if options['offset']:
             birds = birds.filter(id__gte=options['offset'])
 
-        for bird in birds:
+        n_birds = birds.count()
+
+        for i, bird in enumerate(birds):
 
             del output[:]
             range_data = {
@@ -38,13 +45,14 @@ class Command(BaseCommand):
             if not bird.raw_range:
                 continue
 
-            print(bird.id,
-                  bird.order,
-                  bird.family,
-                  bird.genus,
-                  bird.species,
-                  bird.subspecies,
-                  bird.common_name)
+            print ' '.join(['%d/%d' % (i, n_birds),
+                            str(bird.id),
+                            bird.order,
+                            bird.family,
+                            bird.genus,
+                            bird.species,
+                            bird.subspecies,
+                            bird.common_name])
             print
 
             text = preprocess(bird.raw_range)
@@ -54,15 +62,15 @@ class Command(BaseCommand):
             try:
                 parsed = grammar.parseString(text, parseAll=True)
             except Exception as ex:
-                print 'Failed to parse!'
-                pass
-                # import ipdb ; ipdb.set_trace()
+                print >>sys.stderr, '%s: %s' % (type(ex).__name__, ex)
+                range_data = PARSE_RANGE_FAILURE_STRING
             else:
                 pprint(parsed.asList(), width=30)
                 [range_data] = output
-                bird.parsed_range = range_data
-                bird.save()
-                pprint(bird.parsed_range)
+
+            bird.parsed_range = range_data
+            bird.save()
+            pprint(bird.parsed_range)
 
             print
             print '-' * 79
