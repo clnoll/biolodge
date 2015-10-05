@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import operator
 import re
 
 from pyparsing import And
@@ -14,11 +15,14 @@ from pyparsing import alphas
 from pyparsing import nums
 from pyparsing import oneOf
 from pyparsing import CharsNotIn
+from pyparsing import ParseResults
 
 from birds.parse_range.utils import one_of_keywords
 from birds.parse_range.utils import one_of_keywords_in_file
 from birds.parse_range.utils import one_of_phrases
 from birds.parse_range.utils import one_of_phrases_in_file
+
+from geo.models import WorldBorder
 
 
 CHARACTERS = unicode(alphas) + u'ÉÎÑÓàáâãçèéêíïñóôõöúûüi'
@@ -152,6 +156,27 @@ IGNORED_WORDS = one_of_keywords([
 ])
 
 
+
+def compute_range(nodes):
+    ranges = []
+    for node in nodes:
+        assert not isinstance(node, ParseResults)  # FIXME
+        if isinstance(node, basestring):
+            continue
+        elif isinstance(node, ASTNode):
+            _range = node.get_range()
+        else:
+            assert isinstance(node, list)
+            _range = compute_range(node)
+        if _range:
+            ranges.append(_range)
+
+    if ranges:
+        return reduce(operator.add, ranges)
+    else:
+        return None
+
+
 class ASTNode(object):
 
     def __init__(self, tokens):
@@ -160,10 +185,30 @@ class ASTNode(object):
             if isinstance(token, basestring):
                 self.tokens.append(token.encode('utf-8'))
             else:
+                if isinstance(token, ParseResults):
+                    token = token.asList()
                 self.tokens.append(token)
 
     def __repr__(self):
         return self.__class__.__name__ + ':' + str(self.__dict__)
+
+    def get_range(self):
+        return compute_range(self.tokens)
+
+
+class RegionAtomNode(ASTNode):
+
+    def get_range(self):
+        world_borders = {
+            border.name.lower(): border
+            for border in WorldBorder.objects.all()
+        }
+        matched_tokens = set(self.tokens) & set(world_borders)
+        if matched_tokens:
+            return reduce(operator.add,
+                          (world_borders[token].mpoly for token in matched_tokens))
+        else:
+            return None
 
 
 class CompassAdjectiveNode(ASTNode): pass
@@ -174,7 +219,6 @@ class HabitatNode(ASTNode): pass
 class HabitatPrepositionNode(ASTNode): pass
 class ModifiedRegionNode(ASTNode): pass
 class ModifierNode(ASTNode): pass
-class RegionAtomNode(ASTNode): pass
 class RegionModifierNode(ASTNode): pass
 class RegionNode(ASTNode): pass
 class VerbNode(ASTNode): pass

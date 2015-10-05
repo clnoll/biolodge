@@ -4,6 +4,8 @@ import sys
 
 from django.core.management.base import BaseCommand
 
+from pyparsing import ParseException
+
 from birds.models import Bird
 from birds.parse_range.grammar import make_range_grammar
 from birds.parse_range.grammar import preprocess
@@ -55,7 +57,7 @@ class Command(BaseCommand):
 
             try:
                 parsed = grammar.parseString(text, parseAll=True).asList()
-            except Exception as ex:
+            except ParseException as ex:
                 print >>sys.stderr, '%s: %s' % (type(ex).__name__, ex)
                 parsed = PARSE_RANGE_FAILURE_STRING
 
