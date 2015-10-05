@@ -158,6 +158,9 @@ IGNORED_WORDS = one_of_keywords([
 
 
 def compute_range(nodes):
+    """
+    Compute a MultiPolygon from the AST nodes.
+    """
     ranges = []
     for node in nodes:
         assert not isinstance(node, ParseResults)  # FIXME
@@ -178,7 +181,9 @@ def compute_range(nodes):
 
 
 class ASTNode(object):
-
+    """
+    Abstract base class for bird range Abstract Syntax Tree.
+    """
     def __init__(self, tokens):
         self.tokens = []
         for token in tokens:
