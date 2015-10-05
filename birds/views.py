@@ -29,10 +29,12 @@ class BirdListAPIView(generics.ListAPIView):
 
 class BirdSelectionAPIView(View):
 
-    def get(self, request, coords):
+    def get(self, request):
         serializer = geojson.Serializer()
+        import ipdb; ipdb.set_trace()
 
-        birds = birds_with_mpolys()
+        coords = request.GET.keys()[0]
+
 
         input_poly = Polygon(coords)
 
@@ -47,39 +49,41 @@ class BirdSelectionAPIView(View):
 
         return HttpResponse(json.dumps(intersecting_polys))
 
+    # def _get_poly_from_str()
+
     @staticmethod
     def _intersects(poly1, poly2):
         pass
 
-@staticmethod
-def birds_with_mpolys(birds=None):
-    birds = []
-    if birds is None:
-        birds = Bird.objects.all()
-    for bird in birds:
-        bird['mpoly'] = bird_range(bird)
-        birds.append(bird)
-    return birds
+# @staticmethod
+# def birds_with_mpolys(birds=None):
+#     birds = []
+#     if birds is None:
+#         birds = Bird.objects.all()
+#     for bird in birds:
+#         bird['mpoly'] = bird_range(bird)
+#         birds.append(bird)
+#     return birds
 
 
-def bird_name(bird):
-    return ('%s %s %s' % (bird['genus'],
-                          bird['species'],
-                          bird['subspecies'])).strip()
+# def bird_name(bird):
+#     return ('%s %s %s' % (bird['genus'],
+#                           bird['species'],
+#                           bird['subspecies'])).strip()
 
 
-def bird_range(bird):
-    world_borders = {
-        border.name.lower(): border
-        for border in WorldBorder.objects.all()
-    }
-    region_world_borders = [world_borders[region_name]
-                            for region_name in bird['matched_regions']]
+# def bird_range(bird):
+#     world_borders = {
+#         border.name.lower(): border
+#         for border in WorldBorder.objects.all()
+#     }
+#     region_world_borders = [world_borders[region_name]
+#                             for region_name in bird.matched_regions]
 
-    bird_region = reduce(operator.add, (border.mpoly
-                         for border in region_world_borders))
+#     bird_region = reduce(operator.add, (border.mpoly
+#                          for border in region_world_borders))
 
-    return bird_region
+#     return bird_region
 
 
 class BirdDetailAPIView(View):

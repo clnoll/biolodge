@@ -3,6 +3,7 @@ from django.conf.urls import url
 from django.contrib.gis import admin
 
 from birds.views import BirdDetailAPIView
+from birds.views import BirdSelectionAPIView
 from birds.views import BirdDetailView
 from birds.views import BirdListAPIView
 from birds.views import BirdListView
@@ -11,7 +12,7 @@ from birds.views import WorldBordersView
 
 urlpatterns = [
     url(r'^$', BirdListView.as_view()),
-    url(r'^api/birds/select/(?P<coords>[\f,]+)/$', BirdSelectionAPIView.as_view()),
+    url(r'^api/birds/select/$', BirdSelectionAPIView.as_view()),
     url(r'^api/birds/(?P<pks>[\d,]+)/$', BirdDetailAPIView.as_view(), name='birds_geojson'),
     url(r'^birds/(?P<pks>[\d,]+)/$', BirdDetailView.as_view()),
     url(r'^api/birds/$', BirdListAPIView.as_view()),

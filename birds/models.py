@@ -15,6 +15,7 @@ from django.db import models
 
 from jsonfield import JSONField
 import operator
+from geo.models import WorldBorder
 
 
 class Region(models.Model):
@@ -56,8 +57,9 @@ class Bird(models.Model):
             for border in WorldBorder.objects.all()
         }
         region_world_borders = [world_borders[region_name]
-                                for region_name in bird.matched_regions]
+                                for region_name in self.matched_regions]
 
+        import ipdb; ipdb.set_trace()
         bird_region = reduce(operator.add, (border.mpoly
                              for border in region_world_borders))
 
