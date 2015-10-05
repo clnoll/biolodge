@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import operator
 import re
 
 from pyparsing import And
@@ -14,11 +15,14 @@ from pyparsing import alphas
 from pyparsing import nums
 from pyparsing import oneOf
 from pyparsing import CharsNotIn
+from pyparsing import ParseResults
 
 from birds.parse_range.utils import one_of_keywords
 from birds.parse_range.utils import one_of_keywords_in_file
 from birds.parse_range.utils import one_of_phrases
 from birds.parse_range.utils import one_of_phrases_in_file
+
+from geo.models import WorldBorder
 
 
 CHARACTERS = unicode(alphas) + u'ÉÎÑÓàáâãçèéêíïñóôõöúûüi'
@@ -152,13 +156,80 @@ IGNORED_WORDS = one_of_keywords([
 ])
 
 
-def make_range_grammar(output):
-    """
-    Arguments
-    ---------
 
-    output: a container (list) into which parse results will be stored
+def compute_range(nodes):
     """
+    Compute a MultiPolygon from the AST nodes.
+    """
+    ranges = []
+    for node in nodes:
+        assert not isinstance(node, ParseResults)  # FIXME
+        if isinstance(node, basestring):
+            continue
+        elif isinstance(node, ASTNode):
+            _range = node.get_range()
+        else:
+            assert isinstance(node, list)
+            _range = compute_range(node)
+        if _range:
+            ranges.append(_range)
+
+    if ranges:
+        return reduce(operator.add, ranges)
+    else:
+        return None
+
+
+class ASTNode(object):
+    """
+    Abstract base class for bird range Abstract Syntax Tree.
+    """
+    def __init__(self, tokens):
+        self.tokens = []
+        for token in tokens:
+            if isinstance(token, basestring):
+                self.tokens.append(token.encode('utf-8'))
+            else:
+                if isinstance(token, ParseResults):
+                    token = token.asList()
+                self.tokens.append(token)
+
+    def __repr__(self):
+        return self.__class__.__name__ + ':' + str(self.__dict__)
+
+    def get_range(self):
+        return compute_range(self.tokens)
+
+
+class RegionAtomNode(ASTNode):
+
+    def get_range(self):
+        world_borders = {
+            border.name.lower(): border
+            for border in WorldBorder.objects.all()
+        }
+        matched_tokens = set(self.tokens) & set(world_borders)
+        if matched_tokens:
+            return reduce(operator.add,
+                          (world_borders[token].mpoly for token in matched_tokens))
+        else:
+            return None
+
+
+class CompassAdjectiveNode(ASTNode): pass
+class CompassDirectionNode(ASTNode): pass
+class CompoundCompassAdjectiveNode(ASTNode): pass
+class FillOperatorNode(ASTNode): pass
+class HabitatNode(ASTNode): pass
+class HabitatPrepositionNode(ASTNode): pass
+class ModifiedRegionNode(ASTNode): pass
+class ModifierNode(ASTNode): pass
+class RegionModifierNode(ASTNode): pass
+class RegionNode(ASTNode): pass
+class VerbNode(ASTNode): pass
+
+
+def make_range_grammar():
     compound_compass_adjective = (
         COMPASS_ADJECTIVE +
         Optional(Optional(Or(['-', 'and'])) + COMPASS_ADJECTIVE)
@@ -184,16 +255,18 @@ def make_range_grammar(output):
     range_grammar.ignore(PARENTHETICAL_PHRASE)
     range_grammar.ignore(COLON_PHRASE)
 
-    #
-    # Build dict of parsed data using parse actions
-    #
-
-    def region_atom_parse_action(tokens):
-        [range_data] = output
-        [token] = tokens.asList()
-        range_data['region_atoms'].append(token)
-
-    REGION_ATOM.setParseAction(region_atom_parse_action)
+    COMPASS_ADJECTIVE.setParseAction(CompassAdjectiveNode)
+    COMPASS_DIRECTION.setParseAction(CompassDirectionNode)
+    compound_compass_adjective.setParseAction(CompoundCompassAdjectiveNode)
+    HABITAT.setParseAction(HabitatNode)
+    HABITAT_PREPOSITION.setParseAction(HabitatPrepositionNode)
+    FILL_OPERATOR.setParseAction(FillOperatorNode)
+    modified_region.setParseAction(ModifiedRegionNode)
+    modifier.setParseAction(ModifierNode)
+    region.setParseAction(RegionNode)
+    REGION_ATOM.setParseAction(RegionAtomNode)
+    REGION_MODIFIER.setParseAction(RegionModifierNode)
+    VERB.setParseAction(VerbNode)
 
     return range_grammar
 
