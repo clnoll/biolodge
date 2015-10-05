@@ -11,6 +11,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         birds = (Bird.objects
+                 .filter(mpoly__isnull=True)
                  .exclude(parsed_range='')
                  .order_by('id'))
 
