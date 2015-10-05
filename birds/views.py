@@ -31,17 +31,19 @@ class BirdSelectionAPIView(View):
 
     def get(self, request):
         serializer = geojson.Serializer()
-        import ipdb; ipdb.set_trace()
 
-        coords = request.GET.keys()[0]
-
-
+        coords = json.loads(request.GET['coords'])
+        if coords[-1] != coords[0]:
+            coords.append(coords[0])
         input_poly = Polygon(coords)
 
         intersecting_polys = []
+        birds = Bird.objects.all()
 
         for bird in birds:
             if _intersects(bird.mpoly, input_poly):
+                import ipdb; ipdb.set_trace()
+
                 intersecting_polys.append({
                     'name': bird_name(bird),
                     'geojson': serializer.serialize(bird.mpoly),
@@ -51,9 +53,12 @@ class BirdSelectionAPIView(View):
 
     # def _get_poly_from_str()
 
-    @staticmethod
-    def _intersects(poly1, poly2):
-        pass
+
+def _intersects(poly1, poly2):
+    if poly1 is None or poly2 is None:
+        return False
+    else:
+        return poly1.intersects(poly2)
 
 # @staticmethod
 # def birds_with_mpolys(birds=None):

@@ -52,30 +52,10 @@ class Bird(models.Model):
 
     @property
     def mpoly(self):
-        world_borders = {
-            border.name.lower(): border
-            for border in WorldBorder.objects.all()
-        }
-        region_world_borders = [world_borders[region_name]
-                                for region_name in self.matched_regions]
-
-        import ipdb; ipdb.set_trace()
-        bird_region = reduce(operator.add, (border.mpoly
-                             for border in region_world_borders))
-
-        return bird_region
-
-    @property
-    def matched_regions(self):
         if self.is_valid:
-            return self._get_map_data()['matched_region']
-        return []
-
-    @property
-    def unmatched_regions(self):
-        if self.is_valid:
-            return self._get_map_data()['unmatched_region']
-        return []
+            return self._get_map_data()
+        else:
+            return None
 
     @property
     def is_valid(self):
@@ -83,17 +63,24 @@ class Bird(models.Model):
             return False
         return True
 
-    @staticmethod
     def _get_map_data(self):
         world_borders = {
             border.name.lower(): border
             for border in WorldBorder.objects.all()
         }
 
-        bird_regions = set(self.parsed_range['region_atoms'])
+        if 'region_atoms' in self.parsed_range:
+            bird_regions = set(self.parsed_range['region_atoms'])
 
-        matched_regions = bird_regions & set(world_borders),
-        unmatched_regions = bird_regions - set(world_borders),
+            matched_regions = bird_regions & set(world_borders)
+            unmatched_regions = bird_regions - set(world_borders)
 
-        return {'matched_regions': matched_regions,
-                'unmatched_regions': unmatched_regions}
+            if matched_regions:
+                bird_borders = [world_borders[region_name]
+                                for region_name in matched_regions]
+
+                mpolys = reduce(operator.add, (border.mpoly
+                                               for border in bird_borders))
+                return mpolys
+        else:
+            return None
