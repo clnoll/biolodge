@@ -1,7 +1,7 @@
 import json
 import operator
 
-from django.contrib.gis.serializers.geojson import Serializer as GeojsonSerializer
+from django.contrib.gis.serializers import geojson
 from django.core.serializers import serialize
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
@@ -29,18 +29,27 @@ class BirdListAPIView(generics.ListAPIView):
 class BirdDetailAPIView(View):
 
     def get(self, request, pks):
-        pks = map(int, pks.split(','))
-        birds_qs = Bird.objects.filter(pk__in=pks)
+        serializer = geojson.Serializer()
 
-        birds_data = []
-        for bird in birds_qs:
-            if bird.mpoly:
-                geojson = json.loads(GeojsonSerializer().serialize([bird]))
+        bird_regions = []
+
+        queryset = Bird.objects.filter(pk__in=pks.split(','))
+        birds = _get_map_data(queryset)
+
+        for bird in birds:
+            bird_dict = {}
+            bird_dict['name'] = ('%s %s %s' % (bird['genus'],
+                                               bird['species'],
+                                               bird['subspecies'])).strip()
+
+            regions = get_world_border_polys(bird['matched_regions'])
+            if regions:
+                bird_dict['geojson'] = json.loads(serializer.serialize(regions))
             else:
-                geojson = None
-            birds_data.append({'geojson': geojson})
+                bird_dict['geojson'] = None
+            bird_regions.append(bird_dict)
 
-        return JsonResponse({'birds': birds_data})
+        return JsonResponse({'birds': bird_regions})
 
 
 def get_world_border_polys(matched_region_names):
@@ -58,9 +67,40 @@ def get_world_border_polys(matched_region_names):
 class BirdDetailView(View):
 
     def get(self, request, pks):
+        world_borders = {
+            border.name.lower(): border
+            for border in WorldBorder.objects.all()
+        }
+
+        queryset = Bird.objects.filter(pk__in=pks.split(','))
+        birds = _get_map_data(queryset)
+
+        concat_birds = {'names': [],
+                        'ids': '',
+                        'matched_regions': set([]),
+                        'unmatched_regions': set([]),
+                        'form': '',
+                        }
+
+        for bird in birds:
+            concat_birds['names'].append(bird['name'])
+            concat_birds['ids'] = '%s_%s' % (concat_birds['ids'], bird['_id'])
+            concat_birds['matched_regions'] = concat_birds['matched_regions'] | bird['matched_regions']
+            concat_birds['unmatched_regions'] = concat_birds['unmatched_regions'] | bird['unmatched_regions']
+
+        if concat_birds['matched_regions']:
+            bird_world_borders = [
+                world_borders[region_name]
+                for region_name in concat_birds['matched_regions']]
+            concat_birds['form'] = _get_range_form(concat_birds, bird_world_borders, concat=True)
+        else:
+            concat_birds['form'] = None
+
         geojson_url = reverse('birds_geojson', kwargs={'pks': pks})
 
         data = {
+            'birds': concat_birds,
+            'form_media': RangeForm().media,
             'geojson_url': geojson_url,
         }
         return render(request, 'birds/details.html', data)
