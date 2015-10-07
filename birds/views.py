@@ -52,6 +52,34 @@ class BirdDetailAPIView(View):
         return JsonResponse({'birds': bird_regions})
 
 
+class BirdDetailAPIViewAST(View):
+
+    def get(self, request, pks):
+        pks = map(int, pks.split(','))
+        birds_qs = Bird.objects.filter(pk__in=pks)
+
+        birds_data = []
+        for bird in birds_qs:
+            if bird.mpoly:
+                geojson = json.loads(GeojsonSerializer().serialize([bird]))
+            else:
+                geojson = None
+            birds_data.append({'geojson': geojson})
+
+        return JsonResponse({'birds': birds_data})
+
+
+class BirdDetailViewAST(View):
+
+    def get(self, request, pks):
+        geojson_url = reverse('birds_geojson', kwargs={'pks': pks})
+
+        data = {
+            'geojson_url': geojson_url,
+        }
+        return render(request, 'birds/details.html', data)
+
+
 def get_world_border_polys(matched_region_names):
     world_borders = {
         border.name.lower(): border
