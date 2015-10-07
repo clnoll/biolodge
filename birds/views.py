@@ -99,7 +99,7 @@ class BirdDetailAPIView(View):
         bird_regions = []
 
         queryset = Bird.objects.filter(pk__in=pks.split(','))
-        birds = _get_map_data(queryset=queryset)
+        birds = _get_map_data(queryset)
 
         for bird in birds:
             bird_dict = {}
@@ -115,6 +115,58 @@ class BirdDetailAPIView(View):
         return JsonResponse({'birds': bird_regions})
 
 
+def get_world_border_polys(matched_region_names):
+    world_borders = {
+        border.name.lower(): border
+        for border in WorldBorder.objects.all()
+    }
+
+    region_world_borders = [world_borders[region_name]
+                            for region_name in matched_region_names]
+
+    return region_world_borders
+
+
+class BirdDetailAPIViewAST(View):
+
+    def get(self, request, pks):
+        pks = map(int, pks.split(','))
+        birds_qs = Bird.objects.filter(pk__in=pks)
+
+        birds_data = []
+        for bird in birds_qs:
+            if bird.mpoly:
+                geojson = json.loads(GeojsonSerializer().serialize([bird]))
+            else:
+                geojson = None
+            birds_data.append({'geojson': geojson})
+
+        return JsonResponse({'birds': birds_data})
+
+
+class BirdDetailViewAST(View):
+
+    def get(self, request, pks):
+        geojson_url = reverse('birds_geojson', kwargs={'pks': pks})
+
+        data = {
+            'geojson_url': geojson_url,
+        }
+        return render(request, 'birds/details.html', data)
+
+
+def get_world_border_polys(matched_region_names):
+    world_borders = {
+        border.name.lower(): border
+        for border in WorldBorder.objects.all()
+    }
+
+    region_world_borders = [world_borders[region_name]
+                            for region_name in matched_region_names]
+
+    return region_world_borders
+
+
 class BirdDetailView(View):
 
     def get(self, request, pks):
@@ -124,7 +176,7 @@ class BirdDetailView(View):
         }
 
         queryset = Bird.objects.filter(pk__in=pks.split(','))
-        birds = _get_map_data(queryset=queryset)
+        birds = _get_map_data(queryset)
 
         concat_birds = {'names': [],
                         'ids': '',
@@ -186,7 +238,7 @@ class BirdListView(View):
         next_page = page + 1 if birds_last_index > page_last_index else None
         birds = birds[page_first_index:page_last_index + 1]
 
-        bird_dicts = _get_map_data()
+        bird_dicts = _get_map_data(birds)
 
         data = {
             'birds': bird_dicts,
@@ -198,20 +250,11 @@ class BirdListView(View):
         return render(request, 'birds/bird_list.html', data)
 
 
-def _get_map_data(queryset=None):
+def _get_map_data(birds):
     world_borders = {
         border.name.lower(): border
         for border in WorldBorder.objects.all()
     }
-
-    if queryset:
-        if all([query._meta.object_name == 'Bird' for query in queryset]):
-            birds = queryset
-    else:
-        birds = (Bird.objects
-                 .exclude(parsed_range='')
-                 .exclude(common_name=''))
-        birds = birds[:20]  # TODO: pagination
 
     bird_dicts = []
     for bird in birds:

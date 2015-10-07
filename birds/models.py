@@ -11,6 +11,7 @@ Example region table:
 |  5 | IndiaToChina   | null                          | null     | true    | 2               | 3               |
 |  6 | IndiaToSEChina | null                          | null     | true    | 2               | 4               |
 """
+from django.contrib.gis.db import models as gis_models
 from django.db import models
 
 from jsonfield import JSONField
@@ -44,18 +45,14 @@ class Bird(models.Model):
     species = models.CharField(max_length=100)
     subspecies = models.CharField(max_length=100, null=True, blank=True)
     raw_range = models.TextField()
-    parsed_range = JSONField()
+    parsed_range = models.TextField()
     ebird_id = models.CharField(max_length=100)
     common_name = models.CharField(max_length=100)
 
     regions = models.ManyToManyField(Region)
 
-    @property
-    def mpoly(self):
-        if self.is_valid:
-            return self._get_map_data()
-        else:
-            return None
+    mpoly = gis_models.MultiPolygonField(null=True)
+    objects = gis_models.GeoManager()
 
     @property
     def is_valid(self):
