@@ -3,7 +3,8 @@ from django.conf.urls import url
 from django.contrib.gis import admin
 
 from birds.views import BirdDetailAPIView
-from birds.views import BirdDetailView
+from birds.views import BirdDetailAPIViewAST
+from birds.views import BirdDetailViewAST
 from birds.views import BirdListAPIView
 from birds.views import BirdListView
 from birds.views import WorldBordersView
