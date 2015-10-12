@@ -180,6 +180,29 @@ def compute_range(nodes):
         return None
 
 
+def to_python(nodes):
+    """
+    Convert AST to native python data types.
+
+    Return copy of AST, replacing ASTNode instances with their names.
+    """
+    _nodes = []
+    for node in nodes:
+        assert not isinstance(node, ParseResults)  # FIXME
+        if isinstance(node, basestring):
+            _node = node
+        elif isinstance(node, ASTNode):
+            _node = {
+                type(node).__name__: to_python(node.tokens)
+            }
+        else:
+            assert isinstance(node, list)
+            _node = to_python(node)
+        _nodes.append(_node)
+
+    return _nodes
+
+
 class ASTNode(object):
     """
     Abstract base class for bird range Abstract Syntax Tree.

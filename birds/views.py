@@ -1,4 +1,5 @@
 import json
+import pickle
 import operator
 
 from django.contrib.gis.serializers import geojson
@@ -6,6 +7,7 @@ from django.core.serializers import serialize
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.views.generic import View
 from rest_framework import generics
@@ -13,6 +15,7 @@ from rest_framework.serializers import ModelSerializer
 
 from birds.forms import RangeForm
 from birds.models import Bird
+from birds.parse_range.grammar import to_python
 from geo.models import WorldBorder
 
 
@@ -78,6 +81,13 @@ class BirdDetailViewAST(View):
             'geojson_url': geojson_url,
         }
         return render(request, 'birds/details.html', data)
+
+
+class BirdRangeAPIViewAST(View):
+    def get(self, request, pk):
+        bird = get_object_or_404(Bird, pk=pk)
+        range_ast = pickle.loads(bird.parsed_range)
+        return JsonResponse(to_python(range_ast), safe=False)
 
 
 def get_world_border_polys(matched_region_names):
