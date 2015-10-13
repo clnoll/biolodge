@@ -16,6 +16,8 @@ from rest_framework.serializers import ModelSerializer
 from birds.forms import RangeForm
 from birds.models import Bird
 from birds.parse_range.grammar import to_python
+from birds.parse_range.grammar import make_range_grammar
+from birds.parse_range.grammar import preprocess
 from geo.models import WorldBorder
 
 
@@ -84,10 +86,30 @@ class BirdDetailViewAST(View):
 
 
 class BirdRangeAPIViewAST(View):
+
+    @staticmethod
+    def _range_ast_json_response(raw_range):
+        grammar = make_range_grammar()
+        range_ast = grammar.parseString(preprocess(raw_range),
+                                        parseAll=True).asList()
+        return JsonResponse(to_python(range_ast), safe=False)
+
+
+class BirdSavedRangeAPIViewAST(BirdRangeAPIViewAST):
     def get(self, request, pk):
         bird = get_object_or_404(Bird, pk=pk)
-        range_ast = pickle.loads(bird.parsed_range)
-        return JsonResponse(to_python(range_ast), safe=False)
+        if False:
+            # Return parsed range AST from db
+            range_ast = pickle.loads(bird.parsed_range)
+            return JsonResponse(to_python(range_ast), safe=False)
+        else:
+            return self._range_ast_json_response(bird.raw_range)
+
+
+class BirdNewRangeAPIViewAST(BirdRangeAPIViewAST):
+    def get(self, request):
+        raw_range = request.GET.get('range')
+        return self._range_ast_json_response(raw_range)
 
 
 def get_world_border_polys(matched_region_names):
